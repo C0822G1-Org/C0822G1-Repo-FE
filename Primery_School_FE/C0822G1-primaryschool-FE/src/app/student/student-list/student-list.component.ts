@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {StudentService} from '../../service/student.service';
+import {ClazzTeacherEdit} from '../../entity/clazz/clazz-teacher-edit';
+import {ClazzYear} from '../../entity/clazz/clazz-year';
+import {ClazzName} from '../../entity/clazz/clazz-name';
+import {ClazzTeacher} from '../../entity/clazz/clazz-teacher';
+import {StudentInfoo} from '../../entity/student/student-infoo';
+import {TeacherInfo} from '../../entity/teacher/teacher-info';
+import {StudentInfooJson} from '../../entity/student/student-infoo-json';
 
 @Component({
   selector: 'app-student-list',
@@ -6,10 +14,90 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
+  clazzTeacherEdit:ClazzTeacherEdit={};
+  currentYear: number = new Date().getFullYear();
+  yearClazz: number = 0;
+  years: ClazzYear[] = [];
+  classNames: ClazzName[] = [];
+  classTeacher: ClazzTeacher = {};
+  studentList: StudentInfoo[] = [];
+  student: StudentInfoo = {};
+  teachers: TeacherInfo[] = [];
+  teacher: TeacherInfo = {};
+  clazzId:number=0;
+  teacherIdCards:string[]=[];
+  teacherIdCard:string='';
+  page:number=0;
+  studentPage!: StudentInfooJson;
 
-  constructor() { }
+  constructor( private studentService: StudentService) {
+    this.studentService.getListYear().subscribe(data => {
+      this.years = data;
+      // console.log(this.currentYear)
+    })
+  }
 
   ngOnInit(): void {
   }
 
+  chooseClass(year: string, block: string) {
+    this.studentService.getNameClass(year, block).subscribe(data => {
+      this.classNames = data;
+    })
+  }
+
+  searchStudent(year: any, clazzId: any,page:number) {
+    this.clazzId=Number(clazzId);
+    this.yearClazz = Number(year);
+    this.studentList.length = 0;
+    // console.log(this.className,year,clazzId);
+    this.studentService.getClazzTeacher(year, clazzId).subscribe(data => {
+      this.classTeacher = data;
+      console.log(data);
+    });
+    this.studentService.getListStudent(year, clazzId,page).subscribe(data => {
+      this.studentPage=data;
+      this.studentList = data.content;
+    })
+  }
+
+  deleteStudent(id: any) {
+    this.studentService.deleteStudent(id).subscribe(data=>{
+      if (data!=null){
+        console.log(data);
+        this.searchStudent(this.yearClazz,this.clazzId,this.page);
+      }
+    })
+  }
+
+  editNameTeacher() {
+    this.studentService.getListNameTeacher(this.currentYear).subscribe(data => {
+      this.teachers = data;
+      console.log(data);
+    })
+  }
+
+  changeTeacher(teacherName: string) {
+    this.teacherIdCards=teacherName.split(',');
+    this.teacherIdCard=this.teacherIdCards[1];
+    this.teacherIdCard=this.teacherIdCard.slice(5);
+    console.log(this.teacherIdCard);
+    this.studentService.getNameTeacher(this.teacherIdCard, this.yearClazz).subscribe(data => {
+      this.teacher = data;
+      this.clazzTeacherEdit.teacherId=Number(this.teacher.id);
+      this.clazzTeacherEdit.clazzId=Number(this.classTeacher.id);
+      console.log(this.clazzTeacherEdit);
+      this.studentService.editTeacher(this.clazzTeacherEdit).subscribe(data=>{
+        if (data!=null){
+          this.searchStudent(this.yearClazz,this.clazzId,this.page);
+        }
+      })
+    });
+
+
+  }
+
+  changePage(page: number) {
+    this.searchStudent(this.yearClazz,this.clazzId,page);
+  }
 }

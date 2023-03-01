@@ -1,0 +1,107 @@
+<div style=" background-color: #ECECEC">
+  <div class="row">
+    <h1 class="title" style="font-family: system-ui; color: #07425c">QUẢN LÝ THỜI KHOÁ BIỂU</h1>
+  </div>
+
+  <div class="row" style="margin-bottom: 30px">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-4">
+      <label>
+        <select class="form-select">
+          <option>Khối</option>
+          <option>Khối 1</option>
+          <option>Khối 2</option>
+          <option>Khối 3</option>
+          <option>Khối 4</option>
+        </select>
+      </label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-4">
+      <label>
+        <select class="form-select">
+          <option>Lớp</option>
+          <option>Lớp 1</option>
+          <option>Lớp 2</option>
+          <option>Lớp 3</option>
+          <option>Lớp 4</option>
+        </select>
+      </label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-4">
+      <button type="button" class="btn btn-outline-primary">Xem</button>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <table class="table table-hover table-bordered">
+        <thead class="table-responsive table-primary textCheck">
+        <tr class="align-baseline">
+          <th scope="col">STT</th>
+          <th scope="col">Id TKB</th>
+          <th scope="col">Id Môn</th>
+          <th scope="col">Môn</th>
+          <th scope="col">Id Lớp</th>
+          <th scope="col">Lớp</th>
+        </tr>
+        </thead>
+        <tbody class="textCheck">
+        <tr *ngFor="let timetable of timetables, index as i">
+          <td>
+            {{i + 1}}
+          </td>
+          <td>
+            {{timetable.timetableId}}
+          </td>
+          <td>
+            {{timetable.subjectId}}
+          </td>
+          <td>
+            {{timetable.subjectName}}
+          </td>
+          <td>
+            {{timetable.clazzId}}
+          </td>
+          <td>
+            {{timetable.clazzName}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <button type="button" class="btn btn-outline-success update" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+        Áp dụng
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Yêu cầu cập nhật thời khoá biểu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Bạn có chắc chắn cập nhật thời khoá biểu lớp 2A1 không?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+              <button type="button" class="btn btn-outline-success">Lưu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--            ---------------------------------->
+    </div>
+    <div class="col-lg-1">
+    </div>
+  </div>
+</div>

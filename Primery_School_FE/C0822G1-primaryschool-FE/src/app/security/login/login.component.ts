@@ -1,3 +1,4 @@
+
 import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -11,6 +12,7 @@ import {ShareService} from '../../service/authentication/share.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   errorMessage = '';
   roles: string[] = [];
   returnUrl = "/";
@@ -68,4 +70,5 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
 }

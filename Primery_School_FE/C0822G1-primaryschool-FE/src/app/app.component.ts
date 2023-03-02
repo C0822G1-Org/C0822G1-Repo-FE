@@ -8,11 +8,12 @@ import {SecurityService} from './service/authentication/security.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   isLoggedIn = false;
   user: any;
   title = 'Primary-School';
-  constructor(private tokenStorageService: TokenStorageService,private securityService: SecurityService) {
-
+  constructor(private tokenStorageService: TokenStorageService,
+              private securityService: SecurityService) {
   }
 
   ngOnInit(): void {
@@ -26,6 +27,5 @@ export class AppComponent {
       this.user = this.tokenStorageService.getUser();
       this.securityService.setIsLoggedIn(this.user,true);
     }
-
   }
 }

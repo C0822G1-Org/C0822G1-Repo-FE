@@ -63,10 +63,10 @@ nav img {
 }
 
 .text-box {
-  width: 90%;
+  width: 70%;
   color: #fff;
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -105,7 +105,7 @@ nav .fa {
   display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .text-box h1 {
     font-size: 20px;
   }
@@ -206,7 +206,7 @@ nav .fa {
   animation-delay: 2.4s!important;
 }
 .custom-select{
-  font-family: Arial;
+  font-family: Arial, serif;
   position: relative;
 }
 .select-select{

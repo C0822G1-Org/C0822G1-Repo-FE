@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   user: any;
   username= "";
 
-
   constructor(private scroll: ViewportScroller, private tokenStorageService: TokenStorageService,
               private securityService: SecurityService, private router: Router) {
     this.securityService.getIsLoggedIn().subscribe(next => {
@@ -34,7 +33,6 @@ export class HeaderComponent implements OnInit {
     this.pageYoffSet = window.pageYOffset;
 }
 
-
   scrollToTop() {
     this.scroll.scrollToPosition([0,0])
   }
@@ -44,4 +42,5 @@ export class HeaderComponent implements OnInit {
     this.securityService.setIsLoggedIn(null,false);
     this.router.navigateByUrl('authentication/login');
   }
+
 }

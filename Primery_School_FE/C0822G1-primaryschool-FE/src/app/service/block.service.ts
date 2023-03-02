@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Clazz} from '../entity/student/clazz';
 import {Block} from '../entity/student/block';
 
-  const BLOCK_URL = 'http://localhost:8080/api/clazz/'
+  const BLOCK_URL = 'http://localhost:8080/api/clazz/block/'
 
 @Injectable({
   providedIn: 'root'

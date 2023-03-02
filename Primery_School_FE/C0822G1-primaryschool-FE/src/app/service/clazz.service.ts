@@ -12,8 +12,17 @@ export class ClazzService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getAllClass(page: number, clazzName : string): Observable<Clazz[]> {
-    return this.httpClient.get<Clazz[]>(CLAZZ_URL +  `?page=` + page + `&keySearch1` + clazzName)
+  getAllClazz(page: number, clazzName : string): Observable<Clazz[]> {
+    return this.httpClient.get<Clazz[]>(CLAZZ_URL +  `?page=` + page + `&keySearch1=` + clazzName)
+  }
+
+  findById(id: number){
+    return this.httpClient.get<Clazz>(`${CLAZZ_URL}${id}`)
+  }
+
+  updateClazz(id: number, clazz: Clazz){
+    return this.httpClient.put<Clazz>(`${CLAZZ_URL}update/${id}`, clazz)
+
   }
 
 }

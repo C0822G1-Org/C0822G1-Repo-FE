@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Clazz} from '../entity/student/clazz';
 import {Teacher} from '../entity/teacher/teacher';
 
-  const TEACHER_URL = 'http://localhost:8080/api/clazz/';
+  const TEACHER_URL = 'http://localhost:8080/api/clazz/teacher/';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +16,6 @@ export class TeacherService {
   getAllTeacher(): Observable<Teacher[]> {
     return this.httpClient.get<Teacher[]>(TEACHER_URL)
   }
+
+
 }

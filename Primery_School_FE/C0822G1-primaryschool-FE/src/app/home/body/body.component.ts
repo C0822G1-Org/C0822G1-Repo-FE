@@ -48,15 +48,18 @@ Get list of Blogs and pagination:
   first: any;
   getAllBlog(size: number) {
     this.blogService.getAllPage(size).subscribe(data => {
-      console.log(data);
-      this.pageBlog = data.content;
-      console.log(this.pageBlog);
-      this.numberPage = data.number;
-      this.size = data.size;
-      console.log(this.numberPage);
-      this.totalPages = data.totalPages;
-      this.first = data.first;
-      this.last = data.last;
+      if (data != null){
+        console.log(data);
+        this.pageBlog = data.content;
+        console.log(this.pageBlog);
+        this.numberPage = data.number;
+        this.size = data.size;
+        console.log(this.numberPage);
+        this.totalPages = data.totalPages;
+        this.first = data.first;
+        this.last = data.last;
+      }
+
     });
   }
 

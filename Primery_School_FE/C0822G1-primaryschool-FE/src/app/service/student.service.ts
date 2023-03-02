@@ -12,15 +12,12 @@ export class StudentService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getPageStudent(): Observable<PageStudentDto> {
-    return this.httpClient.get<PageStudentDto>(this.URL_API_STUDENT);
+  //  getPageNotifications(searchNotification: any, pageNumber: any, recordPerPage: any): Observable<PageNotificationDto> {
+  //     return this.httpClient.post<PageNotificationDto>(this.URL_API_NOTIFICATION +
+  //       '/search?page=' + pageNumber + '&size=' + recordPerPage, searchNotification);
+  //   }
+  getPageStudent(studentToSearch: any, pageNumber: any): Observable<PageStudentDto> {
+    return this.httpClient.post<PageStudentDto>(this.URL_API_STUDENT +
+      '/search?page=' + pageNumber, studentToSearch);
   }
-
-
-  searchStudent(nameStudent: any, statusStudent: any, request: any): Observable<any> {
-    const params = request;
-    return this.httpClient.get<any>('http://localhost:8080/students?name=' + nameStudent + '&status=' + statusStudent, {params});
-  }
-
-
 }

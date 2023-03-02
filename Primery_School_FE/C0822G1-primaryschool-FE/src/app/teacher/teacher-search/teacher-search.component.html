@@ -1,1 +1,131 @@
+<div class="p-3 " style="min-height: 58vh">
+  <h2 class="text-center fw-bold text-dark my-3">DANH SÁCH GIÁO VIÊN</h2>
 
+  <!--    <div>-->
+  <!--        <div class="d-flex my-2" role="search" >-->
+
+  <!--            <input class="form-control me-2" type="text" placeholder="Nhập tên học sinh.." aria-label="Search"-->
+  <!--                   name="nameSearch">-->
+
+  <!--            <button class="btn btn-light btn-outline-primary" type="submit" name="action" value="search">-->
+  <!--                <i class="fa-solid fa-magnifying-glass"></i></button>-->
+  <!--        </div>-->
+  <!--    </div>-->
+
+  <div style="text-align: center">
+    <i style="font-size: 30px" class="fa-solid fa-school"></i>
+    <i style="font-size: 30px;padding-left: 30px" class="fa-solid fa-graduation-cap"></i>
+    <i style="font-size: 30px;padding-left: 30px" class="fa-solid fa-building-columns"></i></div>
+
+
+
+  <div style="padding-top: 10px" class="row">
+
+
+    <div class="col-2"></div>
+    <div class="col-5">
+      <input style="padding-left: 30px" class="form-control me-1" type="text" placeholder="" aria-label="Search"
+        #name     class="form-control">
+    </div>
+    <div class="col-3 d-flex">
+      <div>
+        <div>
+          <label class="container">Đang dạy
+            <input #status value="flase" type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+
+        <div>
+          <label class="container">Không còn dạy
+            <input #status value="true" type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label></div>
+      </div>
+      <div >
+        <button class="btn btn-outline-primary" type="button"
+        (click)="searchTeacher(name.value,status.value)">Tìm kiếm
+        </button>
+      </div>
+    </div>
+
+    <div class="col-1">
+
+    </div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+
+      <table class="table table-light table-striped table-bordered">
+        <thead>
+        <tr class="table-primary">
+          <th class="text-center"><i class="fa-sharp fa-solid fa-bolt"></i></th>
+          <th>Tên </th>
+          <th>Ngày sinh</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td class="text-center">1</td>
+
+          <td>Lê Đức Vịnh</td>
+
+          <td>01/01/1998</td>
+        </tr>
+        <tr>
+          <td class="text-center">2</td>
+          <td>Phạm Thị Vi</td>
+          <td>01/01/2000</td>
+        </tr>
+        <tr>
+          <td class="text-center">3</td>
+          <td>Nguyễn Phước Mạnh Cường</td>
+          <td>01/01/1997</td>
+        </tr>
+        <tr>
+          <td class="text-center">4</td>
+          <td>Phan Thị Vân</td>
+          <td>01/01/1996</td>
+        </tr>
+        <tr>
+          <td class="text-center">5</td>
+
+          <td>Lê Đức Nam</td>
+
+          <td>01/01/1991</td>
+
+
+        </tr>
+
+
+        </tbody>
+
+
+      </table>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+
+</div>
+
+<div style="margin-top: 30px">
+  <nav aria-label="Page navigation example">
+    <ul style="margin-right: 260px" class="pagination justify-content-end">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Trước</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Sau</a>
+      </li>
+    </ul>
+  </nav>
+</div>

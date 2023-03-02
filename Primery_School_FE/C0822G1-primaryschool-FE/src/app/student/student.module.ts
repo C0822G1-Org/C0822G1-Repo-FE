@@ -9,6 +9,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
 import { StudentDeleteComponent } from './student-delete/student-delete.component';
 import { HomeroomClassComponent } from './homeroom-class/homeroom-class.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -18,9 +19,10 @@ import { StudentSearchComponent } from './student-search/student-search.componen
     StudentDeleteComponent,
     HomeroomClassComponent,
     StudentSearchComponent],
-  imports: [
-    CommonModule,
-    StudentRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        StudentRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class StudentModule { }

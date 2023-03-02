@@ -13,17 +13,18 @@
         <li class="animationTop delay-03"><a routerLink="/">TRANG CHỦ</a></li>
         <li class="animationTop delay-05"><a routerLink="/student">HỌC SINH</a></li>
         <li class="animationTop delay-07"><a routerLink="/teacher">GIÁO VIÊN</a></li>
-
-        <li class="animationTop delay-07"><a routerLink="/teacher">QUẢN LÝ ĐIỂM</a></li>
+        <li class="animationTop delay-07" *ngIf="isLoggedIn"><a routerLink="/teacher">QUẢN LÝ ĐIỂM</a></li>
         <li class="animationTop delay-07"><a routerLink="/teacher">LỚP HỌC</a></li>
-        <li class="animationTop delay-07"><a routerLink="/student/homeroom">LỚP CHỦ NHIỆM</a></li>
+        <li class="animationTop delay-07" *ngIf="isLoggedIn"><a routerLink="/student/homeroom">LỚP CHỦ NHIỆM</a></li>
         <li class="animationTop delay-09"><a routerLink="/timetable">THỜI KHÓA BIỂU</a></li>
-        <li class="animationTop delay-09"><a routerLink="/timetable/timetable-teacher">LỊCH DẠY</a></li>
+        <li class="animationTop delay-09" *ngIf="isLoggedIn"><a routerLink="/timetable/timetable-teacher">LỊCH DẠY</a></li>
 
         <li class="animationTop delay-1" *ngIf="isLoggedIn">
           <div>
             <div class="dropdown">
               <button class="btn btn-danger m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{{user?.avatar}}" class="rounded-circle" style="width: 40px;height: 40px" height="22" width="22"
+                     alt="avc"/>
                 <span style="padding-left: 20px">{{user?.username}}</span><i class="fa-sharp fa-solid fa-user"
                                                                              style="width: 70px; height: 35px; padding-top: 10px"></i>
               </button>

@@ -22,12 +22,18 @@
                 <label class="label" for="name">Tài khoản: </label>
                 <input type="text" formControlName="username"  class="form-control" id="name" placeholder="Tài khoản" required>
               </div>
+                <p class="text-danger">{{errors.username}}</p>
+                <p class="text-danger" *ngIf="formGroup.controls.username.hasError('required')&&formGroup.controls.username.touched">Yêu cầu phải nhập tài khoản</p>
+                <p class="text-danger" *ngIf="formGroup.controls.username.hasError('minlength')&&formGroup. controls.username.dirty">Tài khoản phải lớn hơn 3 ký tự</p>
               <div class="form-group mb-3">
                 <label class="label" for="password-input">Mật khẩu: </label>
                 <input type="password" formControlName="password" class="form-control" id="password-input" placeholder="Mật khẩu"
                        required>
               </div>
                 <p class="text-danger">{{errorMessage}}</p>
+                <p class="text-danger">{{errors.password}}</p>
+                <p class="text-danger" *ngIf="formGroup.controls.password.hasError('required')&&formGroup.controls.username.touched">Yêu cầu phải nhập tài khoản</p>
+                <p class="text-danger" *ngIf="formGroup.controls.password.hasError('minlength')&&formGroup. controls.username.dirty">Tài khoản phải lớn hơn 3 ký tự</p>
               <div class="form-group">
                 <button type="submit" class="form-control btn btn-primary rounded submit px-3">Đăng
                   nhập

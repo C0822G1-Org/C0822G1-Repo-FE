@@ -15,7 +15,11 @@ export class AppComponent {
   constructor(private tokenStorageService: TokenStorageService,
               private securityService: SecurityService) {
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   *
+   */
   ngOnInit(): void {
     this.securityService.getIsLoggedIn().subscribe(next => {
       this.isLoggedIn = next;

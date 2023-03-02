@@ -1,4 +1,4 @@
-<form [formGroup]="ClassCreate" (ngSubmit)="saveClass()">
+<form [formGroup]="classCreate" (ngSubmit)="saveClass()">
 <div class="row m-0">
   <div class=" d-flex justify-content-center align-items-center mt-2 mb-2 " style="height: 400px">
     <div class="boxed shadow h-100" style="align-content: center; margin-bottom: 250px;margin-top: 288px; padding-left: 30px;padding-right: 30px">
@@ -28,7 +28,7 @@
           <div class="col-3" style="text-align: right">
             <label>
                             <span style="text-align: right; display: inline-flex"><button class="btn btn-primary"
-                                                                                          style="width: 100px;" >Tạo lớp</button></span>
+                                                                                          style="width: 100px;"  >Tạo lớp</button></span>
             </label>
           </div>
 
@@ -38,11 +38,22 @@
         <div style="display: flex">
           <div style="margin-bottom: 20px">
             <span>Giáo viên chủ nhiệm :</span> <span style="width: 20px; display: inline-flex  ">
-                        <select class="form-select" style="width: 500px">
-                            <option [ngValue]="''">-----Hãy chọn giáo viên chủ nhiệm-----</option>
+                        <select formControlName="teacherDto" class="form-select" style="width: 500px">
+                            <option value="">---Hãy chọn giáo viên chủ nhiệm---</option>
                             <option *ngFor="let t of teacherList" [ngValue]="t" >{{t.teacherName}}</option>
                         </select>
                         </span>
+
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <div style="display: flex">
+          <div style="margin-bottom: 20px">
+            <div style="margin-bottom: 20px">
+              <span>Nhập tên lớp :</span> <span style="width: 20px; display: inline-flex  ">
+              <input type="text" formControlName="schoolYear" style="width: 500px" class="form-control"></span>
+            </div>
 
           </div>
         </div>

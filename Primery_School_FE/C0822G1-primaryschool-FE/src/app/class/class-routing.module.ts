@@ -7,7 +7,7 @@ import {ClassCreateInfoComponent} from './class-create-info/class-create-info.co
 const routes: Routes = [
   {path: '', component: ClassListComponent},
   {path: 'create', component: ClassCreateChooseComponent},
-  {path: 'create/:id', component: ClassCreateInfoComponent}
+  {path: 'create/info/:id', component: ClassCreateInfoComponent}
 ];
 
 @NgModule({

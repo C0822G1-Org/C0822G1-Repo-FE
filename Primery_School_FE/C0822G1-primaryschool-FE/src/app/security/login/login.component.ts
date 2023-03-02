@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if (this.formGroup.value.rememberMe) {
           this.tokenStorageService.saveTokenLocal(data.token);
-          this.tokenStorageService.saveUserLocal(data.email, data.id, data.username, data.name, data.roles, data.avatar);
+          this.tokenStorageService.saveUserLocal(data,data.email, data.id, data.username, data.name, data.roles, data.avatar);
         } else {
           this.tokenStorageService.saveTokenSession(data.token);
-          this.tokenStorageService.saveUserSession(data.email, data.id, data.username, data.name, data.roles, data.avatar);
+          this.tokenStorageService.saveUserSession(data,data.email, data.id, data.username, data.name, data.roles, data.avatar);
         }
-
-        this.securityService.setIsLoggedIn(true);
+        const user = this.tokenStorageService.getUser();
+        this.securityService.setIsLoggedIn(user,true);
         const  username = this.tokenStorageService.getUsername();
         this.roles = this.tokenStorageService.getRole();
         console.log(username);

@@ -18,11 +18,13 @@ export class BodyComponent implements OnInit {
   ngOnInit(): void {
   this.getAllBlog()
   }
+
   getAllBlog(){
   this.blogService.getAllPage(this.pageNumber).subscribe(data=>{
-    this.pageBlog = data.content;
-    console.log(this.pageBlog)
-    this.pageNumber = data.number;
+    if(data != null) {
+      this.pageBlog = data.content;
+      this.pageNumber = data.number;
+    }
   })
 }
 

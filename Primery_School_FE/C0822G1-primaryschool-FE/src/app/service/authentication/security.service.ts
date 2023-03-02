@@ -41,8 +41,9 @@ export class SecurityService {
     }, this.httpOptions);
   }
 
-  setIsLoggedIn(isLoggedIn: boolean) {
+  setIsLoggedIn(user: any,isLoggedIn: boolean) {
     this.isLoggedInObservable.next(isLoggedIn);
+    this.isUserObservable.next(user);
   }
 
   getUserLoggedIn(): Observable<any> {

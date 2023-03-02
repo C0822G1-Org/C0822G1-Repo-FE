@@ -7,6 +7,7 @@ const USERNAME_KEY = 'Username_account_key';
 const ID_ACCOUNT_KEY = 'Id_Account_key';
 const EMAIL_KEY = 'Email_key';
 const AVATAR_KEY = 'Avatar_key';
+const USER_KEY = 'auth-user';
 
 
 @Injectable({
@@ -25,6 +26,7 @@ export class TokenStorageService {
   public saveTokenLocal(token: string) {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
+
   }
 
   public saveTokenSession(token: string) {
@@ -40,7 +42,7 @@ export class TokenStorageService {
     }
   }
 
-  public saveUserLocal(email: string, idAccount: string, username: string, name: string, roles: string[], avatar: string) {
+  public saveUserLocal(user: any,email: string, idAccount: string, username: string, name: string, roles: string[], avatar: string) {
     window.localStorage.removeItem(EMAIL_KEY);
     window.localStorage.removeItem(NAME_KEY);
     window.localStorage.removeItem(ROLE_KEY);
@@ -53,9 +55,11 @@ export class TokenStorageService {
     window.localStorage.setItem(NAME_KEY, JSON.stringify(name));
     window.localStorage.setItem(ROLE_KEY, JSON.stringify(roles));
     window.localStorage.setItem(AVATAR_KEY, JSON.stringify(avatar));
+    window.localStorage.removeItem(USER_KEY);
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public saveUserSession(email: string, idAccount: string, username: string, name: string, roles: string[], avatar: string) {
+  public saveUserSession(user: any, email: string, idAccount: string, username: string, name: string, roles: string[], avatar: string) {
     window.sessionStorage.removeItem(EMAIL_KEY);
     window.sessionStorage.removeItem(NAME_KEY);
     window.sessionStorage.removeItem(ROLE_KEY);
@@ -68,6 +72,8 @@ export class TokenStorageService {
     window.sessionStorage.setItem(NAME_KEY, JSON.stringify(name));
     window.sessionStorage.setItem(ROLE_KEY, JSON.stringify(roles));
     window.sessionStorage.setItem(AVATAR_KEY, JSON.stringify(avatar));
+    window.sessionStorage.removeItem(USER_KEY);
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
   public getName(): string {
@@ -96,6 +102,16 @@ export class TokenStorageService {
       return <string> localStorage.getItem(USERNAME_KEY);
     }
     return <string> sessionStorage.getItem(USERNAME_KEY);
+  }
+
+  public getUser() {
+    let itemString;
+    if(localStorage.getItem(USER_KEY) != null) {
+      itemString = localStorage.getItem(USER_KEY);
+    } else {
+      itemString = sessionStorage.getItem(USER_KEY);
+    }
+    return itemString ? JSON.parse(itemString) : null;
   }
 
   public getRole(): string[] {

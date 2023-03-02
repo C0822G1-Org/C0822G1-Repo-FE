@@ -25,12 +25,12 @@
     <div>
       <div class="dropdown">
         <button class="btn btn-danger m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-sharp fa-solid fa-user" style="width: 70px; height: 35px; padding-top: 10px"></i>
+          <span style="padding-left: 20px">{{user?.username}}</span><i class="fa-sharp fa-solid fa-user" style="width: 70px; height: 35px; padding-top: 10px"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end" style="background-color: #f44336; cursor: pointer">
           <li><a class="dropdown"><i class="fa-sharp fa-solid fa-key" ></i> Sửa thông tin cá nhân</a></li>
           <li><a class="dropdown"><i class="fa-sharp fa-solid fa-key" ></i> Sửa mật khẩu</a></li>
-          <li><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout"  (click)="logout()" type="button"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Đăng xuất </a> </li>
+          <li><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout" (click)="logout()" type="button"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Đăng xuất </a> </li>
         </ul>
       </div>
     </div>
@@ -40,10 +40,10 @@
 
   </nav>
   <div class="text-box">
-    <h1 class="animationTop delay-12">Trường Tiểu Học C Zero Eight</h1>
+    <h1 class="animationTop delay-12" style="padding: 0">Trường Tiểu Học C Zero Eight</h1>
     <p class="animationTop delay-15">Là nơi có đội ngũ giáo viên được đào tạo chuyên nghiệp, có trách nhiệm và kinh nghiệm qua nhiều năm giảng
       dạy</p>
-    <a routerLink="/authentication" class="hero-btn animationTop delay-17">Đăng Nhập</a>
+    <a routerLink="/authentication/login" *ngIf="!isLoggedIn" class="hero-btn animationTop delay-17">Đăng Nhập</a>
 
   </div>
   <div class="scroll-to-top" *ngIf="pageYoffSet > 0">

@@ -1,9 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
-import {ShareService} from '../../service/authentication/share.service';
 import {SecurityService} from '../../service/authentication/security.service';
 import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -12,18 +12,20 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   pageYoffSet: number = 0;
-  isLoggedIn: any;
+  isLoggedIn = false;
   user: any;
+  username= "";
 
 
-  constructor(private scroll: ViewportScroller, private tokenStorageService: TokenStorageService, private securityService: SecurityService, private router: Router) {
-    this.securityService.getIsLoggedIn().subscribe(v => {
-      console.log('come here: ', v);
-      this.isLoggedIn = v;
+  constructor(private scroll: ViewportScroller, private tokenStorageService: TokenStorageService,
+              private securityService: SecurityService, private router: Router) {
+    this.securityService.getIsLoggedIn().subscribe(next => {
+      this.isLoggedIn = next;
     });
     this.securityService.getUserLoggedIn().subscribe(next => {
       this.user = next;
     });
+
   }
 
   ngOnInit(): void {
@@ -39,8 +41,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.tokenStorageService.logout();
-    this.securityService.isLoggedIn = false;
-    this.securityService.setIsLoggedIn(null, false);
-    this.router.navigateByUrl('/login');
+    this.securityService.setIsLoggedIn(null,false);
+    this.router.navigateByUrl('authentication/login');
   }
 }

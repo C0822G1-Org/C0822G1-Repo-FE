@@ -6,27 +6,27 @@ import {TokenStorageService} from '../service/authentication/token-storage.servi
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
+export class TeacherGuard implements CanActivate {
   constructor(private router: Router,
               private tokenStorageService:TokenStorageService) {
   }
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const token =  this.tokenStorageService.getToken();
-    if(token!==null){
-      let role = this.tokenStorageService.getRole()
-      if(route.data.roles.indexOf(role) === -1){
-        this.router.navigate(['authentication/login'], {
-          queryParams: { returnUrl: state.url }});
+    if (this.tokenStorageService.getToken()) {
+      if (JSON.stringify(this.tokenStorageService.getRole()) === JSON.stringify(['TEACHER'])) {
+        return true;
+      } else if (JSON.stringify(this.tokenStorageService.getRole()) === JSON.stringify(['ADMIN'])) {
+        return true;
+      } else {
+        alert('Bạn không đủ quyền, vui lòng đăng nhập để tiếp tục.');
+        this.router.navigateByUrl('');
         return false;
       }
-      return true;
+    } else {
+      this.router.navigateByUrl('/authentication/login');
+      return false;
     }
-    this.router.navigate(['authentication/login'], { queryParams: { returnUrl: state.url } });
-    return false;
   }
 
 }

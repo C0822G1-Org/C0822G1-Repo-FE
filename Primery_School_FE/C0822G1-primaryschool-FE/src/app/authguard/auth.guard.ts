@@ -7,26 +7,26 @@ import {TokenStorageService} from '../service/authentication/token-storage.servi
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
-  constructor(private router: Router,
-              private tokenStorageService:TokenStorageService) {
+  constructor(private tokenStorageService: TokenStorageService,
+              private router: Router) {
   }
 
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * @param route
+   * @param state
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const token =  this.tokenStorageService.getToken();
-    if(token!==null){
-      let role = this.tokenStorageService.getRole()
-      if(route.data.roles.indexOf(role) === -1){
-        this.router.navigate(['authentication/login'], {
-          queryParams: { returnUrl: state.url }});
-        return false;
-      }
+    if (this.tokenStorageService.getToken()) {
       return true;
+    } else {
+      alert('Vui lòng đăng nhập để tiếp tục.');
+      this.router.navigateByUrl('/authentication/login');
+      return false;
     }
-    this.router.navigate(['authentication/login'], { queryParams: { returnUrl: state.url } });
-    return false;
   }
 
 }

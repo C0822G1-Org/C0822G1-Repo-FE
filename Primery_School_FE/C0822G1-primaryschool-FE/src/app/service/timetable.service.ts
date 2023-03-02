@@ -14,8 +14,8 @@ export class TimetableService {
   constructor(private httpClient: HttpClient) {
   }
 
-  findAllTimetable(): Observable<Itimetable[]> {
-    return this.httpClient.get<Itimetable[]>("http://localhost:8080/listTimetable/" + 2);
+  findAllTimetable(): Observable<Itimetable[][]> {
+    return this.httpClient.get<Itimetable[][]>("http://localhost:8080/listTimetable/" + 2);
   }
 
   findAllSubject(): Observable<Subject[]> {

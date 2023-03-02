@@ -38,33 +38,24 @@
       <table class="table table-hover table-bordered">
         <thead class="table-responsive table-primary textCheck">
         <tr class="align-baseline">
-          <th scope="col">STT</th>
-          <th scope="col">Id TKB</th>
-          <th scope="col">Id Môn</th>
-          <th scope="col">Môn</th>
-          <th scope="col">Id Lớp</th>
-          <th scope="col">Lớp</th>
+          <th scope="col">Tiết</th>
+          <th scope="col">Thứ 2</th>
+          <th scope="col">Thứ 3</th>
+          <th scope="col">Thứ 4</th>
+          <th scope="col">Thứ 5</th>
+          <th scope="col">Thứ 6</th>
         </tr>
         </thead>
         <tbody class="textCheck">
-        <tr *ngFor="let timetable of timetables, index as i">
-          <td>
-            {{i + 1}}
-          </td>
-          <td>
-            {{timetable.timetableId}}
-          </td>
-          <td>
-            {{timetable.subjectId}}
-          </td>
-          <td>
-            {{timetable.subjectName}}
-          </td>
-          <td>
-            {{timetable.clazzId}}
-          </td>
-          <td>
-            {{timetable.clazzName}}
+        <tr *ngFor="let timetable of time,let i=index">
+          <td>Tiết {{i + 1}}</td>
+          <td *ngFor="let monhoc of timetable,let j=index">
+            <div>
+              <select class="form-select">
+                <option hidden>{{monhoc.subjectName}}</option>
+                <option *ngFor="let s of subjects" [value]="s">{{s.subjectName}}</option>
+              </select>
+            </div>
           </td>
         </tr>
         </tbody>

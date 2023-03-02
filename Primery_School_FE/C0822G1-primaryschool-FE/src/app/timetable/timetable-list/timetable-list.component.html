@@ -46,7 +46,7 @@
           <th scope="col">Thứ 6</th>
         </tr>
         </thead>
-        <tbody class="textCheck">
+        <tbody class="textCheck" #selects>
         <tr *ngFor="let timetable of time,let i=index">
           <td>Tiết {{i + 1}}</td>
           <td *ngFor="let monhoc of timetable,let j=index">

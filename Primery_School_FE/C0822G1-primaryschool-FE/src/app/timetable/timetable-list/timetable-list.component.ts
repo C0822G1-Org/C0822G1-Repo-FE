@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TimetableService} from "../../service/timetable.service";
 import {Itimetable} from "../../entity/timtable-dto/itimetable";
 import {Subject} from "../../entity/timtable-dto/subject";
@@ -22,15 +22,33 @@ export class TimetableListComponent implements OnInit {
     this.findAllSubject()
   }
 
-
+  /**
+   * Create by : NamHH
+   * Date created: 01/03/2023
+   * Function: get all subject
+   *
+   * @Return error if result is error or get list subject if result is not error
+   */
   findAllSubject() {
     this.timetableService.findAllSubject().subscribe(next => {
       console.log(next);
       this.subjects = next;
     }, error => {
+      alert("Không có danh sách");
+      console.log(error);
     })
   }
 
+
+
+
+  /**
+   * Create by : NamHH
+   * Date created: 01/03/2023
+   * Function: get all timetable
+   *
+   * @Return error if result is error or get list subject if result is not error
+   */
   findAllTimetable() {
     this.timetableService.findAllTimetable().subscribe(next => {
       console.log(next);

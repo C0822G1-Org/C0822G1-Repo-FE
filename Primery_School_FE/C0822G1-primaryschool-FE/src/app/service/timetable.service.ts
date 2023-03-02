@@ -14,11 +14,26 @@ export class TimetableService {
   constructor(private httpClient: HttpClient) {
   }
 
+  /**
+   * Create by : NamHH
+   * Date created: 01/03/2023
+   * Function: get all timetable
+   *
+   * @Return error if result is error or get list subject if result is not error
+   */
   findAllTimetable(): Observable<Itimetable[][]> {
-    return this.httpClient.get<Itimetable[][]>("http://localhost:8080/listTimetable/" + 2);
+    return this.httpClient.get<Itimetable[][]>("http://localhost:8080//api/timetable/listTimetable/" + 2);
   }
 
+
+  /**
+   * Create by : NamHH
+   * Date created: 01/03/2023
+   * Function: get all subject
+   *
+   * @Return error if result is error or get list subject if result is not error
+   */
   findAllSubject(): Observable<Subject[]> {
-    return this.httpClient.get<Subject[]>("http://localhost:8080/listSubject");
+    return this.httpClient.get<Subject[]>("http://localhost:8080//api/timetable/listSubject");
   }
 }

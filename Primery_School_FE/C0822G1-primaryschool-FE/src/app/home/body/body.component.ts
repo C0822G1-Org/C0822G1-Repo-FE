@@ -8,14 +8,25 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
+/*
+Created by: LinhPT,
+Date created: 02-03/02/2023,
+Describe: getAllBlog, findById and paging
+ */
+
 export class BodyComponent implements OnInit {
   pageBlog: Blog[] = [];
-  pageNumber: number = 0;
-  totalPage: number = 0;
+  numberPage: number = 0;
   blog: Blog = {};
+  totalPages = 0;
+  size: number = 3;
 
   constructor(private blogService: BlogService,
               private activatedRoute: ActivatedRoute) {
+    /*
+    Use pramMap to find the id and get the corresponding object
+     */
+
     this.activatedRoute.paramMap.subscribe(ok => {
       const id = ok.get('id');
       if (id != null) {
@@ -28,14 +39,24 @@ export class BodyComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllBlog();
+    this.getAllBlog(this.size);
   }
-
-  getAllBlog() {
-    this.blogService.getAllPage(this.pageNumber).subscribe(data => {
+/*
+Get list of Blogs and pagination:
+ */
+  last: any;
+  first: any;
+  getAllBlog(size: number) {
+    this.blogService.getAllPage(size).subscribe(data => {
+      console.log(data);
       this.pageBlog = data.content;
       console.log(this.pageBlog);
-      this.pageNumber = data.number;
+      this.numberPage = data.number;
+      this.size = data.size;
+      console.log(this.numberPage);
+      this.totalPages = data.totalPages;
+      this.first = data.first;
+      this.last = data.last;
     });
   }
 

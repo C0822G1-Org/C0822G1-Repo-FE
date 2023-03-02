@@ -5,9 +5,8 @@ import {HomeRoutingModule} from './home-routing.module';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BodyComponent} from './body/body.component';
-import { DetailComponent } from './detail/detail.component';
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BodyComponent, DetailComponent],
+  declarations: [HeaderComponent, FooterComponent, BodyComponent],
   exports: [
     HeaderComponent,
     FooterComponent,

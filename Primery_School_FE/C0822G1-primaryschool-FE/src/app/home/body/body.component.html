@@ -80,21 +80,27 @@
     </div>
     <div class="row">
       <div class="work-col" *ngFor="let item of pageBlog">
-        <a style="cursor: pointer; text-decoration: none; color: #15536c" (click)="(blog = item)"
-           type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <a style="cursor: pointer; text-decoration: none; color: #15536c" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="blog=item">
         <img class="zoom" title="img" [src]="item.img">
         <h5 style="text-align: center; margin-top: 30px" class="zoom">{{item.title}}</h5>
         <div style="text-align: center; font-size: 10px">
-        <h6 class="zoom">Ngày đăng: {{item.start_date}}</h6>
-        <h6 class="zoom">Người đăng: {{item.poster}}</h6>
+        <h6 class="zoom"><i class="fa-solid fa-calendar-days"> </i>: {{item.start_date}}</h6>
+        <h6 class="zoom"><i class="fa-solid fa-pen-to-square"></i>: {{item.poster}}</h6>
         </div>
         </a>
       </div>
+      <a style="cursor: pointer; color: #f44336" type="button" (click)="getAllBlog(size+3)" *ngIf="!last">
+        <i class="fas fa-angle-double-down"></i><br>
+         Xem thêm...
+      </a>
+      <a style="cursor: pointer; color: #f44336" type="button" (click)="getAllBlog(size=3)" *ngIf="last">
+        <i class="fas fa-angle-double-up"></i><br>
+        Ẩn bớt
+      </a>
     </div>
-    <button type = "button" (click)="getMorePage()">More</button>
   </section>
 
-  <section class="parents">
+  <section class="parents" style="margin-top: 50px">
     <h1 class="title zoom">Phụ Huynh Nói Gì ?</h1>
     <p class="zoom">Cùng lắng nghe ý kiến của phụ huynh khi cho con em của mình học tại trường</p>
     <div class="row">
@@ -123,22 +129,29 @@
   </section>
 </div>
 
+<!--*Modal detail-->
+
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content" style="background-color: #ECECEC">
+    <div class="modal-content" style="background-color: #ECECEC; width: 700px">
       <div class="modal-header">
         <h3 class="modal-title" id="staticBackdropLabel">{{blog.title}}</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img title="img" [src]="blog.img" style="width: 100%">
+        <img title="img" [src]="blog.img" style="width: 100%; height: 300px">
         <p>{{blog.contents}}</p>
-        <p>{{blog.start_date}}</p>
-        <p>{{blog.poster}}</p>
+        <i class="fa-solid fa-calendar-days"> </i><br>
+          <p style="font-size: small">{{blog.start_date}}</p>
+
+        <i class="fa-solid fa-pen-to-square"></i><br>
+        <p style="font-size: small">{{blog.poster}}</p>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="text-align: center">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="text-align: center">Close</button>
       </div>
     </div>
   </div>
 </div>
+

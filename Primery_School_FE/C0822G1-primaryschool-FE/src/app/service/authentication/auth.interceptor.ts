@@ -20,7 +20,6 @@ export class AuthInterceptor implements HttpInterceptor {
    *
    */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    alert("đã đc gọi")
     let authRequest = request;
     let token = this.tokenStorageService.getToken();
 

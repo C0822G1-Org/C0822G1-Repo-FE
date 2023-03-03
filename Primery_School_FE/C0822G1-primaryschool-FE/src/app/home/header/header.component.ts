@@ -50,6 +50,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.tokenStorageService.logout();
     this.securityService.setIsLoggedIn(null, false);
-    this.router.navigateByUrl('authentication/login');
+    this.router.navigateByUrl('security/login');
   }
 }

@@ -36,19 +36,6 @@ export class HomeroomClassComponent implements OnInit {
    * Date created: 01/03/2023
    * Function: get list student
    */
-  // private getAllStudent(request: { page?: any; size?: any; } | undefined): void {
-  //   this.studentService.getAllStudentByIdTeacher(request, this.idTeacher).subscribe(data => {
-  //     this.studentList = data;
-  //     this.studentInfo = data.content;
-  //     this.clazz = this.studentInfo[0].nameClazz;
-  //     // @ts-ignore
-  //     this.totalPages = data.totalPages;
-  //     // @ts-ignore
-  //     this.pageNumber = data.pageable.pageNumber;
-  //   }, error => {
-  //   }, () => {
-  //   });
-  // }
   getAllStudent(request: { page?: any; size?: any; } | undefined): void {
     const idAccount = this.tokenService.getIdAccount();
     this.studentService.getIdTeacherByIdAccount(idAccount).subscribe(data => {

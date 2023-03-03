@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import {TokenStorageService} from '../service/authentication/token-storage.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(private tokenStorageService: TokenStorageService,
-              private router: Router) {
+              private router: Router,
+              private toast: ToastrService
+              ) {
   }
 
   /**
@@ -23,7 +26,7 @@ export class AuthGuard implements CanActivate {
     if (this.tokenStorageService.getToken()) {
       return true;
     } else {
-      alert('Vui lòng đăng nhập để tiếp tục.');
+      this.toast.error('Vui lòng đăng nhập để tiếp tục.', 'Thất bại');
       this.router.navigateByUrl('/authentication/login');
       return false;
     }

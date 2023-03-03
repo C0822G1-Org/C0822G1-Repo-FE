@@ -17,10 +17,10 @@ export class StudentListComponent implements OnInit {
   }
 
   getAll() {
-    // this.studentService.findAll().subscribe(next => {
-    //   console.log(next);
-    //   this.studentList = next;
-    // })
+    this.studentService.findAll().subscribe(next => {
+      console.log(next);
+      this.studentList = next;
+    })
   }
 
 }

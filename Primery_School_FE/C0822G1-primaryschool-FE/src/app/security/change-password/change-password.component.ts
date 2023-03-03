@@ -11,12 +11,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ChangePasswordComponent implements OnInit {
   changePassForm: FormGroup = new FormGroup({
-    newPass: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
+    newPass: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(30),Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-_=+{}[\\]|;:'\",.<>/?]).{9,}$")]),
     confirmPass: new FormControl('', Validators.required)
   }, {});
   account: AccountDto = {};
 
   constructor(private changePassService: ChangePassService, private router: Router, private activatedRoute: ActivatedRoute) {
+
   }
 
   ngOnInit(): void {
@@ -50,13 +51,13 @@ get contactFormValue() {
   }
 
   // tslint:disable-next-line:typedef
-  changePass() {
-    this.account.accountId = 2;
-    this.account.newPass = this.changePassForm.value.newPass;
-    this.changePassService.changePass(this.account).subscribe(
-      // @ts-ignore
-      this.router.navigateByUrl('/')
-    );
-    console.log(this.account);
-  }
+  // changePass() {
+  //   this.account.accountId = 1;
+  //   this.account.newPass = this.changePassForm.value.newPass;
+  //   this.changePassService.changePass(this.account).subscribe(
+  //     // @ts-ignore
+  //     this.router.navigateByUrl('/')
+  //   );
+  //   console.log(this.account);
+  // }
 }

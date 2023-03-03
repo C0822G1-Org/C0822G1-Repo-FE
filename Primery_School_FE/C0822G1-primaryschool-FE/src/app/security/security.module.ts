@@ -5,10 +5,11 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, ChangePasswordComponent],
+  declarations: [LoginComponent, ChangePasswordComponent, ConfirmComponent],
   imports: [
     CommonModule,
     SecurityRoutingModule,

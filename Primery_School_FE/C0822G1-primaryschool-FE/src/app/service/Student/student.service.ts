@@ -21,8 +21,11 @@ export class StudentService {
 
   // @ts-ignore
   findById(id: number):Observable<Student> {
-    return this.httpClient.get<Student>("http://localhost:8080/api/student/info/" + id);
+    return this.httpClient.get<Student>("http://localhost:8080/api/students/info/" + id);
+  }
 
+  findAll():Observable<Student[]> {
+    return this.httpClient.get<Student[]>("http://localhost:8080/api/students/list/");
   }
 
 }

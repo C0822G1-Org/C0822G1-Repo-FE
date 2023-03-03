@@ -66,10 +66,11 @@ export class LoginComponent implements OnInit {
           this.securityService.setIsLoggedIn(user, true);
           const username = this.tokenStorageService.getUsername();
           this.roles = this.tokenStorageService.getRole();
-          console.log(this.roles);
+          if(this.roles.indexOf('ROLE_TEACHER') > - 1) {
+            this.router.navigateByUrl('timetable/timetable-teacher');
+          }
+          this.router.navigateByUrl('body');
           this.formGroup.reset();
-          this.router.navigateByUrl('/body');
-          this.shareService.sendClickEvent();
           this.toast.success('Đăng nhập thành công.', 'Thông báo', {
             timeOut: 2000
           });

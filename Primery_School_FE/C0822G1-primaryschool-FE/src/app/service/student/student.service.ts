@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {TeacherViewDto} from '../../dto/time_table/teacher-view-dto';
+import {Student} from "../../entity/student/student";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,19 @@ export class StudentService {
 
   getIdTeacherByIdAccount(id: string): Observable<TeacherViewDto> {
    return this.httpClient.get<TeacherViewDto>(this.URL_GET_ID_TEACHER + '/' + id);
+  }
+
+  /**
+   * Created by: NuongHT
+   * Date created: 01/03/2023
+   * Content: method get student by studentId
+   *
+   * @param studentId
+   * @return student
+   */
+
+  // @ts-ignore
+  findById(id: number):Observable<Student> {
+    return this.httpClient.get<Student>("http://localhost:8080/api/students/info/" + id);
   }
 }

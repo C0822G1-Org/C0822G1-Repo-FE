@@ -36,6 +36,7 @@ export class HomeroomClassComponent implements OnInit {
    * Date created: 01/03/2023
    * Function: get list student
    */
+
   getAllStudent(request: { page?: any; size?: any; } | undefined): void {
     const idAccount = this.tokenService.getIdAccount();
     this.studentService.getIdTeacherByIdAccount(idAccount).subscribe(data => {

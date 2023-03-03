@@ -9,5 +9,5 @@ export interface Clazz {
   block?: Block,
   nameClazz?: string,
   year?: Year,
-  teacher?: Teacher,
+  teacher?: Teacher
 }

@@ -53,7 +53,7 @@ export class SignUpComponent implements OnInit {
             timeOut: 2500,
             extendedTimeOut: 1500
           });
-          this.router.navigateByUrl('/authentication/login');
+          this.router.navigateByUrl('/security/login');
 
         },
         err => {

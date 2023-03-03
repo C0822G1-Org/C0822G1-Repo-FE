@@ -10,7 +10,7 @@ import {StudentUpdateComponent} from "./student-update/student-update.component"
 const routes: Routes = [
   {path:'', component:StudentListComponent},
   {path:'create',component: StudentCreateComponent},
-  {path:'detail',component: StudentDetailComponent},
+  {path:'detail/:id',component: StudentDetailComponent},
   {path:'delete',component: StudentDeleteComponent},
   {path:'update',component: StudentUpdateComponent},
   {path: 'homeroom', component: HomeroomClassComponent}

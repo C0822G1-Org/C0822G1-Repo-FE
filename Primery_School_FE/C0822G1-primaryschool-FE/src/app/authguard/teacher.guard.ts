@@ -30,11 +30,11 @@ export class TeacherGuard implements CanActivate {
         return true;
       } else {
         this.toast.error('Bạn không đủ quyền. Vui lòng đăng nhập để tiếp tục.', 'Thất bại');
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/error');
         return false;
       }
     } else {
-      this.router.navigateByUrl('/authentication/login');
+      this.router.navigateByUrl('/error');
       return false;
     }
   }

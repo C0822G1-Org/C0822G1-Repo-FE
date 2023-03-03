@@ -4,7 +4,7 @@ import {BodyComponent} from "./body/body.component";
 import {AdminGuard} from '../authguard/admin.guard';
 
 const routes: Routes = [
-  {path: '', component: BodyComponent },
+  {path: '', component: BodyComponent , canActivate: [AdminGuard]},
 ];
 
 @NgModule({

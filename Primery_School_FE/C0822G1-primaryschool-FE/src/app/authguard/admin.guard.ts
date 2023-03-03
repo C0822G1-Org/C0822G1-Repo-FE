@@ -28,10 +28,11 @@ export class AdminGuard implements CanActivate {
         return true;
       }else {
         this.toast.error('Bạn không đủ tuổi,Vui lòng đăng nhập để tiếp tục.', 'Thất bại');
-        this.router.navigateByUrl('/authentication/login');
+        this.router.navigateByUrl('/error');
         return false;
       }
     } else {
+      this.router.navigateByUrl('/error');
       return false;
     }
   }

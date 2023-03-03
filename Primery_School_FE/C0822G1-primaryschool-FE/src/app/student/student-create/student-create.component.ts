@@ -2,10 +2,11 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Clazz} from '../../entity/student/clazz';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {StudentService} from '../../service/student.service';
 import {ClazzService} from '../../service/clazz.service';
 import {finalize} from 'rxjs/operators';
+import {Student} from '../../entity/student/student';
 
 @Component({
   selector: 'app-student-create',
@@ -14,47 +15,50 @@ import {finalize} from 'rxjs/operators';
 })
 export class StudentCreateComponent implements OnInit {
   studentForm: FormGroup;
-  clazz: Clazz[] = [];
+  clazz:Clazz={};
   selectedImage: any = null;
+  student:Student={};
 
   constructor(@Inject(AngularFireStorage) private storage: AngularFireStorage,
               private router: Router,
               private studentService: StudentService,
-              private clazzService: ClazzService) {
+              private clazzService: ClazzService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe(data => {
+      const id = Number(data.get('id'));
+      this.clazzService.findById(id).subscribe(data=>{
+        this.clazz=data;
+        console.log(this.clazz);
+        if (data!=null){
+          this.student={clazz:this.clazz};
+          console.log(this.student);
+        }
+      })
+    });
     this.studentForm = new FormGroup({
       studentId: new FormControl(),
       img: new FormControl('', [Validators.required]),
-      studentName: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
+      studentName: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       dateOfBirth: new FormControl('', [Validators.required]),
       gender: new FormControl('true', [Validators.required]),
-      fatherName: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
+      fatherName: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       phoneNumberFather: new FormControl('', [Validators.required, Validators.pattern('^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$')]),
-      fatherJob: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
-      motherName: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
+      fatherJob: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
+      motherName: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       phoneNumberMother: new FormControl('', [Validators.required, Validators.pattern('^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$')]),
-      motherJob: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
-      religion: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
-      address: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,30}')]),
-      clazz: new FormControl()
+      motherJob: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
+      religion: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
+      address: new FormControl('', [Validators.required]),
+      clazz: new FormGroup({
+        clazzId:new FormControl(),
+        clazzName:new FormControl()
+      })
     });
-    this.clazzService.getAll().subscribe(next => {
-      this.clazz = next;
-    });
+    this.studentForm.patchValue(this.student);
   }
 
   ngOnInit(): void {
   }
-
-  // tslint:disable-next-line:typedef
-  // createStudent() {
-  //   if (this.studentForm.valid) {
-  //     const student = this.studentForm.value;
-  //     this.studentService.saveStudent(student).subscribe(next => {
-  //       alert('Thêm mới thành công');
-  //       this.router.navigateByUrl('');
-  //     });
-  //   }
-  // }
 
   // tslint:disable-next-line:typedef
   showPreview(event: any) {
@@ -63,6 +67,8 @@ export class StudentCreateComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   createStudent() {
+    // console.log(this.clazz);
+    console.log(this.studentForm.value);
     // upload image to firebase
     // const nameImg = this.getCurrentDateTime();
     const nameImg = this.selectedImage.name;
@@ -72,7 +78,10 @@ export class StudentCreateComponent implements OnInit {
         fileRef.getDownloadURL().subscribe((url) => {
           this.studentForm.patchValue({img: url});
           // Call API to create vaccine
-          this.studentService.saveStudent(this.studentForm.value).subscribe(() => {
+          this.student=this.studentForm.value;
+          this.student.clazz=this.clazz;
+          console.log(this.student);
+          this.studentService.saveStudent(this.student).subscribe(() => {
             alert('Thêm mới thành công');
             this.router.navigateByUrl('');
           });

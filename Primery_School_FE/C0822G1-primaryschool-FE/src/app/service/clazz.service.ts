@@ -7,12 +7,15 @@ import {Observable} from 'rxjs';
 })
 export class ClazzService {
 
-  URL_CLAZZ_LIST = 'http://localhost:8080/api/clazz';
 
   constructor(private httpClient: HttpClient) {
   }
-
-  getAll(): Observable<any> {
-    return this.httpClient.get<any>(this.URL_CLAZZ_LIST);
+  /**
+   * Hoang NM
+   * Date created: 3/2/2023
+   */
+  URL_CLAZZ_LIST = 'http://localhost:8080/api/clazz';
+  findById(id: number): Observable<any>{
+    return this.httpClient.get<any>(this.URL_CLAZZ_LIST + '/info/' +id);
   }
 }

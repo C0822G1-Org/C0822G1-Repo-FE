@@ -17,23 +17,42 @@ export class TokenStorageService {
 
   constructor() {
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: logout
+   *
+   */
   logout() {
     window.localStorage.clear();
     window.sessionStorage.clear();
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: savetokenlocal
+   *
+   */
   public saveTokenLocal(token: string) {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
-
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: savetokensession
+   *
+   */
   public saveTokenSession(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: get token
+   *
+   */
   public getToken(): string {
     if (localStorage.getItem(TOKEN_KEY) !== null) {
       return localStorage.getItem(TOKEN_KEY) as string;
@@ -41,7 +60,12 @@ export class TokenStorageService {
       return sessionStorage.getItem(TOKEN_KEY) as string;
     }
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: saveUserLocal
+   *
+   */
   public saveUserLocal(user: any,email: string, idAccount: string, username: string, name: string, roles: string[], avatar: string) {
     window.localStorage.removeItem(EMAIL_KEY);
     window.localStorage.removeItem(NAME_KEY);
@@ -58,7 +82,12 @@ export class TokenStorageService {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: saveUserSession
+   *
+   */
   public saveUserSession(user: any, email: string, idAccount: string, username: string, name: string, roles: string[], avatar: string) {
     window.sessionStorage.removeItem(EMAIL_KEY);
     window.sessionStorage.removeItem(NAME_KEY);
@@ -75,14 +104,24 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion:
+   *
+   */
   public getName(): string {
     if(localStorage.getItem(NAME_KEY) != null){
       return <string> localStorage.getItem(NAME_KEY);
     }
     return <string> sessionStorage.getItem(NAME_KEY);
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion:
+   *
+   */
   public getEmail(): string{
     if(localStorage.getItem(EMAIL_KEY) != null){
       return <string> localStorage.getItem(EMAIL_KEY);
@@ -96,14 +135,24 @@ export class TokenStorageService {
     }
     return <string> sessionStorage.getItem(ID_ACCOUNT_KEY);
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion:
+   *
+   */
   public getUsername(): string {
     if(localStorage.getItem(USERNAME_KEY) != null){
       return <string> localStorage.getItem(USERNAME_KEY);
     }
     return <string> sessionStorage.getItem(USERNAME_KEY);
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: getUser
+   *
+   */
   public getUser() {
     let itemString;
     if(localStorage.getItem(USER_KEY) != null) {
@@ -113,7 +162,12 @@ export class TokenStorageService {
     }
     return itemString ? JSON.parse(itemString) : null;
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: getRoles
+   *
+   */
   public getRole(): string[] {
     if (localStorage.getItem(ROLE_KEY) != null){
       return JSON.parse(<string> localStorage.getItem(ROLE_KEY))

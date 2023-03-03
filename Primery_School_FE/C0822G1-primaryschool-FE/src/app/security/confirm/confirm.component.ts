@@ -38,7 +38,7 @@ export class ConfirmComponent implements OnInit {
     this.changePassService.changePass(this.account).subscribe(
       // @ts-ignore
       this.router.navigateByUrl('/'),
-      // this.toastr.success('Bạn đã đổi mật khẩu thành công ^.^ ', 'Alo có thông báo!')
+    //   this.toastr.success('Bạn đã đổi mật khẩu thành công ^.^ ', 'Alo có thông báo!')
     )
     ;
     console.log(this.account);

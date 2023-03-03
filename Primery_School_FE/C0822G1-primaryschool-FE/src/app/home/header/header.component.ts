@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
     this.securityService.getUserLoggedIn().subscribe(next => {
       this.user = next;
     });
-
   }
 
   ngOnInit(): void {
@@ -42,9 +41,15 @@ export class HeaderComponent implements OnInit {
     this.scroll.scrollToPosition([0, 0]);
   }
 
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: logout
+   *
+   */
   logout() {
     this.tokenStorageService.logout();
     this.securityService.setIsLoggedIn(null, false);
-    this.router.navigateByUrl('authentication/login');
+    this.router.navigateByUrl('security/login');
   }
 }

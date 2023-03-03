@@ -23,7 +23,12 @@ export class SecurityService {
     };
   }
 
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: login
+   *@param obj
+   */
   login(obj: any): Observable<any> {
     return this.http.post(AUTH_API + 'sign-in', {
       username: obj.username,
@@ -31,6 +36,12 @@ export class SecurityService {
     }, this.httpOptions);
   }
 
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: sign-up
+   *
+   */
   register(obj: any): Observable<any> {
     console.log(obj);
     return this.http.post(AUTH_API + 'sign-up', {
@@ -41,15 +52,31 @@ export class SecurityService {
     }, this.httpOptions);
   }
 
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: setIsLoggedIn
+   *
+   */
   setIsLoggedIn(user: any,isLoggedIn: boolean) {
     this.isLoggedInObservable.next(isLoggedIn);
     this.isUserObservable.next(user);
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: getUserLoggedIn
+   *
+   */
   getUserLoggedIn(): Observable<any> {
     return this.isUserObservable.asObservable();
   }
-
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   * funtion: getIsLoggedIn
+   *
+   */
   getIsLoggedIn(): Observable<boolean> {
     return this.isLoggedInObservable.asObservable();
   }

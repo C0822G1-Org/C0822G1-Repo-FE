@@ -16,7 +16,11 @@ export class AppComponent {
               private securityService: SecurityService) {
   }
 
-  // tslint:disable-next-line:use-lifecycle-interface
+  /**
+   * Create by: SyTV
+   * Date create: 02/03/2023
+   *
+   */
   ngOnInit(): void {
     this.securityService.getIsLoggedIn().subscribe(next => {
       this.isLoggedIn = next;

@@ -26,6 +26,11 @@ export class StudentSearchComponent implements OnInit {
     this.searchStudent(0);
   }
 
+  /**
+   * create by : VinhLD
+   * date create : 02/03/2023
+   * function : search student by name and status
+   */
   searchStudent(pageNumber: number): void {
     const studentToSearch = this.rfSearch.value;
     studentToSearch.nameStudent = this.rfSearch.value.nameStudent.trim();

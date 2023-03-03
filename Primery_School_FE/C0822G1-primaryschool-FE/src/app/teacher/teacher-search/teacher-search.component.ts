@@ -32,7 +32,11 @@ export class TeacherSearchComponent implements OnInit {
     this.searchTeacher(0);
   }
 
-
+  /**
+   * create by :VinhLD
+   * date create : 02/03/2023
+   * function: search teacher by name and status
+   */
   searchTeacher(pageNumber: number): void {
     const teacherToSearch = this.rfSearch.value;
     teacherToSearch.nameTeacher = this.rfSearch.value.nameTeacher.trim();
@@ -42,7 +46,6 @@ export class TeacherSearchComponent implements OnInit {
       this.pageTeacher = data;
 
     }, error => {
-
       }, () => {
     });
   }

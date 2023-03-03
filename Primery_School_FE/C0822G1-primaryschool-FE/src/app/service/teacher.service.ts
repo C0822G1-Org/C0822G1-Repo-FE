@@ -21,6 +21,14 @@ export class TeacherService {
 
   }
 
+
+  /**
+   * create by : VinhLD
+   * dateCreate :02/03/2023
+   * function: search teacher by name and status
+   * "@param" teacherToSearch
+   * "@param" pageNumber
+   */
   getPageTeacher(teacherToSearch: any, pageNumber: any): Observable<PageTeacher> {
     return this.httpClient.post<PageTeacher>(this.URL_API_TEACHER + '/search?page=' + pageNumber, teacherToSearch);
   }

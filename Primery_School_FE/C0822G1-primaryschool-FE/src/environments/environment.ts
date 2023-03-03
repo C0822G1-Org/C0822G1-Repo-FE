@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-   firebaseConfig : {
+  firebaseConfig : {
     apiKey: "AIzaSyC-Zv4jMLFtJQQRruAYfEjkT_bd3CTrhGY",
     authDomain: "primary-school-a1a73.firebaseapp.com",
+    databaseURL: "https://primary-school-a1a73-default-rtdb.firebaseio.com",
     projectId: "primary-school-a1a73",
     storageBucket: "primary-school-a1a73.appspot.com",
     messagingSenderId: "854174121222",

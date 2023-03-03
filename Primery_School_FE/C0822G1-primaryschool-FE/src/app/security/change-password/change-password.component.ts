@@ -3,6 +3,7 @@ import {ChangePassService} from '../../service/change-pass/change-pass.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountDto} from '../../entity/account-dto/account-dto';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {TokenStorageService} from "../../service/authentication/token-storage.service";
 
 @Component({
   selector: 'app-change-password',
@@ -14,9 +15,9 @@ export class ChangePasswordComponent implements OnInit {
     newPass: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(30),Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-_=+{}[\\]|;:'\",.<>/?]).{9,}$")]),
     confirmPass: new FormControl('', Validators.required)
   }, {});
-  account: AccountDto = {};
 
-  constructor(private changePassService: ChangePassService, private router: Router, private activatedRoute: ActivatedRoute) {
+
+  constructor(private changePassService: ChangePassService, private router: Router, private activatedRoute: ActivatedRoute, private tokenService: TokenStorageService) {
 
   }
 
@@ -50,14 +51,4 @@ get contactFormValue() {
     }
   }
 
-  // tslint:disable-next-line:typedef
-  // changePass() {
-  //   this.account.accountId = 1;
-  //   this.account.newPass = this.changePassForm.value.newPass;
-  //   this.changePassService.changePass(this.account).subscribe(
-  //     // @ts-ignore
-  //     this.router.navigateByUrl('/')
-  //   );
-  //   console.log(this.account);
-  // }
 }

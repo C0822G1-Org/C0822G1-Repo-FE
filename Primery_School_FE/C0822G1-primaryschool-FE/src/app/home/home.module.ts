@@ -1,25 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
 import {HomeRoutingModule} from './home-routing.module';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BodyComponent} from './body/body.component';
-import {DetailComponent} from './detail/detail.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BodyComponent, DetailComponent],
+  declarations: [HeaderComponent, FooterComponent, BodyComponent],
   exports: [
     HeaderComponent,
     FooterComponent,
-    BodyComponent,
+    BodyComponent
 
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule
+
   ]
 })
 export class HomeModule {

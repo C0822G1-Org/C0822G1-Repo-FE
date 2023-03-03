@@ -1,5 +1,5 @@
-import {Clazz} from './clazz';
-import {PointManagement} from './point-management';
+import {PointManagement} from "./point-management";
+import {Clazz} from "./clazz";
 
 export interface Student {
   studentId?: number;

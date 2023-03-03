@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {BodyComponent} from "./body/body.component";
+import {TeacherUpdateComponent} from "../teacher/teacher-update/teacher-update.component";
+
 
 const routes: Routes = [
-  {path: '', component: BodyComponent}
+  {path: '', component: BodyComponent},
+
 ];
 
 @NgModule({

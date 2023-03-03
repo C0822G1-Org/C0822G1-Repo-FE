@@ -55,4 +55,5 @@ export class ListPointComponent implements OnInit {
       this.pointManagementList = next;
     });
   }
+
 }

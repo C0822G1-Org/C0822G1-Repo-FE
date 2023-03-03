@@ -27,7 +27,9 @@ export class PointService {
 
   searchStudent(teacherId: number, studentName: String): Observable<PointManagement[]> {
     return this.httpClient.get<PointManagement[]>('http://localhost:8080/pointManagement/search?teacherId=' + teacherId + '&studentName=' + studentName);
-
   }
 
+  getPDF(){
+    return this.httpClient.get('http://localhost:8080/pointManagement/pdf')
+  }
 }

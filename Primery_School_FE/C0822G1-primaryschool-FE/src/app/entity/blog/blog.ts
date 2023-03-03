@@ -5,5 +5,4 @@ export interface Blog {
   start_date?: string
   poster?: string
   img?: string
-
 }

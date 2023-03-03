@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-
   firebaseConfig : {
     apiKey: "AIzaSyC-Zv4jMLFtJQQRruAYfEjkT_bd3CTrhGY",
     authDomain: "primary-school-a1a73.firebaseapp.com",

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TeacherService} from '../../service/teacher.service';
 import {Teacher} from '../../entity/teacher/teacher';
 import {PageTeacher} from '../../dto/page-teacher';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-teacher-search',
@@ -16,26 +17,47 @@ export class TeacherSearchComponent implements OnInit {
   statusTeacherSearch = '';
   pageNumber = 0;
   totalPage = 0;
-  request = {page: 0, size: 5};
+
 
   teachers: Teacher[] = [];
+  rfSearch!: FormGroup;
 
-  constructor(private teacherService: TeacherService) {
+
+  constructor(private teacherService: TeacherService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.createSearchForm();
+    this.searchTeacher(0);
   }
 
 
-  // tslint:disable-next-line:typedef
-  searchTeacher(teacherNameSearch: string, teacherStatusSearch: string) {
-    this.nameTeacherSearch = teacherNameSearch;
-    this.statusTeacherSearch = teacherStatusSearch;
-    this.teacherService.searchTeacher(teacherNameSearch.trim(), teacherStatusSearch, this.request).subscribe(data => {
+  searchTeacher(pageNumber: number): void {
+    const teacherToSearch = this.rfSearch.value;
+    teacherToSearch.nameTeacher = this.rfSearch.value.nameTeacher.trim();
+    teacherToSearch.teachStatus = this.rfSearch.value.teachStatus;
+    this.teacherService.getPageTeacher(teacherToSearch, pageNumber).subscribe(data => {
+      console.log(data);
       this.pageTeacher = data;
-      this.teachers = data.content;
-      this.totalPage = data.totalPage;
-      this.pageNumber = data.pageNumber;
+
+    }, error => {
+
+      }, () => {
     });
   }
+
+
+  createSearchForm(): void {
+    this.rfSearch = this.formBuilder.group({
+      nameTeacher: [''],
+      teachStatus: ['false']
+    });
+  }
+
+  gotoPage(pageNumber: number): void {
+    this.searchTeacher(pageNumber);
+  }
+
+
 }

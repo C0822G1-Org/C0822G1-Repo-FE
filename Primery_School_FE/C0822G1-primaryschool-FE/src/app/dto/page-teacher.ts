@@ -1,10 +1,8 @@
+import {TeacherDto} from './teacher-dto';
 import {StudentDto} from './student-dto';
-import {Teacher} from '../entity/teacher/teacher';
 
 export interface PageTeacher {
-
-  content: Teacher[],
-
+  content: TeacherDto[],
   pageable: {
     sort: {
       empty: boolean,

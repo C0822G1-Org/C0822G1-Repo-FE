@@ -1,6 +1,6 @@
 
 export interface Teacher {
-  teaccherId: number;
+  teacherId: number;
   teacherName: string;
   dateOfBirth: string;
   gender: boolean;

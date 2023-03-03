@@ -13,7 +13,6 @@ import {ToastContainerModule, ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ErrorComponent } from './common/error/error.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

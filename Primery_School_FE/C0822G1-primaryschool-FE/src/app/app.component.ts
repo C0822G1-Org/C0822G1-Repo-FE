@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import {TokenStorageService} from './service/authentication/token-storage.service';
+import {Component} from '@angular/core';
 import {SecurityService} from './service/authentication/security.service';
+import {TokenStorageService} from './service/authentication/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,14 @@ import {SecurityService} from './service/authentication/security.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  title = 'Primary-School';
   isLoggedIn = false;
   user: any;
-  title = 'Primary-School';
+
   constructor(private tokenStorageService: TokenStorageService,
               private securityService: SecurityService) {
   }
+
   /**
    * Create by: SyTV
    * Date create: 02/03/2023
@@ -27,9 +28,9 @@ export class AppComponent {
     this.securityService.getUserLoggedIn().subscribe(next => {
       this.user = next;
     });
-    if(this.tokenStorageService.getToken() != null) {
+    if (this.tokenStorageService.getToken() != null) {
       this.user = this.tokenStorageService.getUser();
-      this.securityService.setIsLoggedIn(this.user,true);
+      this.securityService.setIsLoggedIn(this.user, true);
     }
   }
 }

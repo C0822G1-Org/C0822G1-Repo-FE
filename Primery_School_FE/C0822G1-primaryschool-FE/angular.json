@@ -94,7 +94,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "Primery_School/c0822g1-project/src/app/jsFile/scroll.js"
+
             ]
           }
         },
@@ -128,6 +128,7 @@
   },
   "defaultProject": "c0822g1-project",
   "cli": {
-    "analytics": "64d09827-ee73-4a7b-a159-58f1fbdfdf54"
+    "analytics": "0c273d64-04fd-47e1-b872-80591584e68f"
   }
 }
+

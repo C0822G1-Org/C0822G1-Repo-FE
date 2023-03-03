@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HomeModule} from "./home/home.module";
 import {HttpClientModule} from "@angular/common/http";
-
+import {ReactiveFormsModule} from '@angular/forms';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -15,9 +18,10 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    HttpClientModule
-
-
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig,"myFile")
   ],
   providers: [],
   bootstrap: [AppComponent]

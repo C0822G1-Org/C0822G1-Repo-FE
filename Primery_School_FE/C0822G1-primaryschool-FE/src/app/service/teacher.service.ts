@@ -7,12 +7,12 @@ import {Teacher} from '../entity/teacher/teacher';
   providedIn: 'root'
 })
 export class TeacherService {
-  private API_URL = 'http://localhost:8080/api/class/teacher';
+  private API_URL = 'http://localhost:8080/api/clazz';
 
   constructor(private _httpClient: HttpClient) {
   }
 
   getAllTeacherList(): Observable<Teacher[]> {
-    return this._httpClient.get<Teacher[]>(this.API_URL);
+    return this._httpClient.get<Teacher[]>(this.API_URL+'/teacher');
   }
 }

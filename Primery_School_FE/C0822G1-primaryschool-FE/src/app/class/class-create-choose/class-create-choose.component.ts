@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClassService} from '../../service/class.service';
 import {TeacherService} from '../../service/teacher.service';
 import {Teacher} from '../../entity/teacher/teacher';
 import {Router} from '@angular/router';
 import {Clazz} from '../../entity/student/clazz';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-class-create-choose',
@@ -16,13 +17,15 @@ export class ClassCreateChooseComponent implements OnInit {
   teacherList: Teacher[]=[];
   classCreate: FormGroup = new FormGroup(
     {
-      clazzName: new FormControl(),
-      teacherDto: new FormControl(),
+      clazzName: new FormControl("",[Validators.required,this.validateClazzName.bind(this)]),
+      teacherDto: new FormControl(""),
       schoolYear: new FormControl(),
     }
   );
+  clazzNameValidate: (string | undefined)[]= [];
 
-  constructor(private router: Router,private classService:ClassService,private teacherService:TeacherService) {
+  constructor(private router: Router,private classService:ClassService,private teacherService:TeacherService,private title: Title) {
+    this.title.setTitle('thêm mới chọn lớp')
     this.teacherService.getAllTeacherList().subscribe(data=>{
 
       this.teacherList =data;
@@ -36,13 +39,13 @@ export class ClassCreateChooseComponent implements OnInit {
       if (data!=null){
         this.a=data.length+1;
       }
-
-
+        this.clazzNameValidate=data.map((iteam)=> iteam.clazzName);
+        console.log(this.clazzNameValidate);
     },
       error => {},
       ()=>{});
-
     }
+
   saveClass(): void {
     if (this.classCreate.valid) {
       const c = this.classCreate.value;
@@ -51,13 +54,18 @@ export class ClassCreateChooseComponent implements OnInit {
           alert("thanh cong")
           console.log(this.a);
           this.router.navigateByUrl('class/create/info/'+this.a);
-          // this.classCreate.reset();
         },error => {alert("thêm mới thất bại");},
         ()=>{}
       )
     }
+  }
 
+  validateClazzName(control: AbstractControl){
+    let check = control.value;
+    if (!check) return null;
+    const isDuplicate = this.clazzNameValidate.includes(check)
 
+    return isDuplicate?{sai:true}:null;
   }
 
 

@@ -8,7 +8,7 @@ import {ClazzStudentDto} from '../dto/clazz-student-dto';
   providedIn: 'root'
 })
 export class ClassService {
-  private API_URL = 'http://localhost:8080/api/class';
+  private API_URL = 'http://localhost:8080/api/clazz';
 
   constructor(private _httpClient: HttpClient) {
   }
@@ -22,6 +22,6 @@ export class ClassService {
   }
 
   getListClass(): Observable<Clazz[]> {
-    return this._httpClient.get<Clazz[]>(this.API_URL+'/v')
+    return this._httpClient.get<Clazz[]>(this.API_URL+'/list-class')
   }
 }

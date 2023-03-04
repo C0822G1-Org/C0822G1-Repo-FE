@@ -21,18 +21,6 @@ export class ClassCreateInfoComponent implements OnInit {
   id = 0;
   sum: number = 0;
   student: any ;
-
-  classStudentCreate: FormGroup = new FormGroup(
-    {
-      clazzName: new FormControl(),
-      studentId: new FormControl(),
-      studentName: new FormControl(),
-      teacherName: new FormControl(),
-      dateOfBirth: new FormControl(),
-      gender: new FormControl(),
-      address: new FormControl()
-    }
-  );
   constructor(private classService:ClassService,private teacherService:TeacherService,private router: Router,private activatedRoute: ActivatedRoute,
               private title: Title) {
     this.title.setTitle('thêm mới nhập thông tin học sinh')
@@ -42,9 +30,7 @@ export class ClassCreateInfoComponent implements OnInit {
       error => {},()=>{}
     );
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      // tslint:disable-next-line:radix
       this.id = parseInt(paramMap.get('id') as string);
-      // this.getInfo(this.id);
     });
   }
   ngOnInit(): void {
@@ -62,21 +48,9 @@ export class ClassCreateInfoComponent implements OnInit {
               console.log(data[i].studentId);
               this.sum+=1;
             }
-
         }
-
       },
         error => {},
       ()=>{})
-
   }
-
-
-
-
-  createclassStudentCreate() {
-
-  }
-
-
 }

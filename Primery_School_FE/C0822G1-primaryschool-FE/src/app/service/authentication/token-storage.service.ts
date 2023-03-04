@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 const TOKEN_KEY = 'Token_key';
 const NAME_KEY = 'Name_key';
@@ -15,7 +16,7 @@ const USER_KEY = 'auth-user';
 })
 export class TokenStorageService {
 
-  constructor() {
+  constructor(private readonly httpClient: HttpClient) {
   }
   /**
    * Create by: SyTV

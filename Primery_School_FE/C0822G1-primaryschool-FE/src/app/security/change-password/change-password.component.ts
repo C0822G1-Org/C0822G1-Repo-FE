@@ -12,7 +12,7 @@ import {TokenStorageService} from "../../service/authentication/token-storage.se
 })
 export class ChangePasswordComponent implements OnInit {
   changePassForm: FormGroup = new FormGroup({
-    newPass: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(30),Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-_=+{}[\\]|;:'\",.<>/?]).{9,}$")]),
+    newPass: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-_=+{}[\\]|;:'\",.<>/?]).{9,}$")]),
     confirmPass: new FormControl('', Validators.required)
   }, {});
 
@@ -23,15 +23,6 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  // checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
-  //   // @ts-ignore
-  //   const password = group.get('password').value;
-  //   // @ts-ignore
-  //   const confirmPassword = group.get('confirmPassword').value;
-  //   return password === confirmPassword ? null : {notSame: true};
-  // }
-
   /**
    * Created by: NuongHT
    * Date created: 01/03/2023

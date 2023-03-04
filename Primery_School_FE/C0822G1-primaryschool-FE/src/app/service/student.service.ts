@@ -11,12 +11,12 @@ import {TeacherInfo} from '../entity/teacher/teacher-info';
   providedIn: 'root'
 })
 export class StudentService {
-  URL_STUDENT_LIST="http://localhost:8080/student/list";
-  URL_STUDENT="http://localhost:8080/student";
-  URL_STUDENT_CLAZZ="http://localhost:8080/student/clazz";
-  URL_STUDENT_EDIT_TEACHER="http://localhost:8080/student/edit-teacher";
-  URL_STUDENT_TEACHER_NAME_LIST="http://localhost:8080/student/teacher-name-list";
-  URL_STUDENT_TEACHER_NAME="http://localhost:8080/student/teacher-name";
+  URL_STUDENT_LIST="http://localhost:8080/api/students/list";
+  URL_STUDENT="http://localhost:8080/api/students";
+  URL_STUDENT_CLAZZ="http://localhost:8080/api/students/clazz";
+  URL_STUDENT_EDIT_TEACHER="http://localhost:8080/api/students/edit-teacher";
+  URL_STUDENT_TEACHER_NAME_LIST="http://localhost:8080/api/students/teacher-name-list";
+  URL_STUDENT_TEACHER_NAME="http://localhost:8080/api/students/teacher-name";
 
   constructor(private httpClient:HttpClient) { }
 

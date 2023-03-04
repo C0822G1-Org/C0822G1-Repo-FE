@@ -94,9 +94,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "Primery_School/c0822g1-project/src/app/jsFile/scroll.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -129,6 +127,6 @@
   },
   "defaultProject": "c0822g1-project",
   "cli": {
-    "analytics": "bdddc2dd-5e21-494a-9912-25ebe677c8ca"
+    "analytics": "0c273d64-04fd-47e1-b872-80591584e68f"
   }
 }

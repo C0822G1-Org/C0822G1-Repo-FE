@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from '../../service/student.service';
-import {ClazzTeacherEdit} from '../../entity/clazz/clazz-teacher-edit';
-import {ClazzYear} from '../../entity/clazz/clazz-year';
-import {ClazzName} from '../../entity/clazz/clazz-name';
-import {ClazzTeacher} from '../../entity/clazz/clazz-teacher';
-import {StudentInfoo} from '../../entity/student/student-infoo';
-import {TeacherInfo} from '../../entity/teacher/teacher-info';
-import {StudentInfooJson} from '../../entity/student/student-infoo-json';
+import {ClazzTeacherEdit} from '../../dto/clazz/clazz-teacher-edit';
+import {ClazzYear} from '../../dto/clazz/clazz-year';
+import {ClazzName} from '../../dto/clazz/clazz-name';
+import {ClazzTeacher} from '../../dto/clazz/clazz-teacher';
+import {StudentInfoo} from '../../dto/student/student-infoo';
+import {TeacherInfo} from '../../dto/teacher/teacher-info';
+import {StudentInfooJson} from '../../dto/student/student-infoo-json';
 import {ToastrService} from 'ngx-toastr';
+import {StudentService} from '../../service/student/student.service';
 
 @Component({
   selector: 'app-student-list',
@@ -39,6 +39,7 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   chooseClass(year: string, block: string) {
@@ -136,4 +137,5 @@ export class StudentListComponent implements OnInit {
       positionClass: 'toast-top-center', timeOut: 5000
     },);
   }
+
 }

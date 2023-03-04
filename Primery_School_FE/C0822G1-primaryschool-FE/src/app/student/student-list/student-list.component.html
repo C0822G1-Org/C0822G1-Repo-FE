@@ -112,11 +112,11 @@
             <td>{{s.dateOfBirth}}</td>
             <td>{{s.address}}</td>
             <td>
-              <button class="btn btn-outline-warning" style="text-align: center; "
-                      [routerLink]="['student/edit',s.id]">
-                                <span type="submit"><img src="https://img.icons8.com/color/100/null/pencil-tip.png"
+              <a class="btn btn-outline-warning" style="text-align: center; "
+                      [routerLink]="['/student/update',s.id]">
+                                <span ><img src="https://img.icons8.com/color/100/null/pencil-tip.png"
                                                          style="width: 20px"/></span>
-              </button>
+              </a>
 
             </td>
 
@@ -129,10 +129,10 @@
             </td>
 
             <td>
-              <button class="btn btn-outline-primary" style="text-align: center; "
-                      [routerLink]="['student/info',s.id]">
+              <a class="btn btn-outline-primary" style="text-align: center; "
+                      [routerLink]="['/student/detail',s.id]">
                 <i class="fa-solid fa-circle-info"></i>
-              </button>
+              </a>
             </td>
 
           </tr>
@@ -142,7 +142,7 @@
       </div>
 
       <!--        Phân trang-->
-      <div class="row" style="position: absolute;top: 1840px;left: 1150px">
+      <div class="row" style="position: absolute;top: 1850px;left: 1150px">
         <div style="float: right;">
           <div *ngIf="studentPage" class="d-flex justify-content-center" id="last-row" style="float: right">
 
@@ -206,7 +206,7 @@
     </div>
     <ng-template #elseBlock>
       <h3 style="color:red;margin-top: 50px">
-        Danh sách rỗng,nhập năm và lớp cần hiển thị.</h3>
+        Danh sách rỗng,vui lòng nhập năm,khối và lớp cần hiển thị.</h3>
     </ng-template>
 
   </div>

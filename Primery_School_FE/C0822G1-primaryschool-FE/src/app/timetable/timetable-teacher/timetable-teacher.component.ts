@@ -7,6 +7,7 @@ import {TimetableService} from '../../service/time_table/timetable-service.servi
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
 import {StudentService} from "../../service/student/student.service";
 
+
 @Component({
   selector: 'app-timetable-teacher',
   templateUrl: './timetable-teacher.component.html',

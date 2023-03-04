@@ -21,6 +21,9 @@ export class StudentService {
   URL_STUDENT_TEACHER_NAME="http://localhost:8080/api/students/teacher-name";
   URL_STUDENT_BY_TEACHER = 'http://localhost:8080/api/students/list-id-teacher';
   URL_GET_ID_TEACHER = 'http://localhost:8080/api/students/find-teacher';
+  URL_STUDENT_CREATE = 'http://localhost:8080/api/students/create-student';
+  URL_STUDENT_UPDATE = 'http://localhost:8080/api/students/update-student';
+
 
   constructor(private httpClient: HttpClient) {
   }
@@ -88,4 +91,19 @@ export class StudentService {
     return this.httpClient.delete(this.URL_STUDENT+'/'+id);
   }
 
+  /**
+   * Created by: HoangNM
+   * Date created: 04/03/2023
+   * Content: method create and update Student
+   *
+   * @param student
+   * @return list student
+   */
+  saveStudent(student: Student): Observable<Student> {
+    return this.httpClient.post<Student>(this.URL_STUDENT_CREATE, student);
+  }
+
+  updateStudent(student: Student) {
+    return this.httpClient.put(`${(this.URL_STUDENT_UPDATE)}`, student);
+  }
 }

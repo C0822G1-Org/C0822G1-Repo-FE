@@ -2,7 +2,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Student} from '../../entity/student/student';
 import {ActivatedRoute} from '@angular/router';
-import {StudentService} from "../../service/student/student.service";
+import {StudentService} from '../../service/student/student.service';
+
 
 @Component({
   selector: 'app-student-detail',

@@ -83,7 +83,7 @@
           <h5 style="margin-bottom: 10px;line-height:35px;float: right">GVCN: {{classTeacher.teacherName}}</h5>
         </div>
         <div class="col-4" *ngIf="yearClazz==currentYear?'hidden':''">
-          <button class="btn btn-info" data-bs-target="#changeTeacher" data-bs-toggle="modal"
+          <button class="btn btn-outline-warning" data-bs-target="#changeTeacher" data-bs-toggle="modal"
                   style="float:left;width: 80px" (click)="editNameTeacher()">Sửa
           </button>
         </div>
@@ -91,7 +91,7 @@
 
       <!--    Bảng danh sách-->
 
-      <div class="row">
+      <div class="row" style="position: relative">
         <table class="table table-bordered table-hover" style="background-color: white;">
           <thead class="table-primary">
           <tr>
@@ -113,7 +113,7 @@
             <td>{{s.address}}</td>
             <td>
               <button class="btn btn-outline-warning" style="text-align: center; "
-                      [routerLink]="['student/student-edit',s.id]">
+                      [routerLink]="['student/edit',s.id]">
                                 <span type="submit"><img src="https://img.icons8.com/color/100/null/pencil-tip.png"
                                                          style="width: 20px"/></span>
               </button>
@@ -122,7 +122,7 @@
 
             <td>
               <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                      data-bs-target="#exampleModal" style="padding: 3px 6px" (click)="student=s">
+                      data-bs-target="#deleteStudent" style="padding: 3px 6px" (click)="student=s">
                 <img src="https://img.icons8.com/clouds/100/null/trash.png"
                      style="width: 30px"/>
               </button>
@@ -130,7 +130,7 @@
 
             <td>
               <button class="btn btn-outline-primary" style="text-align: center; "
-                      [routerLink]="['student/student-info',s.id]">
+                      [routerLink]="['student/info',s.id]">
                 <i class="fa-solid fa-circle-info"></i>
               </button>
             </td>
@@ -142,10 +142,10 @@
       </div>
 
       <!--        Phân trang-->
-      <div class="row">
-
+      <div class="row" style="position: absolute;top: 1840px;left: 1150px">
+        <div style="float: right;">
           <div *ngIf="studentPage" class="d-flex justify-content-center" id="last-row" style="float: right">
-            <div style="float: right">
+
             <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <li class="page-item" [ngClass]="studentPage.first ? 'disabled': ''">
@@ -214,7 +214,7 @@
 
 <!--        Modal Xóa-->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="justify-content: center">
@@ -243,9 +243,9 @@
       </div>
       <div class="modal-body">
         Chọn giáo viên:
-        <input list="brow" #teacherName style="width: 70%">
-        <datalist id="brow">
-          <option *ngFor="let t of teachers" [value]="t.name+',CMND:'+t.idCard"></option>
+        <input list="brow" #teacherName style="width: 70%;border-color: #bfd1ec">
+        <datalist id="brow"  style="border-color: #bfd1ec">
+          <option *ngFor="let t of teachers" [value]="t.name+',CMND:'+t.idCard" ></option>
         </datalist>
       </div>
       <div class="modal-footer">
@@ -257,5 +257,4 @@
     </div>
   </div>
 </div>
-
 

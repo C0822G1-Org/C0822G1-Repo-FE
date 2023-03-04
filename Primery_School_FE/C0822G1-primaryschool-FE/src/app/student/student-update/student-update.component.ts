@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Student} from '../../entity/student/student';
-import {Clazz} from '../../entity/student/clazz';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {StudentService} from '../../service/student.service';
-import {ClazzService} from '../../service/clazz.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {finalize} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {AngularFireStorage} from '@angular/fire/storage';
+import {Student} from "../../entity/student/student";
+import {Clazz} from "../../entity/student/clazz";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Observable} from "rxjs";
+import {StudentService} from "../../service/Student/student.service";
+import {ClazzService} from "../../service/Student/clazz.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AngularFireStorage} from "@angular/fire/storage";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-student-update',
@@ -15,12 +15,14 @@ import {AngularFireStorage} from '@angular/fire/storage';
   styleUrls: ['./student-update.component.css']
 })
 export class StudentUpdateComponent implements OnInit {
+
   student: Student = {};
   studentId: any;
   clazz: Clazz | undefined = {};
   formUpdateStudent: FormGroup = new FormGroup({});
   selectedImage: any;
   src: string | undefined;
+  fb: string | undefined;
   downloadURL: Observable<string> | undefined;
 
   constructor(private studentService: StudentService,
@@ -72,10 +74,8 @@ export class StudentUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    // this.getAllClazz();
   }
-
-
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
     var n = Date.now();
@@ -137,4 +137,8 @@ export class StudentUpdateComponent implements OnInit {
     }
   }
 
+// tslint:disable-next-line:typedef
+  compareFun(item1: { id: any; }, item2: { id: any; } ) {
+    return item1 && item2 ? item1.id === item2.id : item1 === item2;
+  }
 }

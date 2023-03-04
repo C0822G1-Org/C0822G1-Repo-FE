@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClazzService {
 
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) { }
   /**
-   * Hoang NM
+   * TuanND
    * Date created: 3/2/2023
    */
   URL_CLAZZ_LIST = 'http://localhost:8080/api/clazz';

@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Clazz} from '../../entity/student/clazz';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {ActivatedRoute, Router} from '@angular/router';
-import {StudentService} from '../../service/student.service';
-import {ClazzService} from '../../service/clazz.service';
-import {finalize} from 'rxjs/operators';
-import {Student} from '../../entity/student/student';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Clazz} from "../../entity/student/clazz";
+import {Student} from "../../entity/student/student";
+import {AngularFireStorage} from "@angular/fire/storage";
+import {ActivatedRoute, Router} from "@angular/router";
+import {StudentService} from "../../service/Student/student.service";
+import {ClazzService} from "../../service/Student/clazz.service";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-student-create',
@@ -14,6 +14,7 @@ import {Student} from '../../entity/student/student';
   styleUrls: ['./student-create.component.css']
 })
 export class StudentCreateComponent implements OnInit {
+
   studentForm: FormGroup;
   clazz:Clazz={};
   selectedImage: any = null;
@@ -48,7 +49,7 @@ export class StudentCreateComponent implements OnInit {
       phoneNumberMother: new FormControl('', [Validators.required, Validators.pattern('^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$')]),
       motherJob: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       religion: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
-      address: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z\',.-]+( [a-zA-Z\',.-]+)*){2,255}')]),
       clazz: new FormGroup({
         clazzId:new FormControl(),
         clazzName:new FormControl()
@@ -89,5 +90,6 @@ export class StudentCreateComponent implements OnInit {
       })
     ).subscribe();
   }
+
 
 }

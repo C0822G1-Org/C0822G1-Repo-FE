@@ -105,5 +105,4 @@ export class ClassUpdateComponent implements OnInit {
       })
     }
   }
-
 }

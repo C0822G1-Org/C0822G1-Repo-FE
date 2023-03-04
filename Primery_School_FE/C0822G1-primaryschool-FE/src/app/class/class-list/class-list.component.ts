@@ -8,14 +8,12 @@ import {TeacherService} from '../../service/teacher.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {StudentService} from '../../service/student.service';
 
-
 @Component({
   selector: 'app-class-list',
   templateUrl: './class-list.component.html',
   styleUrls: ['./class-list.component.css']
 })
 export class ClassListComponent implements OnInit {
-
   clazzList: Clazz[] = [];
   blockList: Block[] = [];
   teacherList: Teacher[] = [];
@@ -118,6 +116,4 @@ export class ClassListComponent implements OnInit {
     console.log('okok');
     this.ngOnInit()
   }
-
-
 }

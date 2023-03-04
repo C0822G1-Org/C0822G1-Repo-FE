@@ -1,5 +1,4 @@
 import {Clazz} from './clazz';
-
 export interface Student {
   studentId?: number;
   img?: string;
@@ -16,5 +15,5 @@ export interface Student {
   address?: string;
   studentStatus?: boolean;
   flagDelete?: boolean;
-  clazz?: Clazz
+  clazz?: Clazz;
 }

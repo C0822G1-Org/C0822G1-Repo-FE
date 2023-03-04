@@ -8,7 +8,6 @@ const routes: Routes = [
   {path: 'security', loadChildren: () => import("./security/security.module").then(module => module.SecurityModule)},
   {path: 'timetable', loadChildren:() => import("./timetable/timetable.module").then(module => module.TimetableModule)},
   {path: 'class', loadChildren:() => import("./class/class.module").then(module => module.ClassModule)}
-
 ];
 
 @NgModule({

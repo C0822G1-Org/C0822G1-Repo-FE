@@ -8,6 +8,7 @@ import {ClassUpdateComponent} from './class-update/class-update.component';
 const routes: Routes = [
   {path: '', component: ClassListComponent},
   {path: 'create', component: ClassCreateChooseComponent},
+  {path: 'create/info/:id', component: ClassCreateInfoComponent},
   {path: 'update/:id', component: ClassUpdateComponent},
   {path: 'create/:id', component: ClassCreateInfoComponent}
 ];

@@ -1,10 +1,11 @@
+
 import {Component, OnInit} from '@angular/core';
 import {StudentInfo} from '../../dto/student/student-info';
 import {StudentInfoJson} from '../../dto/student/student-info-json';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
-import {StudentService} from "../../service/Student/student.service";
+import {StudentService} from '../../service/student/student.service';
 
 @Component({
   selector: 'app-homeroom-class',

@@ -12,7 +12,6 @@ const routes: Routes = [
   {path: 'sign-up',component: SignUpComponent}
 ]
 
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

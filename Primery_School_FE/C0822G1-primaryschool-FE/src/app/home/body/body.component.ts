@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-import {BlogService} from "../../service/blog.service";
-import {Blog} from "../../entity/blog/blog";
+import {BlogService} from '../../service/blog.service';
+import {Blog} from '../../entity/blog/blog';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -9,6 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
+
 
 /*
 Created by: LinhPT,
@@ -43,14 +43,16 @@ export class BodyComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBlog(this.size);
   }
-/*
-Get list of Blogs and pagination:
- */
+
+  /*
+  Get list of Blogs and pagination:
+   */
   last: any;
   first: any;
+
   getAllBlog(size: number) {
     this.blogService.getAllPage(size).subscribe(data => {
-      if (data != null){
+      if (data != null) {
         console.log(data);
         this.pageBlog = data.content;
         console.log(this.pageBlog);

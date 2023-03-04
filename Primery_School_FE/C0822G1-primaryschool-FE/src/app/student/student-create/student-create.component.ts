@@ -4,9 +4,9 @@ import {Clazz} from "../../entity/student/clazz";
 import {Student} from "../../entity/student/student";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {ActivatedRoute, Router} from "@angular/router";
-import {StudentService} from "../../service/Student/student.service";
-import {ClazzService} from "../../service/Student/clazz.service";
 import {finalize} from "rxjs/operators";
+import {StudentService} from '../../service/student/student.service';
+import {ClazzService} from '../../service/clazz/clazz.service';
 
 @Component({
   selector: 'app-student-create',

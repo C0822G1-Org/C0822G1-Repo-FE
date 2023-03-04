@@ -1,4 +1,4 @@
-import {Clazz} from "../student/clazz";
+import {Clazz} from "../clazz/clazz";
 
 export interface TimeTable {
   id?: number,

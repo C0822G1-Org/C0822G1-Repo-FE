@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'create',component: StudentCreateComponent},
   {path:'detail/:id',component: StudentDetailComponent},
   {path:'delete',component: StudentDeleteComponent},
-  {path:'update',component: StudentUpdateComponent},
+  {path:'update/:id',component: StudentUpdateComponent},
   {path: 'homeroom', component: HomeroomClassComponent}
 ];
 

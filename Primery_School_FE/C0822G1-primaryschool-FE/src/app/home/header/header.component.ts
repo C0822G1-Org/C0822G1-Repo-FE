@@ -4,7 +4,6 @@ import {TokenStorageService} from '../../service/authentication/token-storage.se
 import {SecurityService} from '../../service/authentication/security.service';
 import {Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

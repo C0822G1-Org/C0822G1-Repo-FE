@@ -4,8 +4,8 @@ import {ChangePassService} from '../../service/change-pass/change-pass.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from "../../service/authentication/token-storage.service";
 import {ToastrService} from "ngx-toastr";
+import {StudentService} from '../../service/student/student.service';
 import {FormGroup} from "@angular/forms";
-import {StudentService} from "../../service/Student/student.service";
 
 @Component({
   selector: 'app-confirm',

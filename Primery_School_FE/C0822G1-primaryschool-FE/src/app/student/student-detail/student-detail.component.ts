@@ -1,7 +1,8 @@
+
 import {Component, OnInit} from '@angular/core';
 import {Student} from '../../entity/student/student';
 import {ActivatedRoute} from '@angular/router';
-import {StudentService} from "../../service/Student/student.service";
+import {StudentService} from '../../service/student/student.service';
 
 
 @Component({
@@ -10,6 +11,7 @@ import {StudentService} from "../../service/Student/student.service";
   styleUrls: ['./student-detail.component.css']
 })
 export class StudentDetailComponent implements OnInit {
+
   student: Student = {};
   studentId: any;
 
@@ -32,6 +34,7 @@ export class StudentDetailComponent implements OnInit {
       console.log(this.studentId);
       this.studentService.findById(this.studentId).subscribe(next => {
         this.student = next;
+        console.log(next);
       });
     });
   }

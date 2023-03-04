@@ -1,10 +1,11 @@
+
 import {Component, OnInit} from '@angular/core';
 import {TimeTableView} from '../../dto/time_table/time-table-view';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {TimetableService} from '../../service/time_table/timetable-service.service';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
-import {StudentService} from "../../service/Student/student.service";
+import {StudentService} from "../../service/student/student.service";
 
 
 @Component({
@@ -13,6 +14,7 @@ import {StudentService} from "../../service/Student/student.service";
   styleUrls: ['./timetable-teacher.component.css']
 })
 export class TimetableTeacherComponent implements OnInit {
+
   idTeacher = -1;
   timetables: TimeTableView[][] | undefined;
   time: any[] = [];

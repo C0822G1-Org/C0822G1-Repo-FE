@@ -1,3 +1,4 @@
+import {Degree} from './degree';
 export interface Teacher {
   teacherId : number;
   teacherName : string;
@@ -9,4 +10,5 @@ export interface Teacher {
   teacherType : string;
   teacherStatus : boolean;
   account : Account;
+  degree : Degree;
 }

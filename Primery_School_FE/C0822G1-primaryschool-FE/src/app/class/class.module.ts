@@ -7,15 +7,16 @@ import { ClassCreateChooseComponent } from './class-create-choose/class-create-c
 import { ClassCreateInfoComponent } from './class-create-info/class-create-info.component';
 import { ClassUpdateComponent } from './class-update/class-update.component';
 import { ClassUpComponent } from './class-up/class-up.component';
-import {ReactiveFormsModule} from '@angular/forms';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [ClassListComponent, ClassCreateChooseComponent, ClassCreateInfoComponent, ClassUpdateComponent, ClassUpComponent],
-  imports: [
-    CommonModule,
-    ClassRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        ClassRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
+    ]
 })
 export class ClassModule { }

@@ -10,5 +10,6 @@ export interface Clazz {
   clazzName?: string,
   year?: Year,
   teacher?: Teacher,
+  flagDelete?: boolean;
   schoolYear?: string;
 }

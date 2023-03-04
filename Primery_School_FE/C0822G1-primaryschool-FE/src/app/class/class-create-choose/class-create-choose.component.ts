@@ -67,7 +67,4 @@ export class ClassCreateChooseComponent implements OnInit {
 
     return isDuplicate?{sai:true}:null;
   }
-
-
-
 }

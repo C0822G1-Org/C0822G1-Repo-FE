@@ -35,17 +35,17 @@
                   </div>
                   <div class="mb-3" hidden>
                     <label class="form-label">year</label>
-                    <input type="text" class="form-control" formControlName="year">
+                    <input type="text" class="form-control" formControlName="year" >
                   </div>
                   <div style="margin-bottom: 20px" class="mb-3" >
                     <span>Chọn lớp :</span> <span style="width: 20px; display: inline-flex  ">
-                  <input style="width: 500px; border: 1px solid darkgray; margin-left: 3px"
+                  <input style="width: 500px;  margin-left: 3px; background: #CFE2FF; border: 1px solid #212529"
                          type="text" class="form-control" formControlName="clazzName"></span>
                   </div>
                   <div style="margin-bottom: 20px">
                     <span>Giáo viên chủ nhiệm:</span>
                     <span style="width: 20px; display: inline-flex  ">
-                      <select class="form-select" style="width: 500px" formControlName="teacher" [compareWith]="compareTeacher">
+                      <select class="form-select" style="width: 500px ;  margin-left: 3px; background: #CFE2FF; border: 1px solid #212529" formControlName="teacher" [compareWith]="compareTeacher">
                         <option *ngFor="let item of teacherList" [ngValue]="item">{{item.teacherName}}</option>
                       </select>
                     </span>
@@ -56,6 +56,7 @@
                 </div>
               </div>
               <div>
+
                 <table class="table table-hover table-bordered table-striped">
                   <thead class="table-primary">
                   <tr class="align-baseline">
@@ -64,29 +65,17 @@
                     <th scope="col">Ngày sinh</th>
                     <th scope="col">Giới tính</th>
                     <th scope="col">Quê quán</th>
+                    <th scope="col">Lớp</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Nguyễn A</td>
-                    <td>01/01/2002</td>
-                    <td>Nam</td>
-                    <td>Đà Nẵng</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Trần B</td>
-                    <td>02/02/2002</td>
-                    <td>Nam</td>
-                    <td>Quảng Nam</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Lý C</td>
-                    <td>03/03/2002</td>
-                    <td>Nam</td>
-                    <td>Đà Nẵng</td>
+                  <tr *ngFor="let student of studentList   index as item">
+                    <td>{{item+1}}</td>
+                    <td>{{student.studentName}}</td>
+                    <td>{{student.dateOfBirth}}</td>
+                    <td>{{student.gender}}</td>
+                    <td>{{student.address}}</td>
+                    <td>{{student.clazz?.clazzName}}</td>
                   </tr>
                   </tbody>
                 </table>

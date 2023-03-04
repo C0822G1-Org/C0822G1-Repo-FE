@@ -16,13 +16,18 @@ export class ClazzService {
     return this.httpClient.get<Clazz[]>(CLAZZ_URL +  `?page=` + page + `&keySearch1=` + clazzName)
   }
 
+  getAllClazzStudent(): Observable<Clazz[]> {
+    return this.httpClient.get<Clazz[]>(CLAZZ_URL)
+  }
+
   findById(id: number){
-    return this.httpClient.get<Clazz>(`${CLAZZ_URL}${id}`)
+    return this.httpClient.get<Clazz>(`${CLAZZ_URL}info/${id}`)
   }
 
   updateClazz(id: number, clazz: Clazz){
     return this.httpClient.put<Clazz>(`${CLAZZ_URL}update/${id}`, clazz)
-
   }
+
+
 
 }

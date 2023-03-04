@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {StudentService} from '../../service/student.service';
-import {FormBuilder} from '@angular/forms';
-import {PageStudentDto} from '../../dto/page-student-dto';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-student-list',
@@ -9,7 +6,6 @@ import {PageStudentDto} from '../../dto/page-student-dto';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-
 
   constructor() {}
 

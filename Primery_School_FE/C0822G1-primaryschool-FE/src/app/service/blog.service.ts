@@ -1,24 +1,28 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Blog} from "../entity/blog/blog";
-
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BlogService {
 
+/*
+Created by: LinhPT,
+Date created: 02-03/02/2023,
+Describe: Take data backend getAllPage, findById
+ */
+
+export class BlogService {
   constructor(private httpClient: HttpClient) {
   }
 
-  URL_BLOG = ("http://localhost:8080/blog")
+  URL_BLOG = ('http://localhost:8080/blog');
 
-  getAll(): Observable<Blog[]>{
-    return this.httpClient.get<Blog[]>(this.URL_BLOG);
+  getAllPage(size: number): Observable<any> {
+    return this.httpClient.get<any>(this.URL_BLOG + '?' + 'size=' + size);
   }
 
-  getAllPage(page: number): Observable<any> {
-    return this.httpClient.get<any>(this.URL_BLOG + '?' + 'page=' + page);
-  }
+  findById(id: number) {
+    return this.httpClient.get(this.URL_BLOG + '/' + id)
 
+  }
 }

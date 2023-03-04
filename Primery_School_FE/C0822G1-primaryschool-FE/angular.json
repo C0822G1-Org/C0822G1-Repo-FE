@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -94,7 +95,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "Primery_School/c0822g1-project/src/app/jsFile/scroll.js"
+
             ]
           }
         },
@@ -128,6 +129,7 @@
   },
   "defaultProject": "c0822g1-project",
   "cli": {
-    "analytics": "5bc59d06-0b3d-47aa-ac41-b388a82278e9"
+    "analytics": "0c273d64-04fd-47e1-b872-80591584e68f"
   }
 }
+

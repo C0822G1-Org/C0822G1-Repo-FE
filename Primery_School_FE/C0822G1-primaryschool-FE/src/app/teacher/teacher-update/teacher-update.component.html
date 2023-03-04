@@ -1,1 +1,71 @@
-<p>teacher-update works!</p>
+<section>
+  <div class="box">
+    <div class="square" style="--i:0;"></div>
+    <div class="square" style="--i:1;"></div>
+    <div class="square" style="--i:2;"></div>
+    <div class="square" style="--i:3;"></div>
+    <div class="square" style="--i:4;"></div>
+    <div class="square" style="--i:5;"></div>
+
+    <div class="container" style="width: 600px; height: 1000px">
+      <div class="form">
+        <h2 style="font-family: Arial;text-align: center">Sửa Đổi Thông Tin Cá Nhân</h2>
+        <form [formGroup]="infoTeacherForm" (ngSubmit)="editInfoTeacher()">
+          <input formControlName="teacherId" type="hidden">
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Tên giáo viên</label>
+            <input formControlName="teacherName" type="text" readonly>
+          </div>
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Ngày sinh</label><br>
+            <input formControlName="dateOfBirth" type="text" readonly>
+          </div>
+          <div class="inputBx" style="margin-top: 30px">
+            <label class="form-label fw-bold">Giới tính</label>
+            <div class="d-flex" >
+           <input formControlName="gender" type="radio" value="true" readonly> Nam
+           <input formControlName="gender" type="radio" value="false" readonly> Nữ
+
+            </div>
+          </div>
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Số CMND/CCCD</label>
+            <input formControlName="idCard" type="text" readonly>
+            <p style="color:powderblue;font-family: Arial"></p>
+          </div>
+
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Email</label><br>
+            <input formControlName="email" type="text"  required>
+            <p *ngIf="infoTeacherForm.controls.email.hasError('required')"  style="color: red">Email không được để trống</p>
+            <p *ngIf="infoTeacherForm.controls.email.hasError('pattern')" style="color: red">Email không đúng định dạng</p>
+            <p style="color: red" *ngIf="messageEmail">{{messageEmail}}</p>
+          </div>
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Số điện thoại</label>
+            <input formControlName="phoneNumber" type="text" required>
+            <p style="color:powderblue;font-family: Arial"></p>
+            <p *ngIf="infoTeacherForm.controls.phoneNumber.hasError('required')" style="color: red">Số điện thoại không được để trống</p>
+            <p *ngIf="infoTeacherForm.controls.phoneNumber.hasError('pattern')" style="color: red">Số điện thoại không đúng định dạng</p>
+            <p style="color: red" *ngIf="messagePhoneNumber">{{messagePhoneNumber}}</p>
+          </div>
+
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Địa chỉ nhà</label>
+            <input formControlName="address" type="text" name="address" required>
+            <p *ngIf="infoTeacherForm.controls.address.hasError('required')" style="color: red">Địa chỉ nhà không được để trống</p>
+            <p style="color: red" *ngIf="messageAddress">{{messageAddress}}</p>
+          </div>
+          <div class="inputBx">
+            <button type="submit" class="btn btn-outline-dark"
+                    style="font-size: 20px; padding: 5px 10px;border-radius: 15px;font-family: Arial;color: white"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Lưu thông tin
+            </button>
+          </div>
+        </form>
+        <p style="font-family: Arial">Quay lại trang chủ? <a routerLink="/teacher">Quay lại</a></p>
+      </div>
+    </div>
+  </div>
+</section>

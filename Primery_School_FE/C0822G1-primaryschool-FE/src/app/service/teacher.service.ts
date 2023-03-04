@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient} from "@angular/common/http";
+import {Teacher} from "../entity/teacher/teacher";
 import {Observable} from 'rxjs';
 import {PageTeacher} from '../dto/page-teacher';
-
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,26 @@ export class TeacherService {
 
 
   /**
-   * create by : VinhLD
+   * Created by: MinhCDK
+   * Date created: 03/03/2023
+   * Function: findByTeacher
+   */
+
+  findByTeacherId(teacherId: number): Observable<Teacher> {
+    return this.httpClient.get<Teacher>('http://localhost:8080/api/teacher/' + teacherId)
+  }
+
+
+  /**
+   * Created by: MinhCDK
+   * Date created: 03/03/2023
+   * Function: editInfoTeacher
+   */
+  editInfoTeacher(teacher: Teacher) {
+    return this.httpClient.put('http://localhost:8080/api/teacher/editInfoTeacher', teacher)
+  }
+
+   /** create by : VinhLD
    * dateCreate :02/03/2023
    * function: search teacher by name and status
    * "@param" teacherToSearch
@@ -32,6 +51,4 @@ export class TeacherService {
   getPageTeacher(teacherToSearch: any, pageNumber: any): Observable<PageTeacher> {
     return this.httpClient.post<PageTeacher>(this.URL_API_TEACHER + '/search?page=' + pageNumber, teacherToSearch);
   }
-
-
 }

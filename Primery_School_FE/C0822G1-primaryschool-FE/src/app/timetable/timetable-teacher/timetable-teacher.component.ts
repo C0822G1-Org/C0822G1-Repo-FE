@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {TimetableService} from '../../service/time_table/timetable-service.service';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
-import {StudentService} from "../../service/student/student.service";
+import {StudentService} from "../../service/Student/student.service";
+
 
 @Component({
   selector: 'app-timetable-teacher',

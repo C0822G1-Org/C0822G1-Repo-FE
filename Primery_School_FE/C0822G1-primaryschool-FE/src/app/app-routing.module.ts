@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import {ErrorComponent} from './common/error/error.component';
 const routes: Routes = [
   {path:'body', loadChildren: () => import("./home/home.module").then(module => module.HomeModule)},
   {path:'student', loadChildren:() => import("./student/student.module").then(module => module.StudentModule)},
@@ -8,8 +8,7 @@ const routes: Routes = [
   {path: 'security', loadChildren: () => import("./security/security.module").then(module => module.SecurityModule)},
   {path: 'timetable', loadChildren:() => import("./timetable/timetable.module").then(module => module.TimetableModule)},
   {path: 'point', loadChildren:() => import("./point/point.module").then(module => module.PointModule)},
-
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

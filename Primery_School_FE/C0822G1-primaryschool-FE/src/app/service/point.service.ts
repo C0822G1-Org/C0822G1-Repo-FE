@@ -12,9 +12,11 @@ export class PointService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(teacherId: number): Observable<PointManagement[]> {
-    return this.httpClient.get<PointManagement[]>('http://localhost:8080/pointManagement/' + teacherId);
-  }
+  /**
+   * Created by: MinhCDK
+   * Date created: 23/03/2023
+   * Function: editPoint
+   */
 
   editPoint(id: number, one: number, two: number) {
     const obj: EditPoint = {
@@ -25,11 +27,13 @@ export class PointService {
     return this.httpClient.put('http://localhost:8080/pointManagement/editPoint/', obj);
   }
 
+
+  /**
+   * Created by: MinhCDK
+   * Date created: 03/03/2023
+   * Function: searchStudent
+   */
   searchStudent(teacherId: number, studentName: String): Observable<PointManagement[]> {
     return this.httpClient.get<PointManagement[]>('http://localhost:8080/pointManagement/search?teacherId=' + teacherId + '&studentName=' + studentName);
-  }
-
-  getPDF(){
-    return this.httpClient.get('http://localhost:8080/pointManagement/pdf')
   }
 }

@@ -1,4 +1,3 @@
-
 <div class="myBody">
   <section class="myCourser">
     <div class="transport"></div>
@@ -78,20 +77,24 @@
         giao lưu với giáo viên nước ngoài để tăng sự phát triển toàn diện
         của trẻ</p>
     </div>
+
+  </section>
+
+  <section class="parents">
     <div class="row">
       <div class="work-col" *ngFor="let item of pageBlog">
         <a style="cursor: pointer; text-decoration: none; color: #15536c" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="blog=item">
-        <img class="zoom" title="img" [src]="item.img">
-        <h5 style="text-align: center; margin-top: 30px" class="zoom">{{item.title}}</h5>
-        <div style="text-align: center; font-size: 10px">
-        <h6 class="zoom"><i class="fa-solid fa-calendar-days"> </i>: {{item.start_date}}</h6>
-        <h6 class="zoom"><i class="fa-solid fa-pen-to-square"></i>: {{item.poster}}</h6>
-        </div>
+          <img class="zoom" title="img" [src]="item.img">
+          <h5 style="text-align: center; margin-top: 30px" class="zoom">{{item.title}}</h5>
+          <div style="text-align: center; font-size: 10px">
+            <h6 class="zoom"><i class="fa-solid fa-calendar-days"> </i>: {{item.start_date}}</h6>
+            <h6 class="zoom"><i class="fa-solid fa-pen-to-square"></i>: {{item.poster}}</h6>
+          </div>
         </a>
       </div>
       <a style="cursor: pointer; color: #f44336" type="button" (click)="getAllBlog(size+3)" *ngIf="!last">
         <i class="fas fa-angle-double-down"></i><br>
-         Xem thêm...
+        Xem thêm...
       </a>
       <a style="cursor: pointer; color: #f44336" type="button" (click)="getAllBlog(size=3)" *ngIf="last">
         <i class="fas fa-angle-double-up"></i><br>
@@ -101,6 +104,7 @@
   </section>
 
   <section class="parents" style="margin-top: 50px">
+
     <h1 class="title zoom">Phụ Huynh Nói Gì ?</h1>
     <p class="zoom">Cùng lắng nghe ý kiến của phụ huynh khi cho con em của mình học tại trường</p>
     <div class="row">
@@ -142,7 +146,7 @@
         <img title="img" [src]="blog.img" style="width: 100%; height: 300px">
         <p>{{blog.contents}}</p>
         <i class="fa-solid fa-calendar-days"> </i><br>
-          <p style="font-size: small">{{blog.start_date}}</p>
+        <p style="font-size: small">{{blog.start_date}}</p>
 
         <i class="fa-solid fa-pen-to-square"></i><br>
         <p style="font-size: small">{{blog.poster}}</p>
@@ -154,4 +158,3 @@
     </div>
   </div>
 </div>
-

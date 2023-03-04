@@ -73,7 +73,7 @@ nav img {
 }
 
 .text-box h1 {
-  font-size: 70px;
+  font-size: 60px;
 }
 
 .text-box p {
@@ -205,7 +205,7 @@ nav .fa {
   animation-delay: 2.4s!important;
 }
 .custom-select{
-  font-family: Arial;
+  font-family: Arial, serif;
   position: relative;
 }
 .select-select{

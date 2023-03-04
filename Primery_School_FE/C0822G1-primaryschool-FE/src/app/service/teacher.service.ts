@@ -11,12 +11,24 @@ export class TeacherService {
   constructor(private httpClient: HttpClient) {
   }
 
-  findByTeacherId(teacherId: number): Observable<Teacher[]> {
-    return this.httpClient.get<Teacher[]>('http://localhost:8080/api/teacher/' + teacherId)
+
+  /**
+   * Created by: MinhCDK
+   * Date created: 03/03/2023
+   * Function: findByTeacher
+   */
+
+  findByTeacherId(teacherId: number): Observable<Teacher> {
+    return this.httpClient.get<Teacher>('http://localhost:8080/api/teacher/' + teacherId)
   }
 
+
+  /**
+   * Created by: MinhCDK
+   * Date created: 03/03/2023
+   * Function: editInfoTeacher
+   */
   editInfoTeacher(teacher: Teacher) {
-    alert("dang sữa")
-    return this.httpClient.put('http://localhost:8080/api/teacher/editInfoTeacher/', teacher)
+    return this.httpClient.put('http://localhost:8080/api/teacher/editInfoTeacher', teacher)
   }
 }

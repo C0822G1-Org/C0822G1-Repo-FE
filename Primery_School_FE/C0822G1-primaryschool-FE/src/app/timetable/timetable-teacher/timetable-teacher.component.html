@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 <body style="background-color: #ECECEC; height: 100vh">
+=======
+<body style="background-color: #ECECEC; height: 80vh">
+>>>>>>> origin/dev
 <div class="justify-content-center m-0 mb-2">
   <div>
     <div>
@@ -23,6 +27,7 @@
           </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
           <tr>
             <th scope="row" style="text-align: center">1</th>
             <td>Chào Cờ</td>
@@ -54,6 +59,15 @@
             <td>Toán</td>
             <td>Toán</td>
             <td>Thể dục</td>
+=======
+          <tr *ngFor="let timetable of time,let i=index">
+            <td>Tiết {{i + 1}}</td>
+            <td *ngFor="let monhoc of timetable,let j=index">
+              <div>
+                  <span>{{monhoc.nameSubject}}</span>
+              </div>
+            </td>
+>>>>>>> origin/dev
           </tr>
           </tbody>
         </table>

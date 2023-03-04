@@ -1,8 +1,8 @@
 export interface Blog {
   id?: number,
   title?: string
-  contents?: string
-  start_date?: string
+  content?: string
+  startDate?: string
   poster?: string
-  img?: string
+  image?: string
 }

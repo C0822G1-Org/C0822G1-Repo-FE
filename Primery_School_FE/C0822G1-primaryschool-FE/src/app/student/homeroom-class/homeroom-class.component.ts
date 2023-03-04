@@ -1,6 +1,4 @@
-
 import { Component, OnInit } from '@angular/core';
-
 import {StudentInfo} from '../../dto/student/student-info';
 import {StudentInfoJson} from '../../dto/student/student-info-json';
 import {StudentService} from '../../service/student/student.service';
@@ -8,15 +6,12 @@ import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
 
-
 @Component({
   selector: 'app-homeroom-class',
   templateUrl: './homeroom-class.component.html',
   styleUrls: ['./homeroom-class.component.css']
 })
 export class HomeroomClassComponent implements OnInit {
-
-
   studentInfo: StudentInfo[] = [];
   studentList!: StudentInfoJson;
   request = {page: 0, size: 10};

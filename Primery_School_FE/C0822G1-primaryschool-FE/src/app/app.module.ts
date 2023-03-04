@@ -17,7 +17,6 @@ import {AuthInterceptor} from "./service/authentication/auth.interceptor";
   declarations: [
     AppComponent,
     ErrorComponent
-
   ],
   imports: [
     BrowserModule,
@@ -39,3 +38,4 @@ import {AuthInterceptor} from "./service/authentication/auth.interceptor";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

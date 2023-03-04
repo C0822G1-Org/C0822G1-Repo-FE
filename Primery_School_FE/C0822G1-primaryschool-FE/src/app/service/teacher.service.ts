@@ -1,14 +1,24 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Teacher} from "../entity/teacher/teacher";
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
+import {PageTeacher} from '../dto/page-teacher';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherService {
 
-  constructor(private httpClient: HttpClient) {
+  private URL_API_TEACHER = 'http://localhost:8080/teachers';
+
+  constructor(private  httpClient: HttpClient) {
+  }
+
+  searchTeacher(nameTeacher: any, statusTeacher: any, request: any): Observable<any> {
+    const params = request;
+
+    return this.httpClient.get<any>('http://localhost:8080/teachers?name=' + nameTeacher + '&status=' + statusTeacher, {params});
+
   }
 
 
@@ -30,5 +40,15 @@ export class TeacherService {
    */
   editInfoTeacher(teacher: Teacher) {
     return this.httpClient.put('http://localhost:8080/api/teacher/editInfoTeacher', teacher)
+  }
+
+   /** create by : VinhLD
+   * dateCreate :02/03/2023
+   * function: search teacher by name and status
+   * "@param" teacherToSearch
+   * "@param" pageNumber
+   */
+  getPageTeacher(teacherToSearch: any, pageNumber: any): Observable<PageTeacher> {
+    return this.httpClient.post<PageTeacher>(this.URL_API_TEACHER + '/search?page=' + pageNumber, teacherToSearch);
   }
 }

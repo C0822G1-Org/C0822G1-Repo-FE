@@ -95,6 +95,7 @@
               "src/styles.css"
             ],
             "scripts": [
+
             ]
           }
         },
@@ -126,8 +127,9 @@
       }
     }
   },
-
-  "defaultProject": "c0822g1-project"
+  "defaultProject": "c0822g1-project",
+  "cli": {
+    "analytics": "0c273d64-04fd-47e1-b872-80591584e68f"
+  }
 }
-
 

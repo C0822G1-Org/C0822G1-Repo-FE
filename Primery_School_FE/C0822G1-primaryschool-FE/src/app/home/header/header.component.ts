@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   @HostListener('window:scroll', ['$event']) onScroll() {
     this.pageYoffSet = window.pageYOffset;
   }

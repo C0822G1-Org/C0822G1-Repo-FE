@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {PointManagement} from "./point-management";
 import {Clazz} from "./clazz";
 export interface Student {
@@ -18,4 +19,7 @@ export interface Student {
   flagDelete?: string;
   pointManagement?: PointManagement;
   clazz?: Clazz;
+=======
+export interface Student {
+>>>>>>> origin/dev-feature-teacher
 }

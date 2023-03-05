@@ -1,16 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
+
 
 /*
 Created by: LinhPT,
 Date created: 02-03/02/2023,
 Describe: Take data backend getAllPage, findById
  */
-
 export class BlogService {
   constructor(private httpClient: HttpClient) {
   }
@@ -22,7 +23,6 @@ export class BlogService {
   }
 
   findById(id: number) {
-    return this.httpClient.get(this.URL_BLOG + '/' + id)
-
+    return this.httpClient.get(this.URL_BLOG + '/' + id);
   }
 }

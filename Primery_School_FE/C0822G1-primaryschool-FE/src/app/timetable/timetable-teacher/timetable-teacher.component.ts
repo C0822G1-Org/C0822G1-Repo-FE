@@ -1,3 +1,4 @@
+
 import {Component, OnInit} from '@angular/core';
 import {TimeTableView} from '../../dto/time_table/time-table-view';
 import {Router} from '@angular/router';

@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 import {PointManagement} from "./point-management";
-import {Clazz} from "./clazz";
+import {Clazz} from '../clazz/clazz';
+
 export interface Student {
   studentId?: number;
   img?: string;
@@ -19,7 +19,4 @@ export interface Student {
   flagDelete?: string;
   pointManagement?: PointManagement;
   clazz?: Clazz;
-=======
-export interface Student {
->>>>>>> origin/dev-feature-teacher
 }

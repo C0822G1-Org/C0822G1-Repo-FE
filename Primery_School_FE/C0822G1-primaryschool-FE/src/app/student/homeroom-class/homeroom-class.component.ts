@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StudentInfo} from '../../dto/student/student-info';
 import {StudentInfoJson} from '../../dto/student/student-info-json';
-import {StudentService} from '../../service/student/student.service';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
+import {StudentService} from '../../service/student/student.service';
 
 @Component({
   selector: 'app-homeroom-class',
@@ -36,6 +36,7 @@ export class HomeroomClassComponent implements OnInit {
    * Date created: 01/03/2023
    * Function: get list student
    */
+
   getAllStudent(request: { page?: any; size?: any; } | undefined): void {
     const idAccount = this.tokenService.getIdAccount();
     this.studentService.getIdTeacherByIdAccount(idAccount).subscribe(data => {

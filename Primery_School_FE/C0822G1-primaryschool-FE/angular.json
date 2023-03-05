@@ -94,9 +94,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -132,4 +130,3 @@
     "analytics": "0c273d64-04fd-47e1-b872-80591584e68f"
   }
 }
-

@@ -12,11 +12,11 @@ import {StudentSearchComponent} from './student-search/student-search.component'
 const routes: Routes = [
   {path: '', component: StudentListComponent},
   {path: 'create', component: StudentCreateComponent},
-  {path: 'detail', component: StudentDetailComponent},
   {path: 'delete', component: StudentDeleteComponent},
-  {path: 'update', component: StudentUpdateComponent},
   {path: 'homeroom', component: HomeroomClassComponent},
-  {path: 'search', component: StudentSearchComponent}
+  {path: 'search', component: StudentSearchComponent},
+  {path:'detail/:id',component: StudentDetailComponent},
+  {path:'update/:id',component: StudentUpdateComponent},
 ];
 
 @NgModule({

@@ -1,17 +1,17 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
 import {HomeModule} from './home/home.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import {ToastContainerModule, ToastrModule} from 'ngx-toastr';
+import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ErrorComponent } from './common/error/error.component';
-import {AuthInterceptor} from "./service/authentication/auth.interceptor";
+import {AuthInterceptor} from './service/authentication/auth.interceptor';
+import {ErrorComponent} from './common/error/error.component';
+import {AppComponent} from './app.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import {AuthInterceptor} from "./service/authentication/auth.interceptor";
     BrowserModule,
     AppRoutingModule,
     HomeModule,
+    HttpClientModule,
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
@@ -38,4 +39,5 @@ import {AuthInterceptor} from "./service/authentication/auth.interceptor";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 

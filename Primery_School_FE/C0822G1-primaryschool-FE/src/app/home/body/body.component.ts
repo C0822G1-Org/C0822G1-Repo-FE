@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../../service/blog.service';
 import {Blog} from '../../entity/blog/blog';
-
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -9,6 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
+
 
 /*
 Created by: LinhPT,

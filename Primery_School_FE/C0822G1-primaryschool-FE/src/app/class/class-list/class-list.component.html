@@ -1,1 +1,107 @@
-<p>class-list works!</p>
+<div style="text-align: center">
+  <div class="justify-content-center m-0 mb-2">
+    <div>
+      <div>
+        <h1 style="size:32px; margin-top: 50px; margin-bottom: 50px; text-align: center">QUẢN LÝ DANH SÁCH LỚP</h1>
+      </div>
+      <div>
+        <div class="col-sm-2 col-xs-2 col-lg-2 col-md-2 col-xl-2"></div>
+        <div class="col-sm-8 col-xs-8 col-lg-8 col-md-8 col-xl-8  container-fluid ">
+          <div class="row" style="margin: 0; padding: 0">
+            <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xl-6"
+                 style="text-align: left;margin-left: -12px">
+                        <span>
+                        <button class="btn btn-primary" routerLink="/create"
+                                style="margin-top: 10px; margin-bottom: 10px "> Thêm mới
+                        </button>
+                        </span>
+                    <span style="margin-left: 3px">
+                                <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"  style="width: 100px;margin-top: 10px;
+                                         margin-bottom: 10px" (click)="upclasss()">
+                                    Lên lớp
+                                </button>
+                     </span>
+
+            </div>
+            <div class="col-sm-6 col-xs-6 col-lg-6 col-md-6 col-xl-6 "
+                 style="text-align: right;margin: 0; padding: 0">
+              <form class="d-flex" style="margin-top: 10px; margin-bottom: 10px " [formGroup]="formGroup">
+                <input class="form-control me-sm-2" type="search" placeholder="Nhập Tên lớp" formControlName="search" aria-label="Search" [(ngModel)]="search" style="border: 1px solid #0D6EFD">
+                <button  class="btn btn-outline-primary" type="submit" (click)="return()" style="margin-right: 5px; margin-left: 5px">Reset</button>
+                <button class="btn btn-outline-primary" type="submit" (click)="searchNameCLass()" style="width: 50px;margin: 0; padding: 0">
+
+                  <i class="fa-solid fa-magnifying-glass" style="margin-left: 3px"></i></button>
+              </form>
+            </div>
+          </div>
+
+          <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tên khối</th>
+              <th scope="col">Tên Lớp</th>
+              <th scope="col">Giáo viên chủ nhiệm</th>
+              <th scope="col">Sửa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let clazz of clazzList   index as item">
+              <td>{{item+1}}</td>
+              <td>Khối {{clazz.block?.blockName}}</td>
+              <td>{{clazz.clazzName}}</td>
+              <td>{{clazz.teacher?.teacherName}}</td>
+              <td>
+                <button class="btn btn-outline-warning" style="text-align: center; size: 10px" [routerLink]="['/class/update',clazz.clazzId]">
+                  <img src="https://img.icons8.com/color/100/null/pencil-tip.png"
+                       style="width: 15px; height: 15px"/>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div style="margin-top: 1%">
+            <!--        ---------------Nút phân trang----------------->
+            <div class="row" style="margin: 0; padding: 0">
+              <div class="col-4"></div>
+              <div class="col-1">
+                <button type="button" class="btn btn-outline-success" (click)="previousPage()" *ngIf="p > 0">Trước</button>
+              </div>
+              <div class="col-2 text-center">
+                <p class="text-success" style="margin-top: 5px">Trang {{p + 1}}/ {{totalPage}} trang</p>
+              </div>
+              <div class="col-1">
+                <button type="button" class="btn btn-outline-success" (click)="nextPage()" *ngIf="p < totalPage - 1">Sau
+                </button>
+              </div>
+              <div class="col-4"></div>
+            </div>
+            <!--        Phân trang-->
+          </div>
+        </div>
+        <div class="col-sm-2 col-xs-2 col-lg-2 col-md-2 col-xl-2 "></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Lên Lớp</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn sẽ cập nhật danh sách lên lớp của lớp </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đồng ý
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

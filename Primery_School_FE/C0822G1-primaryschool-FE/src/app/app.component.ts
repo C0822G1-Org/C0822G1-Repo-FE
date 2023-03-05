@@ -33,5 +33,4 @@ export class AppComponent {
       this.securityService.setIsLoggedIn(this.user, true);
     }
   }
-
 }

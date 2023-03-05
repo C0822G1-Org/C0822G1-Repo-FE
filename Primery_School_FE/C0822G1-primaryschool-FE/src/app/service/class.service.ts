@@ -14,14 +14,14 @@ export class ClassService {
   }
 
   saveClass(c: any): Observable<Clazz> {
-    return this._httpClient.post<Clazz>(this.API_URL+'/save',c);
+    return this._httpClient.post<Clazz>(this.API_URL + '/save', c);
   }
 
-  findByID(id: number):Observable<ClazzStudentDto[]> {
-    return this._httpClient.get<ClazzStudentDto[]>(this.API_URL+'/'+id);
+  findByID(id: number): Observable<ClazzStudentDto[]> {
+    return this._httpClient.get<ClazzStudentDto[]>(this.API_URL + '/' + id);
   }
 
   getListClass(): Observable<Clazz[]> {
-    return this._httpClient.get<Clazz[]>(this.API_URL+'/list-class')
+    return this._httpClient.get<Clazz[]>(this.API_URL + '/list-class')
   }
 }

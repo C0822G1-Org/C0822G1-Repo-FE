@@ -24,8 +24,11 @@ export class ClassCreateChooseComponent implements OnInit {
   );
   clazzNameValidate: (string | undefined)[]= [];
 
-  constructor(private router: Router,private classService:ClassService,private teacherService:TeacherService,private title: Title) {
-    this.title.setTitle('thêm mới chọn lớp')
+  constructor(private router: Router,
+              private classService:ClassService,
+              private teacherService:TeacherService,
+              private title: Title) {
+    this.title.setTitle('Thêm mới chọn lớp')
     this.teacherService.getAllTeacherList().subscribe(data=>{
 
       this.teacherList =data;

@@ -4,6 +4,7 @@ import {Year} from "./year";
 import {Teacher} from "../teacher/teacher";
 
 export interface Clazz {
+  id?: number,
   clazzId?: number,
   timeTable?: TimeTable,
   block?: Block,

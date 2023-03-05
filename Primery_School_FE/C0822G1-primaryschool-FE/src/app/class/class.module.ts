@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ClassRoutingModule } from './class-routing.module';
 import { ClassListComponent } from './class-list/class-list.component';
 import { ClassCreateChooseComponent } from './class-create-choose/class-create-choose.component';

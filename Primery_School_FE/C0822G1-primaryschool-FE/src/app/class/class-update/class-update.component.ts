@@ -18,7 +18,6 @@ import {Student} from '../../entity/student/student';
   styleUrls: ['./class-update.component.css']
 })
 export class ClassUpdateComponent implements OnInit {
-
   clazzForm: FormGroup = new FormGroup({
     clazzId: new FormControl(),
     timeTable: new FormControl(""),

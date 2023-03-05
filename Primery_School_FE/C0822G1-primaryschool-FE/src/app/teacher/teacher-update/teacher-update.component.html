@@ -7,7 +7,7 @@
     <div class="square" style="--i:4;"></div>
     <div class="square" style="--i:5;"></div>
 
-    <div class="container" style="width: 600px; height: 1000px">
+    <div class="container" style="width: 600px; height: 1220px">
       <div class="form">
         <h2 style="font-family: Arial;text-align: center">Sửa Đổi Thông Tin Cá Nhân</h2>
         <form [formGroup]="infoTeacherForm" (ngSubmit)="editInfoTeacher()">
@@ -25,34 +25,40 @@
             <div class="d-flex" >
            <input formControlName="gender" type="radio" value="true" readonly> Nam
            <input formControlName="gender" type="radio" value="false" readonly> Nữ
-
             </div>
+          </div>
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Trình độ</label><br>
+            <input formControlName="degreeName" type="text" readonly>
+          </div>
+          <div class="inputBx" style="width: 420px;margin-top: 30px">
+            <label class="form-label fw-bold">Chức vụ</label><br>
+            <input formControlName="teacherType" type="text" readonly>
           </div>
           <div class="inputBx" style="width: 420px;margin-top: 30px">
             <label class="form-label fw-bold">Số CMND/CCCD</label>
             <input formControlName="idCard" type="text" readonly>
-            <p style="color:powderblue;font-family: Arial"></p>
           </div>
-
           <div class="inputBx" style="width: 420px;margin-top: 30px">
             <label class="form-label fw-bold">Email</label><br>
-            <input formControlName="email" type="text"  required>
+            <input formControlName="email" type="text">
             <p *ngIf="infoTeacherForm.controls.email.hasError('required')"  style="color: red">Email không được để trống</p>
             <p *ngIf="infoTeacherForm.controls.email.hasError('pattern')" style="color: red">Email không đúng định dạng</p>
             <p style="color: red" *ngIf="messageEmail">{{messageEmail}}</p>
+            <p style="color: red" *ngIf="messageEmailPattern">{{messageEmailPattern}}</p>
           </div>
           <div class="inputBx" style="width: 420px;margin-top: 30px">
             <label class="form-label fw-bold">Số điện thoại</label>
-            <input formControlName="phoneNumber" type="text" required>
+            <input formControlName="phoneNumber" type="text">
             <p style="color:powderblue;font-family: Arial"></p>
             <p *ngIf="infoTeacherForm.controls.phoneNumber.hasError('required')" style="color: red">Số điện thoại không được để trống</p>
             <p *ngIf="infoTeacherForm.controls.phoneNumber.hasError('pattern')" style="color: red">Số điện thoại không đúng định dạng</p>
             <p style="color: red" *ngIf="messagePhoneNumber">{{messagePhoneNumber}}</p>
+            <p style="color: red" *ngIf="messagePhoneNumberPattern">{{messagePhoneNumberPattern}}</p>
           </div>
-
           <div class="inputBx" style="width: 420px;margin-top: 30px">
             <label class="form-label fw-bold">Địa chỉ nhà</label>
-            <input formControlName="address" type="text" name="address" required>
+            <input formControlName="address" type="text" name="address">
             <p *ngIf="infoTeacherForm.controls.address.hasError('required')" style="color: red">Địa chỉ nhà không được để trống</p>
             <p style="color: red" *ngIf="messageAddress">{{messageAddress}}</p>
           </div>

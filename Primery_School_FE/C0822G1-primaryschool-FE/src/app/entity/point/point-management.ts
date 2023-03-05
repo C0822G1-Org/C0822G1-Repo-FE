@@ -6,4 +6,5 @@ export interface PointManagement {
   semesterOne?: number;
   semesterTwo?: number;
   avgPoint: number;
+  clazzName?: string;
 }

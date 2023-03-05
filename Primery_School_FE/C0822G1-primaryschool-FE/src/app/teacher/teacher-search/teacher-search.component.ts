@@ -61,6 +61,4 @@ export class TeacherSearchComponent implements OnInit {
   gotoPage(pageNumber: number): void {
     this.searchTeacher(pageNumber);
   }
-
-
 }

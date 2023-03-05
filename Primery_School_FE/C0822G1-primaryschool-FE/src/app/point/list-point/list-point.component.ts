@@ -14,7 +14,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./list-point.component.css']
 })
 export class ListPointComponent implements OnInit {
-
+a: any;
   pointManagementList: PointManagement[] = [];
   teacherId = -1;
   studentName = '';
@@ -38,6 +38,7 @@ export class ListPointComponent implements OnInit {
   //     this.pointManagementList = next;
   //   });
   // }
+  clazzName: any;
 
 
   editPoint1(id: number, value: string, value2: string) {
@@ -62,6 +63,9 @@ export class ListPointComponent implements OnInit {
     const idAccount = parseInt(this.tokenStorageService.getIdAccount());
     this.pointService.searchStudent(idAccount, this.studentName).subscribe(next => {
       this.pointManagementList = next;
+      console.log(next)
+      this.clazzName = next[0].clazzName
+      console.log(this.clazzName)
     });
   }
 }

@@ -1,4 +1,4 @@
-<div style="height: 100vh; background-color: #ECECEC">
+<div style=" background-color: #ECECEC">
   <div class="row">
     <h1 class="title" style="font-family: system-ui; color: #07425c">QUẢN LÝ THỜI KHOÁ BIỂU</h1>
   </div>
@@ -6,326 +6,106 @@
   <div class="row" style="margin-bottom: 30px">
     <div class="col-lg-1"></div>
     <div class="col-lg-3 col-md-4 col-sm-4 col-4">
-      <label>
-        <select class="form-select">
-          <option>Khối</option>
-          <option>Khối 1</option>
-          <option>Khối 2</option>
-          <option>Khối 3</option>
-          <option>Khối 4</option>
+      <label style="margin-left: 230px">
+        <select id="block" class="form-select" #block (change)="chooseClass(block.value)">
+          <option>Chọn khối</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
       </label>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-4 col-4">
-      <label>
-        <select class="form-select">
-          <option>Lớp</option>
-          <option>Lớp 1</option>
-          <option>Lớp 2</option>
-          <option>Lớp 3</option>
-          <option>Lớp 4</option>
+      <label style="margin-left: 200px">
+        <select id="clazz" class="form-select" #clazzId>
+          <option value="">Chọn lớp</option>
+          <option *ngFor="let c of clazzList" [value]="c.clazzId">{{c.clazzName}}</option>
         </select>
       </label>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-4 col-4">
-      <button type="button" class="btn btn-outline-primary">Xem</button>
+      <button style="margin-left: 150px" class="btn btn-outline-primary"
+              (click)="searchTimetable(clazzId.value)">Xem
+      </button>
     </div>
     <div class="col-lg-2"></div>
   </div>
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-      <table class="table table-hover table-bordered">
-        <thead class="table-responsive table-primary textCheck">
-        <tr class="align-baseline">
-          <th scope="col">Tiết học</th>
-          <th scope="col">Thứ 2</th>
-          <th scope="col">Thứ 3</th>
-          <th scope="col">Thứ 4</th>
-          <th scope="col">Thứ 5</th>
-          <th scope="col">Thứ 6</th>
-        </tr>
-        </thead>
-        <tbody class="textCheck">
-        <tr>
-          <th scope="row">1</th>
-          <td>
-            <label>
-              <select class="form-select">
-                <option>Trống</option>
-                <option>Toán</option>
-                <option>Tập đọc</option>
-                <option selected>Kể truyện</option>
-                <option>Thể dục</option>
-              </select>
-            </label>
-          </td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option selected>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option selected>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
+      <div class="row">
+        <div style="width: auto" class="container">
+          <form [formGroup]="timetableForm" (ngSubmit)="update()">
+            <table class="table table-hover table-info" *ngIf="timetableArray.length!=0; else displayTimetable">
+              <thead>
+              <tr style="float: left">
+              </tr>
+              </thead>
+              <tbody formArrayName="timetableArray">
+              <div *ngFor="let row of [0,1,2,3,4]" style="float: left">
+                <tr style="text-align: center">
+                  <th *ngIf="row==0">Tiết</th>
+                  <td>Thứ {{row + 2}}</td>
+                </tr>
+                <tr *ngFor="let col of [0,1,2,3,4]">
+                  <td *ngIf="row==0&&(col==0||1||2||3||4)"
+                      style="float: bottom;width: 80px;text-align: center">{{col + 1}}</td>
+                  <td *ngIf="row*5 + col < timetableArray.length">
+                    <div [formGroupName]="row*5 + col">
+                      <input hidden type="text" formControlName="timetableId">
+                      <select class="form-select" formControlName="subjectId">
+                        <option *ngFor="let s of subjects" [value]="s.subjectId">{{s.subjectName}}</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+              </div>
+              </tbody>
+            </table>
 
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option selected>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option selected>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option selected>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option selected>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option selected>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option selected>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option selected>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option selected>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option>Tập đọc</option>
-              <option selected>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option>Toán</option>
-              <option selected>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-          <td><label>
-            <select class="form-select">
-              <option>Trống</option>
-              <option selected>Toán</option>
-              <option>Tập đọc</option>
-              <option>Kể truyện</option>
-              <option>Thể dục</option>
-            </select>
-          </label></td>
-        </tr>
-        </tbody>
-      </table>
+            <ng-template #displayTimetable>
+              <h1 style="color: red; text-align: center">Không có danh
+                sách thời khoá
+                biểu</h1>
+              <img style="display: flex; margin: 0 auto" src="../../../assets/img/search-pages-1.png" height="480" width="720"/></ng-template>
+            <button *ngIf="timetableArray.length!=0" type="button" class="btn btn-outline-success update"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="showClazz()">
+              Áp dụng
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yêu cầu cập nhật thời khoá biểu</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <span>Bạn chắc chắn muốn cập nhật thời khoá biểu của lớp </span><span
+                    style="color: red">{{clazzSearchId.clazzName}}</span><span> không?</span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
     </div>
     <div class="col-lg-1"></div>
   </div>
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-      <!--            <button type="button" class="btn btn-outline-success update">Áp dụng-->
-      <!--            </button>-->
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-success update" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
-        Áp dụng
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-           aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Yêu cầu cập nhật thời khoá biểu</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Bạn có chắc chắn cập nhật thời khoá biểu lớp 2A1 không?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-              <button type="button" class="btn btn-outline-success">Lưu</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--            ---------------------------------->
     </div>
     <div class="col-lg-1">
     </div>

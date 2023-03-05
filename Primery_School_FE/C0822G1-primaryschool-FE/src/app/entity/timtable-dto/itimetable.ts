@@ -10,3 +10,5 @@ export interface Itimetable {
   clazzName?: string;
 
 }
+
+

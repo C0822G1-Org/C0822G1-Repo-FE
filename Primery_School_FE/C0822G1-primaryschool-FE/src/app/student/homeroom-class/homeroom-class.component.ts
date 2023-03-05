@@ -1,4 +1,3 @@
-
 import {Component, OnInit} from '@angular/core';
 import {StudentInfo} from '../../dto/student/student-info';
 import {StudentInfoJson} from '../../dto/student/student-info-json';

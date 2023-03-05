@@ -1,6 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
+<<<<<<< HEAD
+class TimetableServiceService {
+}
+=======
 import { TimetableService } from './timetable-service.service';
+>>>>>>> origin/dev
 
 describe('TimetableServiceService', () => {
   let service: TimetableService;

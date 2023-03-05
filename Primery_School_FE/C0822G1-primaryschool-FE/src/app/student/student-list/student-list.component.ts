@@ -137,5 +137,4 @@ export class StudentListComponent implements OnInit {
       positionClass: 'toast-top-center', timeOut: 5000
     },);
   }
-
 }

@@ -26,9 +26,9 @@ import {AppComponent} from './app.component';
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'myFile'),
+    AngularFireModule.initializeApp(environment.firebaseConfig,"myFile"),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot()
 
   ],
   providers: [{
@@ -38,5 +38,6 @@ import {AppComponent} from './app.component';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
+
+

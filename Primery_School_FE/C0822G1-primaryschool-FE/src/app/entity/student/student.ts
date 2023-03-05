@@ -1,4 +1,3 @@
-
 import {PointManagement} from "./point-management";
 import {Clazz} from '../clazz/clazz';
 

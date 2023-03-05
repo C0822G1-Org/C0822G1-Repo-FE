@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SecurityService} from '../../service/authentication/security.service';
 import {ShareService} from '../../service/authentication/share.service';
 import {ToastrService} from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -94,4 +96,6 @@ export class LoginComponent implements OnInit {
       );
     }
   }
-}
+
+  }
+

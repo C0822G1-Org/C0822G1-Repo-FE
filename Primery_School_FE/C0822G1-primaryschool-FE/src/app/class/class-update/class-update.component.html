@@ -1,1 +1,95 @@
-<p>class-update works!</p>
+<div>
+  <div *ngIf="clazzForm!=undefined">
+    <form [formGroup]="clazzForm" (ngSubmit)="update(id)">
+      <div class="row" style="margin: 0;padding: 0; ">
+        <div class=" d-flex justify-content-center align-items-center mt-2 mb-2 ">
+          <div class="boxed shadow"
+               style="align-content: center; margin-bottom: 18px;margin-top: 100px;height: 85%; background-color: white">
+            <div class="mb-2 row">
+              <div class="d-flex align-items-center mb-2">
+                <a class="btn text-center text-primary"><i class="fa-solid fa-arrow-left"></i></a>
+              </div>
+              <div class="mb-2 row">
+                <fieldset>
+                  <legend>
+                    <div class="mt-0 text-center fw-bold">
+                      <h1>CẬP NHẬT LỚP</h1>
+                    </div>
+                    <br>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+            <div class="mb-2 row">
+              <div style="display: flex">
+                <div class="col-9" style="display: block">
+                  <div class="mb-3" hidden>
+                    <label class="form-label" >Id</label>
+                    <input type="text" class="form-control" formControlName="clazzId" >
+                  </div>
+                  <div class="mb-3" hidden>
+                    <label class="form-label">Block</label>
+                    <select class="form-control form-control-lg" formControlName="block" [compareWith]="compareBlock">
+                      <option *ngFor="let item of blockList" [ngValue]="item">{{item.blockName}}</option>
+                    </select>
+                  </div>
+                  <div class="mb-3" hidden>
+                    <label class="form-label">year</label>
+                    <input type="text" class="form-control" formControlName="year" >
+                  </div>
+                  <div style="margin-bottom: 20px" class="mb-3" >
+                    <span>Chọn lớp :</span> <span style="width: 20px; display: inline-flex  ">
+                  <input style="width: 500px;  margin-left: 3px; background: #CFE2FF; border: 1px solid #212529"
+                         type="text" class="form-control" formControlName="clazzName"></span>
+                  </div>
+                  <div style="margin-bottom: 20px">
+                    <span>Giáo viên chủ nhiệm:</span>
+                    <span style="width: 20px; display: inline-flex  ">
+                      <select class="form-select" style="width: 500px ;  margin-left: 3px; background: #CFE2FF; border: 1px solid #212529" formControlName="teacher" [compareWith]="compareTeacher">
+                        <option *ngFor="let item of teacherList" [ngValue]="item">{{item.teacherName}}</option>
+                      </select>
+                    </span>
+                  </div>
+                  <div style="margin-bottom: 20px">
+                    <span>Hiện tại có 3 học sinh trong lớp 1A</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+
+                <table class="table table-hover table-bordered table-striped">
+                  <thead class="table-primary">
+                  <tr class="align-baseline">
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Ngày sinh</th>
+                    <th scope="col">Giới tính</th>
+                    <th scope="col">Quê quán</th>
+                    <th scope="col">Lớp</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let student of studentList   index as item">
+                    <td>{{item+1}}</td>
+                    <td>{{student.studentName}}</td>
+                    <td>{{student.dateOfBirth}}</td>
+                    <td>{{student.gender}}</td>
+                    <td>{{student.address}}</td>
+                    <td>{{student.clazz?.clazzName}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center" style="margin-bottom: 15px ; margin-top: 30px">
+              <button type="submit" class="btn btn-primary">Sửa học sinh</button>
+              <button type="submit" style="margin-left: 15px" class="btn btn-light">
+                <p  >Xác nhận sửa lớp</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

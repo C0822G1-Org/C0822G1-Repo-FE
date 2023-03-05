@@ -7,7 +7,6 @@ import {TimetableService} from "../../service/timetable.service";
 import {TimetableUpdate} from "../../entity/timtable-dto/timetable-update";
 import {TimetableClazz} from "../../entity/timtable-dto/timetable-clazz";
 
-
 @Component({
   selector: 'app-timetable-list',
   templateUrl: './timetable-list.component.html',
@@ -125,7 +124,7 @@ export class TimetableListComponent implements OnInit {
     }, error => {
     })
   }
-  
+
   chooseClass(bockId: string) {
     this.timetableService.showListClazz(parseInt(bockId)).subscribe(next => {
       this.clazzList = next

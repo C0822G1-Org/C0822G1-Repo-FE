@@ -6,11 +6,11 @@ import { ClassCreateChooseComponent } from './class-create-choose/class-create-c
 import { ClassCreateInfoComponent } from './class-create-info/class-create-info.component';
 import { ClassUpdateComponent } from './class-update/class-update.component';
 import { ClassUpComponent } from './class-up/class-up.component';
-
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [ClassListComponent, ClassCreateChooseComponent, ClassCreateInfoComponent, ClassUpdateComponent, ClassUpComponent],
+  declarations: [ClassListComponent,
+    ClassCreateChooseComponent, ClassCreateInfoComponent, ClassUpdateComponent, ClassUpComponent],
     imports: [
         CommonModule,
         ClassRoutingModule,

@@ -108,7 +108,6 @@ export class ClassListComponent implements OnInit {
     console.log('abc' + this.formGroup.value.search);
   }
 
-
   upclasss() {
     this.studentService.upClass().subscribe((data: any) => {
       console.log(data);

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {TimeTable} from '../../entity/timetable/time-table';
 import {Block} from '../../entity/student/block';
-import {Year} from '../../entity/student/year';
 import {Teacher} from '../../entity/teacher/teacher';
 import {Clazz} from '../../entity/student/clazz';
 import {ClazzService} from '../../service/clazz.service';

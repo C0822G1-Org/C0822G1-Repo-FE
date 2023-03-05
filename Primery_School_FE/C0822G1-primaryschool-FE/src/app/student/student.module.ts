@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+
 
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentListComponent } from './student-list/student-list.component';
@@ -8,13 +9,18 @@ import { StudentUpdateComponent } from './student-update/student-update.componen
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { StudentDeleteComponent } from './student-delete/student-delete.component';
 import { HomeroomClassComponent } from './homeroom-class/homeroom-class.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [StudentListComponent, StudentCreateComponent, StudentUpdateComponent, StudentDetailComponent, StudentDeleteComponent, HomeroomClassComponent],
   imports: [
     CommonModule,
-    StudentRoutingModule
+    StudentRoutingModule,
+    ReactiveFormsModule,
+    CommonModule,
   ]
+
 })
-export class StudentModule { }
+export class StudentModule {
+}

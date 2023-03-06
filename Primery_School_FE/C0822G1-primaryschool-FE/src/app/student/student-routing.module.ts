@@ -8,15 +8,17 @@ import {StudentDetailComponent} from './student-detail/student-detail.component'
 import {StudentDeleteComponent} from './student-delete/student-delete.component';
 import {StudentUpdateComponent} from './student-update/student-update.component';
 import {StudentSearchComponent} from './student-search/student-search.component';
+import {AdminGuard} from "../authguard/admin.guard";
 
 const routes: Routes = [
-  {path: '', component: StudentListComponent},
-  {path: 'create', component: StudentCreateComponent},
-  {path: 'delete', component: StudentDeleteComponent},
-  {path: 'homeroom', component: HomeroomClassComponent},
-  {path: 'search', component: StudentSearchComponent},
-  {path:'detail/:id',component: StudentDetailComponent},
-  {path:'update/:id',component: StudentUpdateComponent},
+  {path:'', component:StudentListComponent, canActivate: [AdminGuard]},
+  {path:':year/:clazzId/:page', component:StudentListComponent, canActivate: [AdminGuard]},
+  {path:'create/:id',component: StudentCreateComponent, canActivate: [AdminGuard]},
+  {path:'detail/:id/:year/:clazzId/:page',component: StudentDetailComponent, canActivate: [AdminGuard]},
+  {path:'detail/:id',component: StudentDetailComponent, canActivate: [AdminGuard]},
+  {path:'delete',component: StudentDeleteComponent, canActivate: [AdminGuard]},
+  {path:'update/:id/:year/:clazzId/:page',component: StudentUpdateComponent, canActivate: [AdminGuard]},
+  {path: 'homeroom', component: HomeroomClassComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({

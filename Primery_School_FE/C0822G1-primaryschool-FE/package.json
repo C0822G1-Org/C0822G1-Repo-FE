@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~11.0.9",
     "@angular/router": "~11.0.9",
     "firebase": "^8.0.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
     "ngx-pagination": "^5.1.1",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",

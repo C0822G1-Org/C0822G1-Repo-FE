@@ -34,6 +34,7 @@ export class TeacherGuard implements CanActivate {
         return false;
       }
     } else {
+      this.toast.error('Bạn phải đăng nhập để tiếp tục. Vui lòng đăng nhập!', 'Thất bại', {positionClass: 'toast-top-left'});
       this.router.navigateByUrl('/error');
       return false;
     }

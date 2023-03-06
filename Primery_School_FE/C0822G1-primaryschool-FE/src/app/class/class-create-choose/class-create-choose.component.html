@@ -1,6 +1,6 @@
 <form [formGroup]="classCreate" (ngSubmit)="saveClass()">
   <div class="row m-0">
-    <div class=" d-flex justify-content-center align-items-center mt-2 mb-2 " style="height: 400px">
+    <div class=" d-flex justify-content-center align-items-center mt-2 mb-2 " style="height: 500px;">
       <div class="boxed shadow h-100"
            style="align-content: center; margin-bottom: 250px;margin-top: 288px; padding-left: 30px;padding-right: 30px">
         <div class="mb-2 row">
@@ -18,49 +18,63 @@
             </fieldset>
           </div>
         </div>
-        <div class="mb-2 row " style="margin-top: 80px">
-          <div style="display: flex">
-            <div class="col-9" style="display: block">
-              <div style="margin-bottom: 20px">
-                <span>Nhập tên lớp :</span> <span style="width: 20px; display: inline-flex  ">
-              <input type="text" formControlName="clazzName" style="width: 500px;margin-left: 3px;background: #CFE2FF; border: 1px solid #212529" class="form-control"></span>
-                <p style="color: red" *ngIf="classCreate.controls.clazzName.hasError('sai')">Lớp đã tồn tại vui lòng nhập lại</p>
-              </div>
-            </div>
-            <div class="col-3" style="text-align: right">
-              <label>
-                            <span style="text-align: right; display: inline-flex"><button class="btn btn-primary"
-                                                                                          style="width: 100px;">Tạo lớp</button></span>
-              </label>
-            </div>
+        <div class="mb-2 row " >
 
-          </div>
-        </div>
-        <div class="mb-2 row">
-          <div style="display: flex">
-            <div style="margin-bottom: 20px">
-              <span>Giáo viên chủ nhiệm :</span> <span style="width: 20px; display: inline-flex  ">
-                        <select formControlName="teacherDto" class="form-select" style="width: 500px ;  margin-left: 3px; background: #CFE2FF; border: 1px solid #212529">
-                            <option selected value="">---Hãy chọn giáo viên chủ nhiệm---</option>
-                            <option *ngFor="let t of teacherList" [ngValue]="t">{{t.teacherName}}</option>
-                        </select>
-                        </span>
-
+          <div class="col-3" >
+            <label for="clazzName">Nhập tên lớp :</label> </div>
+          <div class="col-9" >
+            <input id="clazzName" type="text" formControlName="clazzName"
+                   style="width: 70%; margin-left: 3px;background: #CFE2FF; border: 1px solid #212529"
+                   class="form-control">
+            <div style="position: absolute">
+              <p *ngIf="classCreate.controls.clazzName.hasError('sai') " style="color: red">Vui lòng nhập lại, lớp đã
+                tồn tại.</p>
+              <p *ngIf="classCreate.controls.clazzName.hasError('required')&& classCreate.controls.clazzName.touched "
+                 style="color: red">Vui lòng không được để trống.</p>
+              <p *ngIf="classCreate.controls.clazzName.hasError('maxlength') " style="color: red">Vui lòng nhập độ dài
+                bé hơn 5 ký tự.</p>
+              <p *ngIf="classCreate.controls.clazzName.hasError('pattern') " style="color: red">Vui lòng chọn lớp 1
+                đến 5 và thêm tên lớp vd 1A, 1AB .</p>
             </div>
           </div>
-        </div>
-        <div class="mb-2 row">
-          <div style="display: flex">
-            <div style="margin-bottom: 20px">
-              <div style="margin-bottom: 20px">
-                <span>Nhập niên khóa :</span> <span style="width: 20px; display: inline-flex  ">
-              <input type="text" formControlName="schoolYear" style="width: 500px;margin-left: 3px;background: #CFE2FF; border: 1px solid #212529" class="form-control" class="form-control"></span>
-              </div>
 
+
+        </div>
+        <div class="mb-2 row" style="margin-top: 50px">
+          <div class="col-3">
+            <label for="teacherDto">Giáo viên chủ nhiệm :</label></div>
+          <div class="col-9">
+            <select id="teacherDto" formControlName="teacherDto" class="form-select"
+                    style="width: 70%;margin-left: 3px; background: #CFE2FF; border: 1px solid #212529">
+              <option selected value="">---Hãy chọn giáo viên chủ nhiệm---</option>
+              <option *ngFor="let t of teacherList" [ngValue]="t">{{t.teacherName}}</option>
+            </select>
+            <div style="position: absolute">
+              <p *ngIf="classCreate.controls.teacherDto.hasError('required')&& classCreate.controls.teacherDto.touched "
+                 style="color: red">Vui lòng không được để trống.</p>
             </div>
           </div>
         </div>
-
+        <div class="mb-2 row" style="margin-top: 50px">
+          <div class="col-3">
+            <label for="schoolYear">Nhập niên khóa :</label></div>
+          <div class="col-9">
+            <input id="schoolYear" type="text" formControlName="schoolYear"
+                   style="width: 70%;margin-left: 3px;background: #CFE2FF; border: 1px solid #212529" class="form-control">
+            <div style="position: absolute">
+              <p *ngIf="classCreate.controls.schoolYear.hasError('required')&& classCreate.controls.schoolYear.touched "
+                 style="color: red">Vui lòng không được để trống.</p>
+              <p *ngIf="classCreate.controls.schoolYear.hasError('pattern') " style="color: red">Vui lòng nhập đúng định
+                dang vd 2002-2005.</p>
+              <p *ngIf="classCreate.controls.schoolYear.hasError('invalidSchoolYear') " style="color: red">Vui lòng nhập
+                đúng niên khóa, niên khóa phải cách nhau 5 năm .</p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-2  text-center" style="margin-top: 50px">
+          <button class="btn btn-primary"
+                  style="width: 100px;" [disabled]="classCreate.invalid">Tạo lớp</button>
+        </div>
       </div>
     </div>
   </div>

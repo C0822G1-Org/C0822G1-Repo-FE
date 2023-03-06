@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'security', loadChildren: () => import('./security/security.module').then(module => module.SecurityModule)},
   {path: 'timetable', loadChildren: () => import('./timetable/timetable.module').then(module => module.TimetableModule)},
   {path: 'point', loadChildren: () => import("./point/point.module").then(module => module.PointModule)},
+  {path: 'class', loadChildren:() => import("./class/class.module").then(module => module.ClassModule)}
 
 ];
 

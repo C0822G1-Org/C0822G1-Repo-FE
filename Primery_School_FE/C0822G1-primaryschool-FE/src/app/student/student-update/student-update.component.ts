@@ -8,6 +8,7 @@ import {ClazzService} from "../../service/clazz/clazz.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-student-update',
@@ -18,7 +19,10 @@ export class StudentUpdateComponent implements OnInit {
 
   student: Student = {};
   studentId: any;
-  clazz: Clazz | undefined = {};
+  year: any;
+  clazzIdParam: any;
+  page: any;
+  clazz:Clazz | undefined={};
   formUpdateStudent: FormGroup = new FormGroup({});
   selectedImage: any;
   src: string | undefined;
@@ -29,6 +33,7 @@ export class StudentUpdateComponent implements OnInit {
               private clazzService: ClazzService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
+              private toast: ToastrService,
               @Inject(AngularFireStorage) private storage: AngularFireStorage) {
     this.formUpdateStudent = new FormGroup({
       studentId: new FormControl(),
@@ -44,29 +49,37 @@ export class StudentUpdateComponent implements OnInit {
       motherJob: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       religion: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       address: new FormControl('', [Validators.required]),
-      clazz: new FormGroup({
+      clazzDto: new FormGroup({
         clazzId:new FormControl(),
         clazzName:new FormControl()
       })
     });
 
     this.activatedRoute.paramMap.subscribe(data => {
-      // const id = data.get('studentId');
-      this.studentId = this.activatedRoute.snapshot.paramMap.get('studentId');
-      console.log(this.studentId);
+      if (data != null) {
+        this.studentId = data.get('id');
+        this.year = data.get('year');
+        this.clazzIdParam = data.get('clazzId');
+        this.page = data.get('page');
+
+        this.clazzService.findById(this.studentId).subscribe(data=>{
+          this.clazz=data;
+          console.log('Đây là calzz')
+          console.log(this.clazz);
+          if (data!=null){
+            this.student={clazz:this.clazz};
+
+          }
+        })
+      }
       if (this.studentId != null) {
-        // this.getStudent(+id);
-        // tslint:disable-next-line:radix no-shadowed-variable
         this.studentService.findById(this.studentId).subscribe(data => {
           if (data!=null){
             this.student = data;
-            console.log(this.student);
-            this.clazz=this.student.clazz;
-            console.log(this.clazz);
+            this.student.clazz = this.clazz;
             this.formUpdateStudent.patchValue(this.student);
-            console.log(this.formUpdateStudent);
+            this.formUpdateStudent.patchValue({clazzDto: this.clazz});
           }
-
         });
       }
 
@@ -108,13 +121,14 @@ export class StudentUpdateComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   updateStudent() {
+    this.formUpdateStudent.patchValue({clazzDto: this.clazz});
     // upload image to firebase
     // const nameImg = this.getCurrentDateTime();
     if (this.selectedImage == null){
       this.student=this.formUpdateStudent.value
       this.studentService.updateStudent(this.student).subscribe(() => {
-        alert('Sửa mới thành công');
-        this.router.navigateByUrl('');
+        this.toast.success('Chỉnh sửa thành công', 'Thông báo', {positionClass: 'toast-top-center'});
+        this.router.navigateByUrl(`student/${this.year}/${this.clazzIdParam}/${this.page}`);
       });
     }else {
       const nameImg = this.selectedImage.name;
@@ -128,8 +142,8 @@ export class StudentUpdateComponent implements OnInit {
             this.student.clazz=this.clazz;
             console.log(this.student);
             this.studentService.updateStudent(this.student).subscribe(() => {
-              alert('Sửa mới thành công');
-              this.router.navigateByUrl('');
+              this.toast.success('Chỉnh sửa thành công', 'Thông báo', {positionClass: 'toast-top-center'});
+              this.router.navigateByUrl(`student/${this.year}/${this.clazzIdParam}/${this.page}`);
             });
           });
         })

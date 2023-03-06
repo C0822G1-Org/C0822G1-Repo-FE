@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PointManagement} from "../entity/point/point-management";
 import {EditPoint} from "../entity/point/edit-point";
+import {Student} from "../entity/student/student";
 
 @Injectable({
   providedIn: 'root'

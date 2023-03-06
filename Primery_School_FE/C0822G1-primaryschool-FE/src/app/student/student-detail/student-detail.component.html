@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="container">
     <div class="card">
@@ -12,7 +11,7 @@
           </div>
           <div class="info">
             <div class="name">{{student.studentName}}</div>
-<!--            <div class="class">Lớp {{student.clazz.clazzName}}</div>-->
+            <!--                        <div class="class">Lớp {{student.clazz.clazzName}}</div>-->
           </div>
         </div>
         <div class="right">
@@ -59,7 +58,18 @@
           </div>
           <div>
             <!-- HTML !-->
-            <button class="button-55" role="button" routerLink="/student">Quay lại</button>
+
+            <div *ngIf="this.year">
+              <button class="button-55" role="button" [routerLink]="['/student',this.year,this.clazzId,this.page]">
+                Quay lại
+              </button>
+            </div>
+            <div *ngIf="!this.year">
+              <button class="button-55" role="button" [routerLink]="['/student/homeroom']">
+                Quay
+                lại
+              </button>
+            </div>
           </div>
         </div>
       </div>

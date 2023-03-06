@@ -21,6 +21,7 @@ export class ClassCreateInfoComponent implements OnInit {
   id = 0;
   sum: number = 0;
   student: any ;
+  clazzStudent: any;
   constructor(private classService:ClassService,private teacherService:TeacherService,private router: Router,private activatedRoute: ActivatedRoute,
               private title: Title) {
     this.title.setTitle('thêm mới nhập thông tin học sinh')
@@ -42,6 +43,7 @@ export class ClassCreateInfoComponent implements OnInit {
         this.clazzStudentDtoList= data;
         console.log(data);
         this.clazzName=data[0].clazzName;
+        this.clazzStudent = data[0].clazzId;
         this.teacherName=data[0].teacherName;
         for (let i = 0; i <data.length; i++) {
             if (data[i].studentId!=null){
@@ -50,7 +52,9 @@ export class ClassCreateInfoComponent implements OnInit {
             }
         }
       },
-        error => {},
+        error => {
+      this.router.navigateByUrl('/error')
+        },
       ()=>{})
   }
 }

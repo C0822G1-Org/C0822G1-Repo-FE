@@ -66,14 +66,14 @@ nav img {
   width: 70%;
   color: #fff;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
 .text-box h1 {
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .text-box p {

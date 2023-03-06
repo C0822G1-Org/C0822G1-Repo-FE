@@ -4,15 +4,15 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
-    apiKey: "AIzaSyC-Zv4jMLFtJQQRruAYfEjkT_bd3CTrhGY",
-    authDomain: "primary-school-a1a73.firebaseapp.com",
-    databaseURL: "https://primary-school-a1a73-default-rtdb.firebaseio.com",
-    projectId: "primary-school-a1a73",
-    storageBucket: "primary-school-a1a73.appspot.com",
-    messagingSenderId: "854174121222",
-    appId: "1:854174121222:web:d0185fa424891fc9b83287",
-    measurementId: "G-211ZB74HLQ"
+  firebaseConfig: {
+    apiKey: 'AIzaSyC7Ge_H1HxflArr595LgOyNgWN-RqFBXKU',
+    databaseURL: 'https://pramiry-school-default-rtdb.firebaseio.com/',
+    authDomain: 'pramiry-school.firebaseapp.com',
+    projectId: 'pramiry-school',
+    storageBucket: 'pramiry-school.appspot.com',
+    messagingSenderId: '191164292585',
+    appId: '1:191164292585:web:3df96c6f1bf0eafbefff78',
+    measurementId: 'G-X5RT3PCHRB'
   }
 };
 

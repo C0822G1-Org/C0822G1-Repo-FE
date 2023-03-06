@@ -6,6 +6,7 @@ import {Title} from '@angular/platform-browser';
 import {TimetableService} from '../../service/time_table/timetable-service.service';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
 import {StudentService} from "../../service/student/student.service";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -23,7 +24,8 @@ export class TimetableTeacherComponent implements OnInit {
               private router: Router,
               private titleService: Title,
               private tokenService: TokenStorageService,
-              private studentService: StudentService) {
+              private studentService: StudentService,
+              private toast: ToastrService) {
     this.titleService.setTitle('Trang chủ giáo viên');
   }
 
@@ -39,6 +41,7 @@ export class TimetableTeacherComponent implements OnInit {
 
   findTimetableById() {
     const idAccount = this.tokenService.getIdAccount();
+    console.log(idAccount)
     this.studentService.getIdTeacherByIdAccount(idAccount).subscribe(next => {
       this.idTeacher = next.teacherId;
       this.timetableService.getTimeTableByIdTeacher(this.idTeacher).subscribe(next => {
@@ -50,7 +53,11 @@ export class TimetableTeacherComponent implements OnInit {
           index += 5;
         }
       }, error => {
-        alert('Không tìm thấy danh sách');
+        if(error.status == 403){
+          this.toast.warning('Bạn không đủ quyền.', 'Cảnh báo')
+        }
+        this.toast.error('Không tìm thấy danh sách', 'Thông báo', {positionClass: 'toast-top-left'})
+
       });
 
     });

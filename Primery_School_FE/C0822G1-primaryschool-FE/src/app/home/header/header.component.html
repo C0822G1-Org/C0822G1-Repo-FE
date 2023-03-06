@@ -13,9 +13,9 @@
         <li class="animationTop delay-05"><a routerLink="/student">HỌC SINH</a></li>
         <li class="animationTop delay-07"><a routerLink="/teacher">GIÁO VIÊN</a></li>
 
-        <li class="animationTop delay-07" *ngIf="isLoggedIn"><a routerLink="/point">QUẢN LÝ ĐIỂM</a></li>
+        <li class="animationTop delay-07"><a routerLink="/point">QUẢN LÝ ĐIỂM</a></li>
 
-        <li class="animationTop delay-07"><a routerLink="/teacher">LỚP HỌC</a></li>
+        <li class="animationTop delay-07"><a routerLink="/class">LỚP HỌC</a></li>
         <li class="animationTop delay-07" *ngIf="isLoggedIn"><a routerLink="/student/homeroom">LỚP CHỦ NHIỆM</a></li>
         <li class="animationTop delay-09"><a routerLink="/timetable">THỜI KHÓA BIỂU</a></li>
 
@@ -31,7 +31,7 @@
                                                                              style="width: 70px; height: 35px; padding-top: 10px"></i>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" style="background-color: #f44336; cursor: pointer">
-                <li><a class="dropdown"><i class="fa-sharp fa-solid fa-key"></i> Sửa thông tin cá nhân</a></li>
+                <li><a class="dropdown" routerLink="/teacher/editInfoTeacher"><i class="fa-sharp fa-solid fa-key"></i> Sửa thông tin cá nhân</a></li>
                 <li><a class="dropdown" routerLink="/security/changePassword"><i class="fa-sharp fa-solid fa-key" ></i> Sửa mật khẩu</a></li>
                 <li><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout" (click)="logout()"
                        type="button"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Đăng xuất </a></li>
@@ -49,7 +49,7 @@
     <p class="animationTop delay-15">Là nơi có đội ngũ giáo viên được đào tạo chuyên nghiệp, có trách nhiệm và kinh
       nghiệm qua nhiều năm giảng
       dạy</p>
-    <a routerLink="/security/login" *ngIf="!isLoggedIn" class="hero-btn animationTop delay-17">Đăng Nhập</a>
+    <a routerLink="/security/login" *ngIf="!isLoggedIn" (click)="scrollToTopLogin()" class="hero-btn animationTop delay-17">Đăng Nhập</a>
   </div>
   <div class="scroll-to-top" *ngIf="pageYoffSet > 0">
     <a class="btn" (click)="scrollToTop()" style="background-color: rgba(255,255,255,0.44)">

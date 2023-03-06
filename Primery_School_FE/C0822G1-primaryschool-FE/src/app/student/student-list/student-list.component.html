@@ -1,5 +1,4 @@
-
-<div style="text-align: center; height: 100vh; background-color: #ECECEC ;">
+<div style="text-align: center;  background-color: #ECECEC ;">
   <div class="container">
     <div class="row" style="padding-top: 50px">
       <div class="col-12">
@@ -51,7 +50,7 @@
                   </label>
                 </div>
                 <div class="col-6">
-                  <select id="clazz" class="form-select" #clazzId>
+                  <select id="clazz" class="form-select" #classId>
                     <option value=""></option>
                     <option *ngFor="let c of classNames" [value]="c.id">{{c.name}}</option>
                   </select>
@@ -61,7 +60,7 @@
             <div class="col-3">
               <div class="row">
                 <button class="btn btn-info" style="width: 40%;margin-left: 50px"
-                        (click)="searchStudent(year.value,clazzId.value,0)">Tìm
+                        (click)="searchStudent(year.value,classId.value,0)">Tìm
                 </button>
               </div>
             </div>
@@ -74,7 +73,6 @@
       <div class="row">
         <h1 style=" margin-bottom: 10px;margin-top: 20px">LỚP {{classTeacher.name}}({{classTeacher.schoolYear}})</h1>
       </div>
-
 
       <!--    button lên lớp và sửa GVCN-->
 
@@ -113,9 +111,9 @@
             <td>{{s.address}}</td>
             <td>
               <a class="btn btn-outline-warning" style="text-align: center; "
-                      [routerLink]="['/student/update',s.id]">
-                                <span ><img src="https://img.icons8.com/color/100/null/pencil-tip.png"
-                                                         style="width: 20px"/></span>
+                 [routerLink]="['/student/update',s.id,this.yearClazz,this.clazzId,this.page]">
+                                <span><img src="https://img.icons8.com/color/100/null/pencil-tip.png"
+                                           style="width: 20px"/></span>
               </a>
 
             </td>
@@ -130,7 +128,7 @@
 
             <td>
               <a class="btn btn-outline-primary" style="text-align: center; "
-                      [routerLink]="['/student/detail',s.id]">
+                 [routerLink]="['/student/detail',s.id,this.yearClazz,this.clazzId,this.page]">
                 <i class="fa-solid fa-circle-info"></i>
               </a>
             </td>
@@ -142,9 +140,9 @@
       </div>
 
       <!--        Phân trang-->
-      <div class="row" style="position: absolute;top: 1850px;left: 1150px">
-        <div style="float: right;">
-          <div *ngIf="studentPage" class="d-flex justify-content-center" id="last-row" style="float: right">
+      <div style="position: absolute">
+        <div style="float: right">
+          <div *ngIf="studentPage" class="d-flex justify-content-center" id="last-row">
 
             <nav aria-label="Page navigation example">
               <ul class="pagination">
@@ -244,8 +242,8 @@
       <div class="modal-body">
         Chọn giáo viên:
         <input list="brow" #teacherName style="width: 70%;border-color: #bfd1ec">
-        <datalist id="brow"  style="border-color: #bfd1ec">
-          <option *ngFor="let t of teachers" [value]="t.name+',CMND:'+t.idCard" ></option>
+        <datalist id="brow" style="border-color: #bfd1ec">
+          <option *ngFor="let t of teachers" [value]="t.name+',CMND:'+t.idCard"></option>
         </datalist>
       </div>
       <div class="modal-footer">
@@ -257,4 +255,3 @@
     </div>
   </div>
 </div>
-

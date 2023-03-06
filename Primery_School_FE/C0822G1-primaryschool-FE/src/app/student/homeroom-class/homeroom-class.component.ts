@@ -4,7 +4,7 @@ import {StudentInfoJson} from '../../dto/student/student-info-json';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
-import {StudentService} from '../../service/student/student.service';
+import {StudentService} from "../../service/student/student.service";
 
 @Component({
   selector: 'app-homeroom-class',
@@ -44,10 +44,9 @@ export class HomeroomClassComponent implements OnInit {
       this.studentService.getAllStudentByIdTeacher(request, this.idTeacher).subscribe(data => {
         this.studentList = data;
         this.studentInfo = data.content;
+        console.log(this.studentInfo)
         this.clazz = this.studentInfo[0].nameClazz;
-        // @ts-ignore
         this.totalPages = data.totalPages;
-        // @ts-ignore
         this.pageNumber = data.pageable.pageNumber;
       }, error => {
       }, () => {

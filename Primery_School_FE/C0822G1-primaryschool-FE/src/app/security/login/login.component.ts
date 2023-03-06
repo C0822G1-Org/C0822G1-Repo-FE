@@ -1,11 +1,12 @@
 
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../service/authentication/token-storage.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SecurityService} from '../../service/authentication/security.service';
 import {ShareService} from '../../service/authentication/share.service';
 import {ToastrService} from 'ngx-toastr';
+import {ViewportScroller} from "@angular/common";
 
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   returnUrl = '/';
   errors = {username: '', password: ''};
+  pageYoffSet = 0;
 
   formGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
               private securityService: SecurityService,
               private shareService: ShareService,
               private toast: ToastrService,
+              private scroll: ViewportScroller
   ) {
   }
 
@@ -53,6 +56,7 @@ export class LoginComponent implements OnInit {
    */
   login() {
     this.errors = {username: '', password: ''};
+    this.errorMessage = '';
     if (this.formGroup.valid) {
       this.securityService.login(this.formGroup.value).subscribe(
         data => {
@@ -71,7 +75,9 @@ export class LoginComponent implements OnInit {
           if(this.roles.indexOf('ROLE_TEACHER') > - 1) {
             this.router.navigateByUrl('timetable/timetable-teacher');
           }
-          this.router.navigateByUrl('body');
+          if(this.roles.indexOf('ROLE_ADMIN') > - 1) {
+            this.router.navigateByUrl('body');
+          }
           this.formGroup.reset();
           this.toast.success('Đăng nhập thành công.', 'Thông báo', {
             timeOut: 2000
@@ -84,12 +90,14 @@ export class LoginComponent implements OnInit {
             this.errorMessage = error.error.message;
           }
           this.securityService.isLoggedIn = false;
-          for (let i = 0; i < error.error.errors.length ; i++) {
-            if (error.error.errors && error.error.errors[i].field === 'username') {
-              this.errors.username = error.error.errors[i].defaultMessage;
-            }
-            if (error.error.errors && error.error.errors[i].field === 'password') {
-              this.errors.password = error.error.errors[i].defaultMessage;
+          if(error.error.errors){
+            for (let i = 0; i < error.error.errors.length ; i++) {
+              if (error.error.errors && error.error.errors[i].field === 'username') {
+                this.errors.username = error.error.errors[i].defaultMessage;
+              }
+              if (error.error.errors && error.error.errors[i].field === 'password') {
+                this.errors.password = error.error.errors[i].defaultMessage;
+              }
             }
           }
         }

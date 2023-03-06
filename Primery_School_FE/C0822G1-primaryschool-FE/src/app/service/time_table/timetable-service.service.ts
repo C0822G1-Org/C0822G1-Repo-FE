@@ -11,7 +11,7 @@ import {TimetableUpdate} from "../../entity/timtable-dto/timetable-update";
   providedIn: 'root'
 })
 export class TimetableService {
-  URL_TIME_TABLE_BY_TEACHER = 'http://localhost:8080/api/time-table';
+  URL_TIME_TABLE_BY_TEACHER = 'http://localhost:8080/api/timetable';
 
   constructor(private httpClient: HttpClient) {
   }

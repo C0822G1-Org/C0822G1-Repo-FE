@@ -6,6 +6,7 @@ import {Teacher} from '../../entity/teacher/teacher';
 import {Router} from '@angular/router';
 import {Clazz} from '../../entity/student/clazz';
 import {Title} from '@angular/platform-browser';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-class-create-choose',
@@ -17,44 +18,43 @@ export class ClassCreateChooseComponent implements OnInit {
   teacherList: Teacher[]=[];
   classCreate: FormGroup = new FormGroup(
     {
-      clazzName: new FormControl("",[Validators.required,this.validateClazzName.bind(this)]),
-      teacherDto: new FormControl(""),
-      schoolYear: new FormControl(),
+      clazzName: new FormControl("",[Validators.required,this.validateClazzName.bind(this) ,Validators.maxLength(5),Validators.pattern('^[1-5][A-Z]{1,4}$')]),
+      teacherDto: new FormControl("",[Validators.required]),
+      schoolYear: new FormControl("",[Validators.required,Validators.pattern("^[0-9]{4}-[0-9]{4}$"),this.validateSchoolYear]),
     }
   );
   clazzNameValidate: (string | undefined)[]= [];
 
-  constructor(private router: Router,
-              private classService:ClassService,
-              private teacherService:TeacherService,
-              private title: Title) {
-    this.title.setTitle('Thêm mới chọn lớp')
+  constructor(private router: Router,private classService:ClassService,private teacherService:TeacherService,private title: Title,private toast: ToastrService) {
+    this.title.setTitle('thêm mới chọn lớp')
     this.teacherService.getAllTeacherList().subscribe(data=>{
 
-      this.teacherList =data;
+        this.teacherList =data;
       },
       error => {},()=>{}
-      )
+    )
   }
 
   ngOnInit(): void {
     this.classService.getListClass().subscribe(data=>{
-      if (data!=null){
-        this.a=data.length+1;
-      }
+        if (data!=null){
+          this.a=data.length+1;
+        }
         this.clazzNameValidate=data.map((iteam)=> iteam.clazzName);
         console.log(this.clazzNameValidate);
-    },
+      },
       error => {},
       ()=>{});
-    }
+  }
 
   saveClass(): void {
     if (this.classCreate.valid) {
       const c = this.classCreate.value;
       console.log(c);
       this.classService.saveClass(c).subscribe(data=>{
-          alert("thanh cong")
+          this.toast.success("Thêm mới thành công",'Thông báo:',{
+            timeOut:2000
+          });
           console.log(this.a);
           this.router.navigateByUrl('class/create/info/'+this.a);
         },error => {alert("thêm mới thất bại");},
@@ -69,5 +69,17 @@ export class ClassCreateChooseComponent implements OnInit {
     const isDuplicate = this.clazzNameValidate.includes(check)
 
     return isDuplicate?{sai:true}:null;
+  }
+  validateSchoolYear(control: AbstractControl){
+    const schoolYear = control.value;
+    if (schoolYear){
+      const yearRange = schoolYear.split('-');
+      const startYear = parseInt(yearRange[0]);
+      const endYear = parseInt(yearRange[1]);
+      if (endYear - startYear !=5 ) {
+        return {'invalidSchoolYear': true};
+      }
+    }
+    return null;
   }
 }

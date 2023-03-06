@@ -9,7 +9,7 @@ import { StudentUpdateComponent } from './student-update/student-update.componen
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { StudentDeleteComponent } from './student-delete/student-delete.component';
 import { HomeroomClassComponent } from './homeroom-class/homeroom-class.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     StudentRoutingModule,
     ReactiveFormsModule,
     CommonModule,
+    FormsModule,
   ]
 
 })

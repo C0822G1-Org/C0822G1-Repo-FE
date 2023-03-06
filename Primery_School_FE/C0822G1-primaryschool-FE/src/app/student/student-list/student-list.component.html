@@ -51,7 +51,7 @@
                   </label>
                 </div>
                 <div class="col-6">
-                  <select id="clazz" class="form-select" #clazzId>
+                  <select id="clazz" class="form-select" #classId>
                     <option value=""></option>
                     <option *ngFor="let c of classNames" [value]="c.id">{{c.name}}</option>
                   </select>
@@ -61,7 +61,7 @@
             <div class="col-3">
               <div class="row">
                 <button class="btn btn-info" style="width: 40%;margin-left: 50px"
-                        (click)="searchStudent(year.value,clazzId.value,0)">Tìm
+                        (click)="searchStudent(year.value,classId.value,0)">Tìm
                 </button>
               </div>
             </div>
@@ -113,7 +113,7 @@
             <td>{{s.address}}</td>
             <td>
               <a class="btn btn-outline-warning" style="text-align: center; "
-                      [routerLink]="['/student/update',s.id]">
+                      [routerLink]="['/student/update',s.id,this.yearClazz,this.clazzId,this.page]">
                                 <span ><img src="https://img.icons8.com/color/100/null/pencil-tip.png"
                                                          style="width: 20px"/></span>
               </a>
@@ -130,7 +130,7 @@
 
             <td>
               <a class="btn btn-outline-primary" style="text-align: center; "
-                      [routerLink]="['/student/detail',s.id]">
+                      [routerLink]="['/student/detail',s.id,this.yearClazz,this.clazzId,this.page]">
                 <i class="fa-solid fa-circle-info"></i>
               </a>
             </td>

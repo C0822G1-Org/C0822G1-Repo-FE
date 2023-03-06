@@ -8,6 +8,7 @@ import {TeacherInfo} from '../../dto/teacher/teacher-info';
 import {StudentInfooJson} from '../../dto/student/student-infoo-json';
 import {ToastrService} from 'ngx-toastr';
 import {StudentService} from '../../service/student/student.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
@@ -31,7 +32,7 @@ export class StudentListComponent implements OnInit {
   page: number = 0;
   studentPage!: StudentInfooJson;
 
-  constructor(private studentService: StudentService, private toastr: ToastrService) {
+  constructor(private studentService: StudentService, private toastr: ToastrService,private activatedRoute:ActivatedRoute) {
     this.studentService.getListYear().subscribe(data => {
       this.years = data;
       // console.log(this.currentYear)
@@ -39,7 +40,15 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+      this.activatedRoute.paramMap.subscribe(data=>{
+        if (data!=null){
+          this.clazzId=Number(data.get('clazzId'));
+          this.yearClazz=Number(data.get('year'));
+          this.page=Number(data.get('page'));
+          console.log(this.yearClazz,this.clazzId,this.page);
+          this.searchStudent(this.yearClazz,this.clazzId,this.page);
+        }
+      })
   }
 
   chooseClass(year: string, block: string) {
@@ -52,7 +61,7 @@ export class StudentListComponent implements OnInit {
     this.clazzId = Number(clazzId);
     this.yearClazz = Number(year);
     this.studentList.length = 0;
-    // console.log(this.className,year,clazzId);
+    // console.log(this.page,this.yearClazz,this.clazzId);
     this.studentService.getClazzTeacher(year, clazzId).subscribe(data => {
       this.classTeacher = data;
       console.log(data);
@@ -78,7 +87,7 @@ export class StudentListComponent implements OnInit {
   editNameTeacher() {
     this.studentService.getListNameTeacher(this.currentYear).subscribe(data => {
       this.teachers = data;
-      console.log(data);
+      // console.log(data);
     });
   }
 
@@ -114,6 +123,7 @@ export class StudentListComponent implements OnInit {
   }
 
   changePage(page: number) {
+    this.page=page;
     this.searchStudent(this.yearClazz, this.clazzId, page);
   }
 

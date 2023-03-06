@@ -1,4 +1,3 @@
-
 import {Component, OnInit} from '@angular/core';
 import {Student} from '../../entity/student/student';
 import {ActivatedRoute} from '@angular/router';
@@ -14,6 +13,9 @@ export class StudentDetailComponent implements OnInit {
 
   student: Student = {};
   studentId: any;
+  year: any;
+  clazzId: any;
+  page: any;
 
   constructor(private studentService: StudentService, private activatedRoute: ActivatedRoute,
   ) {
@@ -29,13 +31,19 @@ export class StudentDetailComponent implements OnInit {
    */
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.studentId = this.activatedRoute.snapshot.paramMap.get('id');
-      console.log(this.studentId);
-      this.studentService.findById(this.studentId).subscribe(next => {
-        this.student = next;
-        console.log(next);
-      });
+    this.activatedRoute.paramMap.subscribe(data => {
+      if (data != null) {
+        this.studentId = data.get('id');
+        this.year = data.get('year');
+        this.clazzId = data.get('clazzId');
+        this.page = data.get('page');
+        // console.log(this.studentId,this.year,this.clazzId,this.page);
+      }
+    });
+    console.log(this.studentId);
+    this.studentService.findById(this.studentId).subscribe(next => {
+      this.student = next;
+      console.log(next);
     });
   }
 

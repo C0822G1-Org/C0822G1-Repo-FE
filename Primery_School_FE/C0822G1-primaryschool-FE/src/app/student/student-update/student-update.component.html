@@ -163,7 +163,7 @@
 
       <div class="d-flex justify-content-center" style="margin-bottom: 20px ; margin-top: 20px">
         <button type="submit" class="btn btn-primary mt-2 mb-2">Chỉnh sửa thông tin</button>
-        <button routerLink="/student" type="button" style="margin-left: 20px; margin-top: 8px; height: 37px" class="btn btn-warning" >
+        <button [routerLink]="['/student',this.year,this.clazzId,this.page]" type="button" style="margin-left: 20px; margin-top: 8px; height: 37px" class="btn btn-warning" >
           <p>Trở về </p>
         </button>
 

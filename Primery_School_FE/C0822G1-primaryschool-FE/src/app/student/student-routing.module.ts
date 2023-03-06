@@ -9,10 +9,11 @@ import {StudentUpdateComponent} from "./student-update/student-update.component"
 
 const routes: Routes = [
   {path:'', component:StudentListComponent},
+  {path:':year/:clazzId/:page', component:StudentListComponent},
   {path:'create',component: StudentCreateComponent},
-  {path:'detail/:id',component: StudentDetailComponent},
+  {path:'detail/:id/:year/:clazzId/:page',component: StudentDetailComponent},
   {path:'delete',component: StudentDeleteComponent},
-  {path:'update/:id',component: StudentUpdateComponent},
+  {path:'update/:id/:year/:clazzId/:page',component: StudentUpdateComponent},
   {path: 'homeroom', component: HomeroomClassComponent}
 ];
 

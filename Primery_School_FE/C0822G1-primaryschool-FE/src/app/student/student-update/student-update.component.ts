@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Student} from "../../entity/student/student";
-import {Clazz} from "../../entity/student/clazz";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
-import {StudentService} from "../../service/student/student.service";
-import {ClazzService} from "../../service/clazz/clazz.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AngularFireStorage} from "@angular/fire/storage";
-import {finalize} from "rxjs/operators";
+import {Student} from '../../entity/student/student';
+import {Clazz} from '../../entity/student/clazz';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {StudentService} from '../../service/student/student.service';
+import {ClazzService} from '../../service/clazz/clazz.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-update',
@@ -18,6 +18,9 @@ export class StudentUpdateComponent implements OnInit {
 
   student: Student = {};
   studentId: any;
+  year: any;
+  clazzId: any;
+  page: any;
   clazz: Clazz | undefined = {};
   formUpdateStudent: FormGroup = new FormGroup({});
   selectedImage: any;
@@ -45,37 +48,41 @@ export class StudentUpdateComponent implements OnInit {
       religion: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       address: new FormControl('', [Validators.required]),
       clazz: new FormGroup({
-        clazzId:new FormControl(),
-        clazzName:new FormControl()
+        clazzId: new FormControl(),
+        clazzName: new FormControl()
       })
     });
 
     this.activatedRoute.paramMap.subscribe(data => {
       // const id = data.get('studentId');
-      this.studentId = this.activatedRoute.snapshot.paramMap.get('studentId');
-      console.log(this.studentId);
-      if (this.studentId != null) {
-        // this.getStudent(+id);
-        // tslint:disable-next-line:radix no-shadowed-variable
-        this.studentService.findById(this.studentId).subscribe(data => {
-          if (data!=null){
-            this.student = data;
-            console.log(this.student);
-            this.clazz=this.student.clazz;
-            console.log(this.clazz);
-            this.formUpdateStudent.patchValue(this.student);
-            console.log(this.formUpdateStudent);
-          }
-
-        });
+      if (data != null) {
+        this.year = data.get('year');
+        this.clazzId = data.get('clazzId');
+        this.page = data.get('page');
+        this.studentId = data.get('id');
+        console.log(this.studentId, this.year, this.clazzId, this.page);
+        if (this.studentId != null) {
+          // this.getStudent(+id);
+          // tslint:disable-next-line:radix no-shadowed-variable
+          this.studentService.findById(this.studentId).subscribe(data => {
+            if (data != null) {
+              this.student = data;
+              console.log(this.student);
+              this.clazz = this.student.clazz;
+              console.log(this.clazz);
+              this.formUpdateStudent.patchValue(this.student);
+              console.log(this.formUpdateStudent);
+            }
+          });
+        }
       }
-
     });
   }
 
   ngOnInit(): void {
     // this.getAllClazz();
   }
+
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
     var n = Date.now();
@@ -110,13 +117,13 @@ export class StudentUpdateComponent implements OnInit {
   updateStudent() {
     // upload image to firebase
     // const nameImg = this.getCurrentDateTime();
-    if (this.selectedImage == null){
-      this.student=this.formUpdateStudent.value
+    if (this.selectedImage == null) {
+      this.student = this.formUpdateStudent.value;
       this.studentService.updateStudent(this.student).subscribe(() => {
         alert('Sửa mới thành công');
         this.router.navigateByUrl('');
       });
-    }else {
+    } else {
       const nameImg = this.selectedImage.name;
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
@@ -124,8 +131,8 @@ export class StudentUpdateComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             this.formUpdateStudent.patchValue({img: url});
             // Call API to create vaccine
-            this.student=this.formUpdateStudent.value
-            this.student.clazz=this.clazz;
+            this.student = this.formUpdateStudent.value;
+            this.student.clazz = this.clazz;
             console.log(this.student);
             this.studentService.updateStudent(this.student).subscribe(() => {
               alert('Sửa mới thành công');
@@ -138,7 +145,7 @@ export class StudentUpdateComponent implements OnInit {
   }
 
 // tslint:disable-next-line:typedef
-  compareFun(item1: { id: any; }, item2: { id: any; } ) {
+  compareFun(item1: { id: any; }, item2: { id: any; }) {
     return item1 && item2 ? item1.id === item2.id : item1 === item2;
   }
 }

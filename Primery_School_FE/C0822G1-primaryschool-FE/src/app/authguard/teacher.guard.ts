@@ -29,12 +29,12 @@ export class TeacherGuard implements CanActivate {
       } if (roles.indexOf('ROLE_ADMIN') > - 1) {
         return true;
       } else {
-        this.toast.error('Bạn không đủ quyền. Vui lòng đăng nhập để tiếp tục.', 'Thất bại');
+        this.toast.error('Bạn không đủ quyền. Vui lòng đăng nhập để tiếp tục.', 'Thất bại', {positionClass: 'toast-top-center'});
         this.router.navigateByUrl('/error');
         return false;
       }
     } else {
-      this.toast.error('Bạn phải đăng nhập để tiếp tục. Vui lòng đăng nhập!', 'Thất bại', {positionClass: 'toast-top-left'});
+      this.toast.error('Bạn phải đăng nhập để tiếp tục. Vui lòng đăng nhập!', 'Thất bại', {positionClass: 'toast-top-center'});
       this.router.navigateByUrl('/error');
       return false;
     }

@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     if (this.formGroup.invalid) {
       this.toastr.warning('Form phải được điền đúng định dạng', 'Warning:', {
-        positionClass: 'toast-bottom-right',
+        positionClass: 'toast-top-center',
         timeOut: 1500,
         extendedTimeOut: 1500
       });
@@ -49,7 +49,7 @@ export class SignUpComponent implements OnInit {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
           this.toastr.success(data.message, 'Hoàn tất: ', {
-            positionClass: 'toast-bottom-right',
+            positionClass: 'toast-top-center',
             timeOut: 2500,
             extendedTimeOut: 1500
           });
@@ -58,7 +58,7 @@ export class SignUpComponent implements OnInit {
         },
         err => {
           this.toastr.error(err.error.message, 'Lỗi: ', {
-            positionClass: 'toast-bottom-right',
+            positionClass: 'toast-top-center',
             timeOut: 1500,
             extendedTimeOut: 1500
           });

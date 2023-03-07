@@ -1,3 +1,5 @@
+
+
 * {
   margin: 0;
   padding: 0;
@@ -212,4 +214,7 @@ nav .fa {
 }
 .select-selected{
   background-color: #f44336;
+}
+ul.dropdown-menu li a.dropdown {
+  font-family: Arial, serif;
 }

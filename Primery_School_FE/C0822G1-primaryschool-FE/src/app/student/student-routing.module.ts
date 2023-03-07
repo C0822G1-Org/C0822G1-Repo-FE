@@ -18,7 +18,8 @@ const routes: Routes = [
   {path:'detail/:id',component: StudentDetailComponent, canActivate: [AdminGuard]},
   {path:'delete',component: StudentDeleteComponent, canActivate: [AdminGuard]},
   {path:'update/:id/:year/:clazzId/:page',component: StudentUpdateComponent, canActivate: [AdminGuard]},
-  {path: 'homeroom', component: HomeroomClassComponent, canActivate: [AdminGuard]}
+  {path: 'homeroom', component: HomeroomClassComponent, canActivate: [AdminGuard]},
+  {path: 'search', component: StudentSearchComponent}
 ];
 
 @NgModule({

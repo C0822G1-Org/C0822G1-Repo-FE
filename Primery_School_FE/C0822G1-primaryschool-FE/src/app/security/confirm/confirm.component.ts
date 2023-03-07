@@ -40,7 +40,7 @@ export class ConfirmComponent implements OnInit {
       // @ts-ignore
       this.router.navigateByUrl('/'),
       // @ts-ignore
-      this.toastr.success('Bạn đã đổi mật khẩu thành công ^.^ ', 'Alo có thông báo!')
+      this.toastr.success('Bạn đã đổi mật khẩu thành công ^.^ ', 'Alo có thông báo!', {positionClass: 'toast-top-center'})
     )
     console.log(this.account);
   }

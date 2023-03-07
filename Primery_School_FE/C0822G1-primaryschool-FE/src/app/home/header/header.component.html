@@ -3,38 +3,50 @@
   <nav>
     <div class="logo">
 
-      <img class="animationTop delay-01" src="../../../assets/img/TFLBofi.png"/>
+      <img class="animationTop delay-01" src="../../../assets/img/logoprimaryschool.png" style="width: 200px; height: 100px; background-size: cover"/>
     </div>
     <div class="nav-links">
       <ul>
         <li style="margin-right: 100px">
         </li>
         <li class="animationTop delay-03"><a routerLink="/">TRANG CHỦ</a></li>
-        <li class="animationTop delay-05"><a routerLink="/student">HỌC SINH</a></li>
-        <li class="animationTop delay-07"><a routerLink="/teacher">GIÁO VIÊN</a></li>
+        <li class="animationTop delay-05"><a routerLink="/student" (click)="scrollToTopLogin()">HỌC SINH</a></li>
+        <li>
+          <div class="btn-group dropdown animationTop delay-12">
+            <a class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              TÌM KIẾM
+            </a>
+            <ul class="dropdown-menu" style="background: #e4606d; cursor: pointer">
+              <li><a class="dropdown animationTop delay-01" routerLink="/student/search" (click)="scrollToTopLogin()">HỌC SINH</a></li>
+              <li><a class="dropdown animationTop delay-02" routerLink="/teacher" (click)="scrollToTopLogin()">GIÁO VIÊN</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="animationTop delay-07"><a routerLink="/point" (click)="scrollToTopLogin()">QUẢN LÝ ĐIỂM</a></li>
 
-        <li class="animationTop delay-07"><a routerLink="/point">QUẢN LÝ ĐIỂM</a></li>
+        <li class="animationTop delay-07"><a routerLink="/class" (click)="scrollToTopLogin()">LỚP HỌC</a></li>
+        <li class="animationTop delay-07" *ngIf="isLoggedIn"><a routerLink="/student/homeroom" (click)="scrollToTopLogin()">LỚP CHỦ NHIỆM</a></li>
+        <li class="animationTop delay-09"><a routerLink="/timetable" (click)="scrollToTopLogin()">THỜI KHÓA BIỂU</a></li>
 
-        <li class="animationTop delay-07"><a routerLink="/class">LỚP HỌC</a></li>
-        <li class="animationTop delay-07" *ngIf="isLoggedIn"><a routerLink="/student/homeroom">LỚP CHỦ NHIỆM</a></li>
-        <li class="animationTop delay-09"><a routerLink="/timetable">THỜI KHÓA BIỂU</a></li>
-
-        <li class="animationTop delay-09" *ngIf="isLoggedIn"><a routerLink="/timetable/timetable-teacher">LỊCH DẠY</a></li>
+        <li class="animationTop delay-09" *ngIf="isLoggedIn"><a routerLink="/timetable/timetable-teacher" (click)="scrollToTopLogin()">LỊCH DẠY</a></li>
 
         <li class="animationTop delay-1" *ngIf="isLoggedIn">
           <div>
-            <div class="dropdown">
-              <button class="btn btn-danger m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{user?.avatar}}" class="rounded-circle" style="width: 40px;height: 40px" height="22" width="22"
+            <div class="dropdown animationTop delay-11">
+              <a class="m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{{user?.avatar}}" class="rounded-circle" style="width: 40px; background-image: none; height: 40px" height="24" width="24"
                      alt="avc"/>
-                <span style="padding-left: 20px">{{user?.username}}</span><i class="fa-sharp fa-solid fa-user"
-                                                                             style="width: 70px; height: 35px; padding-top: 10px"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" style="background-color: #f44336; cursor: pointer">
-                <li><a class="dropdown" routerLink="/teacher/editInfoTeacher"><i class="fa-sharp fa-solid fa-key"></i> Sửa thông tin cá nhân</a></li>
-                <li><a class="dropdown" routerLink="/security/changePassword"><i class="fa-sharp fa-solid fa-key" ></i> Sửa mật khẩu</a></li>
-                <li><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout" (click)="logout()"
-                       type="button"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Đăng xuất </a></li>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" style="background-color: #e4606d; cursor: pointer; width: 180px">
+                <li class="animationTop delay-01" style="color: white">
+                  <i class="fa-solid fa-user me-3" ></i><strong style="color: green">{{user?.username}}</strong>
+                </li>
+                <li class="animationTop delay-02" ><a  class="dropdown" routerLink="/teacher/editInfoTeacher" (click)="scrollToTopLogin()"> <i class="fa-solid fa-gear me-1"></i>
+                  Sửa thông tin cá nhân</a></li>
+                <li class="animationTop delay-03"><a class="dropdown" routerLink="/security/changePassword" (click)="scrollToTopLogin()"><i class="fa-sharp fa-solid fa-key me-1" ></i> Sửa mật khẩu</a></li><br>
+
+                <li class="animationTop delay-04"><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout" (click)="logout()"
+                                                     type="button"><i class="fa-sharp fa-solid fa-right-to-bracket me-1" ></i> Đăng xuất </a></li>
               </ul>
             </div>
           </div>

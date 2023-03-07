@@ -60,7 +60,7 @@ export class TeacherUpdateComponent implements OnInit {
     if(this.infoTeacherForm.valid){
       this.teacherService.editInfoTeacher(teacher).subscribe(next => {
         this.toast.success('Cập nhật thông tin thành công', 'Thông báo', {positionClass: 'toast-top-center'})
-        this.router.navigateByUrl("/teacher");
+        this.router.navigateByUrl("/timetable/timetable-teacher");
       }, error => {
         for (let i = 0; i < error.error.length; i++) {
           if (error.error[i].field === 'email') {

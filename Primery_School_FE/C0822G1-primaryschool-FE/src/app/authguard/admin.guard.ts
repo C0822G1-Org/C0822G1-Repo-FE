@@ -27,7 +27,7 @@ export class AdminGuard implements CanActivate {
       if (roles.indexOf('ROLE_ADMIN') > - 1) {
         return true;
       }else {
-        this.toast.error('Bạn không đủ tuổi,Vui lòng đăng nhập để tiếp tục.', 'Thất bại', {positionClass: 'toast-top-center'});
+        this.toast.error('Bạn không đủ quyền.Vui lòng đăng nhập để tiếp tục.', 'Thất bại', {positionClass: 'toast-top-center'});
         this.router.navigateByUrl('/error');
         return false;
       }

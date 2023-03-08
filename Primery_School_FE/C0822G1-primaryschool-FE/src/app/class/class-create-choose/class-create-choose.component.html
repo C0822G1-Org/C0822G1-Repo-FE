@@ -5,7 +5,7 @@
            style="align-content: center; margin-bottom: 250px;margin-top: 288px; padding-left: 30px;padding-right: 30px">
         <div class="mb-2 row">
           <div class="d-flex align-items-center mb-2">
-            <a class="btn text-center text-primary"><i class="fa-solid fa-arrow-left"></i></a>
+            <a class="btn text-center text-primary" [routerLink]="['/class']" ><i class="fa-solid fa-arrow-left"></i></a>
           </div>
           <div class="mb-2 row">
             <fieldset>
@@ -52,6 +52,7 @@
             <div style="position: absolute">
               <p *ngIf="classCreate.controls.teacherDto.hasError('required')&& classCreate.controls.teacherDto.touched "
                  style="color: red">Vui lòng không được để trống.</p>
+              <p *ngIf="classCreate.controls.teacherDto.hasError('false') " style="color: red">Vui lòng nhập lại,giáo viên đã có lớp.</p>
             </div>
           </div>
         </div>

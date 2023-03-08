@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {PageStudentDto} from '../dto/page-student-dto';
 import {Student} from '../entity/student/student';
+import {StudentClazzDto} from "../entity/clazz/student-clazz-dto";
 
     const STUDENT_URL = 'http://localhost:8080/api/clazz/student/';
 
@@ -33,8 +34,11 @@ export class StudentService {
     return this.httpClient.get<Student[]>(url)
   }
   getAllClazzz(clazz: number): Observable<Student[]> {
-    this.httpClient.patch('http://localhost:8080/api/clazz/student/up-class', {});
     return this.httpClient.get<Student[]>('http://localhost:8080/api/clazz/student/search-clazz-student/a/' + clazz)
+  }
+
+  getAllStudentClazzDto(clazz: number): Observable<StudentClazzDto[]> {
+    return this.httpClient.get<StudentClazzDto[]>('http://localhost:8080/api/clazz/student-class-dto-no-page/' + clazz)
 
   }
 

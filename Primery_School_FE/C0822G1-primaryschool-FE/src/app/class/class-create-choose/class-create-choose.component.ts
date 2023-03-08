@@ -16,10 +16,11 @@ import {ToastrService} from "ngx-toastr";
 export class ClassCreateChooseComponent implements OnInit {
   a:number=0 ;
   teacherList: Teacher[]=[];
+  teacherName: (Teacher | undefined)[] = [];
   classCreate: FormGroup = new FormGroup(
     {
       clazzName: new FormControl("",[Validators.required,this.validateClazzName.bind(this) ,Validators.maxLength(5),Validators.pattern('^[1-5][A-Z]{1,4}$')]),
-      teacherDto: new FormControl("",[Validators.required]),
+      teacherDto: new FormControl("",[Validators.required, this.validateTeacherName.bind(this)]),
       schoolYear: new FormControl("",[Validators.required,Validators.pattern("^[0-9]{4}-[0-9]{4}$"),this.validateSchoolYear]),
     }
   );
@@ -38,10 +39,13 @@ export class ClassCreateChooseComponent implements OnInit {
   ngOnInit(): void {
     this.classService.getListClass().subscribe(data=>{
         if (data!=null){
-          this.a=data.length+1;
+          this.a = Number(data[data.length-1].clazzId)+1;
         }
         this.clazzNameValidate=data.map((iteam)=> iteam.clazzName);
         console.log(this.clazzNameValidate);
+        // @ts-ignore
+        this.teacherName = data.map((item) => item['teacherName']);
+        console.log("tEACHER n name: " + this.teacherName);
       },
       error => {},
       ()=>{});
@@ -53,11 +57,14 @@ export class ClassCreateChooseComponent implements OnInit {
       console.log(c);
       this.classService.saveClass(c).subscribe(data=>{
           this.toast.success("Thêm mới thành công",'Thông báo:',{
-            timeOut:2000
+            timeOut:2000, positionClass: 'toast-top-center'
           });
-          console.log(this.a);
           this.router.navigateByUrl('class/create/info/'+this.a);
-        },error => {alert("thêm mới thất bại");},
+        },error => {
+          this.toast.error("Thêm mới thất bại",'Thông báo:',{
+            timeOut:2000, positionClass: 'toast-top-center'
+          });
+        },
         ()=>{}
       )
     }
@@ -70,6 +77,7 @@ export class ClassCreateChooseComponent implements OnInit {
 
     return isDuplicate?{sai:true}:null;
   }
+
   validateSchoolYear(control: AbstractControl){
     const schoolYear = control.value;
     if (schoolYear){
@@ -81,5 +89,12 @@ export class ClassCreateChooseComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  validateTeacherName(control: AbstractControl) {
+    let check = control.value.teacherName;
+    if (!check) return null;
+    const isDuplicate = this.teacherName.includes(check);
+    return isDuplicate ? {false: true} : null;
   }
 }

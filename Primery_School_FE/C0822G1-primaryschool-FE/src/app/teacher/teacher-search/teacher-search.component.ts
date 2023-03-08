@@ -44,7 +44,6 @@ export class TeacherSearchComponent implements OnInit {
     this.teacherService.getPageTeacher(teacherToSearch, pageNumber).subscribe(data => {
       console.log(data);
       this.pageTeacher = data;
-
     }, error => {
       }, () => {
     });

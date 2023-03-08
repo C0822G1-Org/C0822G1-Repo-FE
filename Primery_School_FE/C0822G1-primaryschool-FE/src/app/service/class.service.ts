@@ -24,4 +24,5 @@ export class ClassService {
   getListClass(): Observable<Clazz[]> {
     return this._httpClient.get<Clazz[]>(this.API_URL + '/list-class')
   }
+
 }

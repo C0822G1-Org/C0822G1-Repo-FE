@@ -22,7 +22,7 @@ export class StudentUpdateComponent implements OnInit {
   year: any;
   clazzIdParam: any;
   page: any;
-  clazz:Clazz | undefined={};
+  clazz: Clazz = {};
   formUpdateStudent: FormGroup = new FormGroup({});
   selectedImage: any;
   src: string | undefined;
@@ -40,7 +40,7 @@ export class StudentUpdateComponent implements OnInit {
       img: new FormControl('', [Validators.required]),
       studentName: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       dateOfBirth: new FormControl('', [Validators.required]),
-      gender: new FormControl('true', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
       fatherName: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
       phoneNumberFather: new FormControl('', [Validators.required, Validators.pattern('^(((\\+|)84)|0)(3|5|7|8|9)+([0-9]{8})$')]),
       fatherJob: new FormControl('', [Validators.required, Validators.pattern('[a-z 0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+')]),
@@ -62,13 +62,12 @@ export class StudentUpdateComponent implements OnInit {
         this.clazzIdParam = data.get('clazzId');
         this.page = data.get('page');
 
-        this.clazzService.findById(this.studentId).subscribe(data=>{
-          this.clazz=data;
+        this.clazzService.findByIdStudent(this.studentId).subscribe(data=>{
+          this.clazz= data;
           console.log('Đây là calzz')
           console.log(this.clazz);
           if (data!=null){
             this.student={clazz:this.clazz};
-
           }
         })
       }
@@ -122,10 +121,9 @@ export class StudentUpdateComponent implements OnInit {
   // tslint:disable-next-line:typedef
   updateStudent() {
     this.formUpdateStudent.patchValue({clazzDto: this.clazz});
-    // upload image to firebase
-    // const nameImg = this.getCurrentDateTime();
     if (this.selectedImage == null){
       this.student=this.formUpdateStudent.value
+      this.student.clazz=this.clazz;
       this.studentService.updateStudent(this.student).subscribe(() => {
         this.toast.success('Chỉnh sửa thành công', 'Thông báo', {positionClass: 'toast-top-center'});
         this.router.navigateByUrl(`student/${this.year}/${this.clazzIdParam}/${this.page}`);

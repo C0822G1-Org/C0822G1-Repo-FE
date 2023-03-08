@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {ClazzStudentDto} from "../../dto/clazz-student-dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClazzService {
-
   constructor(private httpClient: HttpClient) { }
   /**
    * TuanND
@@ -16,4 +16,10 @@ export class ClazzService {
   findById(id: number): Observable<any>{
     return this.httpClient.get<any>(this.URL_CLAZZ_LIST + '/info/' +id);
   }
+
+  findByIdStudent(id: number): Observable<any>{
+    return this.httpClient.get<any>(this.URL_CLAZZ_LIST + '/find/' +id);
+  }
+
+
 }

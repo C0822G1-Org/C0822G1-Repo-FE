@@ -83,11 +83,11 @@ export class LoginComponent implements OnInit {
             timeOut: 2000, positionClass: 'toast-top-center'
           });
         }, error => {
-          this.toast.error('Đăng nhập thất bại, vui lòng nhập lại.', 'Thất bại'
-            , {positionClass: 'toast-top-center'});
-          console.log(error);
+
           if(error.status == 406){
             this.errorMessage = error.error.message;
+            this.toast.error(this.errorMessage, 'Thất bại'
+              , {positionClass: 'toast-top-center'});
           }
           this.securityService.isLoggedIn = false;
           if(error.error.errors){

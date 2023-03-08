@@ -1,3 +1,4 @@
+
 <section class="ftco-section">
   <div class="container">
     <div class="row justify-content-center">
@@ -37,9 +38,7 @@
                 <input type="password" formControlName="password" class="form-control" id="password-input"
                        placeholder="Mật khẩu"
                        required>
-
                 <div style="position: absolute">
-                  <p class="text-danger">{{errorMessage}}</p>
                   <p class="text-danger">{{errors.password}}</p>
                   <p class="text-danger"
                      *ngIf="formGroup.controls.password.hasError('required')&&formGroup.controls.username.touched">Yêu

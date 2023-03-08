@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {BlogService} from '../../service/blog.service';
 import {Blog} from '../../entity/blog/blog';
 import {ActivatedRoute} from '@angular/router';
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-body',
@@ -22,9 +23,10 @@ export class BodyComponent implements OnInit {
   blog: Blog = {};
   totalPages = 0;
   size: number = 3;
-
+  pageYoffSet =0;
   constructor(private blogService: BlogService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private scroll: ViewportScroller) {
     /*
     Use pramMap to find the id and get the corresponding object
      */
@@ -38,7 +40,14 @@ export class BodyComponent implements OnInit {
       }
     });
   }
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    this.pageYoffSet = window.pageYOffset;
+  }
 
+  // tslint:disable-next-line:typedef
+  scrollToBlog() {
+    this.scroll.scrollToPosition([0, 2200]);
+  }
 
   ngOnInit(): void {
     this.getAllBlog(this.size);
@@ -66,4 +75,5 @@ export class BodyComponent implements OnInit {
 
     });
   }
+
 }

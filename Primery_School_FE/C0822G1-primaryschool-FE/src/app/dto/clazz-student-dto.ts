@@ -8,4 +8,5 @@ export interface ClazzStudentDto {
   dateOfBirth?: string;
   gender?: boolean;
   address?: string;
+  blockName?: number;
 }

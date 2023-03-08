@@ -1,4 +1,4 @@
-<div style=" background-color: #ECECEC">
+<body style="background-color: #ECECEC; height: 100vh; margin-top: 50px">
   <div class="row">
     <h1 class="title" style="font-family: system-ui; color: #07425c">QUẢN LÝ THỜI KHOÁ BIỂU</h1>
   </div>
@@ -14,11 +14,11 @@
           <label style="margin-left: 50px">
             <select id="block" class="form-select" #block (change)="chooseClass(block.value)">
               <option>Chọn khối</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              <option value="1">Khối 1</option>
+              <option value="2">Khối 2</option>
+              <option value="3">Khối 3</option>
+              <option value="4">Khối 4</option>
+              <option value="5">Khối 5</option>
             </select>
           </label>
         </div>
@@ -46,7 +46,7 @@
         <div class="row">
           <div style="width: auto" class="container">
             <form [formGroup]="timetableForm" (ngSubmit)="update()">
-              <table class="table table-hover table-primary" *ngIf="timetableArray.length!=0; else displayTimetable">
+              <table style="box-shadow: 0 0 20px 0 #253365;" class="table table-hover table-primary" *ngIf="timetableArray.length!=0; else displayTimetable">
                 <thead>
                 <tr style="float: left">
                 </tr>
@@ -55,7 +55,7 @@
                 <div *ngFor="let row of [0,1,2,3,4]" style="float: left">
                   <tr style="text-align: center" class="align-middle">
                     <th *ngIf="row==0">Tiết</th>
-                    <td style="height: 45px">Thứ {{row + 2}}</td>
+                    <td style="height: 45px; font-weight: bold">Thứ {{row + 2}}</td>
                   </tr>
                   <tr *ngFor="let col of [0,1,2,3,4]">
                     <td *ngIf="row==0&&(col==0||1||2||3||4)"
@@ -74,10 +74,7 @@
               </table>
 
               <ng-template #displayTimetable>
-                <h1 style="color: red; text-align: center; margin-top: 60px">Danh sách rỗng,<br> Vui lòng nhập khối và
-                  lớp
-                  cần
-                  hiển thị.</h1>
+                <img src="../../../assets/img/anh TKB sáng.png" width="650px"/>
               </ng-template>
               <button *ngIf="timetableArray.length!=0 && role == 'ROLE_ADMIN'" type="button" class="btn btn-outline-success update"
                       data-bs-toggle="modal"
@@ -121,4 +118,4 @@
       </div>
     </div>
   </div>
-</div>
+</body>

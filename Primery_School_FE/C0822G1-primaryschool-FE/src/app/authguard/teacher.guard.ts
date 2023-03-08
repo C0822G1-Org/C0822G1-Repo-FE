@@ -26,7 +26,7 @@ export class TeacherGuard implements CanActivate {
       const roles = this.tokenStorageService.getRole();
       if (roles.indexOf('ROLE_TEACHER') > - 1) {
         return true;
-      } if (roles.indexOf('ROLE_ADMIN') > - 1) {
+      }else if (roles.indexOf('ROLE_ADMIN') > - 1) {
         return true;
       } else {
         this.toast.error('Bạn không đủ quyền. Vui lòng đăng nhập để tiếp tục.', 'Thất bại', {positionClass: 'toast-top-center'});

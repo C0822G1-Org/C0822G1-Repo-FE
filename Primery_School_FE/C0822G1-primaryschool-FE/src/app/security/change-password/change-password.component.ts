@@ -12,7 +12,7 @@ import {TokenStorageService} from "../../service/authentication/token-storage.se
 })
 export class ChangePasswordComponent implements OnInit {
   changePassForm: FormGroup = new FormGroup({
-    newPass: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-_=+{}[\\]|;:'\",.<>/?]).{9,}$")]),
+    newPass: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20),Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-_=+{}[\\]|;:'\",.<>/?]).{4,}$")]),
     confirmPass: new FormControl('', Validators.required)
   }, {});
 

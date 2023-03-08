@@ -9,6 +9,9 @@ import {TeacherService} from '../../service/teacher.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {StudentService} from '../../service/student.service';
 import {Student} from '../../entity/student/student';
+import {ClazzStudentDto} from "../../dto/clazz-student-dto";
+import {StudentClazzDto} from "../../entity/clazz/student-clazz-dto";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-class-update',
@@ -19,22 +22,40 @@ export class ClassUpdateComponent implements OnInit {
   clazzForm: FormGroup = new FormGroup({
     clazzId: new FormControl(),
     timeTable: new FormControl(""),
-    block:  new FormControl(""),
-    clazzName:  new FormControl(""),
-    year:  new FormControl(""),
-    teacher:  new FormControl(""),
-    flagDelete:  new FormControl(""),
-    schoolYear:  new FormControl(""),
+    block: new FormControl(""),
+    clazzName: new FormControl(""),
+    year: new FormControl(""),
+    teacher: new FormControl(""),
   })
 
+  clazzStudentDtoForm : FormGroup = new FormGroup({
+    clazzId: new FormControl(""),
+    clazzName: new FormControl(""),
+    studentId: new FormControl(""),
+    studentName: new FormControl(""),
+    teacherId: new FormControl(""),
+    teacherName: new FormControl(""),
+    dateOfBirth: new FormControl(""),
+    gender: new FormControl(""),
+    address: new FormControl(""),
+    blockName: new FormControl(""),
+  })
+
+  studentClazzDtoForm : FormGroup = new FormGroup({
+    clazzId: new FormControl(""),
+    studentName: new FormControl(""),
+    dateOfBirth: new FormControl(""),
+    address: new FormControl(""),
+    clazzName: new FormControl(""),
+  })
+  clazz:Clazz={clazzId:0, teacher: {teacherId:0,teacherName:''}};
   clazzList: Clazz[] =[];
   blockList: Block[] =[];
   teacherList: Teacher[] = [];
   studentList: Student[] = [];
+  classStudentDtoList : ClazzStudentDto[] = [];
+  studentClazzDtoList : StudentClazzDto[] = [];
   id: number = 0;
-  searchForm: FormGroup = new FormGroup({
-    clazz: new FormControl("")
-  })
 
 
   constructor(private clazzService: ClazzService,
@@ -42,13 +63,17 @@ export class ClassUpdateComponent implements OnInit {
               private teacherService: TeacherService,
               private router: Router,
               private studentService : StudentService,
-              private activatedRoute: ActivatedRoute,) {
+              private activatedRoute: ActivatedRoute,
+              private toast: ToastrService) {
     this.activatedRoute.paramMap.subscribe((paramMap:ParamMap) => {
       this.id = parseInt(<string>paramMap.get('id'))
       if (this.id !=null) {
-        this.getClazz(this.id)
+        this.getClazzStudentDto(this.id)
         this.studentService.getAllClazzz(this.id).subscribe(data=>{
           this.studentList = data;
+        })
+        this.studentService.getAllStudentClazzDto(this.id).subscribe(data=>{
+          this.studentClazzDtoList = data;
         })
       }
     })
@@ -67,39 +92,45 @@ export class ClassUpdateComponent implements OnInit {
       this.clazzList =data;
       // console.log(data);
     })
-  }
-
-
-
-  private getClazz(id: number) {
-    return this.clazzService.findById(id).subscribe(clazz =>{
-      this.clazzForm.patchValue(clazz);
-      // console.log(clazz);
+    this.clazzService.getAllClazzStudentDtoNoPage().subscribe(data=>{
+      this.classStudentDtoList =data;
+      console.log("tuan"+data);
     })
   }
 
-  compareBlock(o1: Block, o2: Block): boolean {
-    return o1 && o2 ? o1.blockId === o2.blockId : o1 === o2;
-  }
-
-  compareTeacher(o1: Teacher, o2: Teacher): boolean {
-    return o1 && o2 ? o1.teacherId === o2.teacherId : o1 === o2;
+  private getClazzStudentDto(id: number) {
+    return this.clazzService.findByIdClazzStudentDto(id).subscribe(clazz =>{
+      this.clazzStudentDtoForm.patchValue(clazz);
+      // console.log(clazz);
+    })
   }
 
 
   update(id:number){
     // console.log("đây là id:"+id);
-    if (this.clazzForm != undefined && id != null){
-      const clazz = this.clazzForm.value;
-      // console.log(clazz)
-      this.clazzService.updateClazz(id, clazz).subscribe(()=>{
+    if (this.clazzStudentDtoForm != undefined && id != null){
+      const clazz = this.clazzStudentDtoForm.value;
+      this.clazz.clazzId=clazz.clazzId;
+      // @ts-ignore
+      this.clazz.teacher?.teacherId= clazz.teacherId;
+      // @ts-ignore
+      this.clazz.teacher?.teacherName= clazz.teacherName;
+      console.log('teacherID',this.clazz.teacher?.teacherId)
+      console.log("clazz",this.clazz)
+      this.clazzService.updateClazz(id, this.clazz).subscribe(()=>{
         if (this.clazzForm != undefined){
           this.clazzForm.reset();
           this.router.navigateByUrl("/class");
+          this.toast.success('Sửa mới thành công', 'Thông báo', {positionClass: 'toast-top-center'})
         }
       }, error => {
         this.router.navigateByUrl("/class/update")
       })
     }
   }
+
+  public getStudentClazzDtoCount(): number {
+    return this.studentClazzDtoList.length;
+  }
+
 }

@@ -62,6 +62,7 @@ export class TeacherUpdateComponent implements OnInit {
         this.toast.success('Cập nhật thông tin thành công', 'Thông báo', {positionClass: 'toast-top-center'})
         this.router.navigateByUrl("/timetable/timetable-teacher");
       }, error => {
+        this.toast.error('Cập nhật thông tin thất bại', 'Thông báo', {positionClass: 'toast-top-center'})
         for (let i = 0; i < error.error.length; i++) {
           if (error.error[i].field === 'email') {
             if(error.error[i].code === 'NotBlank') {

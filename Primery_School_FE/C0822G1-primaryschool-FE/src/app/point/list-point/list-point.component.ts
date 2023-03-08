@@ -51,6 +51,11 @@ export class ListPointComponent implements OnInit {
     });
   }
 
+  changeStatus(idCheck: number){
+    this.pointService.changeCheckbox(idCheck).subscribe(next=> {
+    });
+  }
+
   search() {
     const idAccount = this.tokenStorageService.getIdAccount();
     this.studentService.getIdTeacherByIdAccount(idAccount).subscribe(next => {

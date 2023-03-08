@@ -22,7 +22,7 @@ export class TimetableListComponent implements OnInit {
   selectedSubject: TimetableUpdate[] = [];
   clazzIdSearch: number = 0;
   idLoad: number = 0;
-  role= '';
+  role = '';
 
   time: any[] = [];
   subjects: Subject[] = [];
@@ -31,7 +31,7 @@ export class TimetableListComponent implements OnInit {
   constructor(private timetableService: TimetableService,
               private toast: ToastrService,
               private tokenStorageService: TokenStorageService) {
-    if(tokenStorageService.getRole()){
+    if (tokenStorageService.getRole()) {
       this.role = tokenStorageService.getRole()[0];
       console.log(this.role);
     }
@@ -66,7 +66,6 @@ export class TimetableListComponent implements OnInit {
    **/
   findAllSubject() {
     this.timetableService.findAllSubject().subscribe(next => {
-      console.log(next);
       this.subjects = next;
     }, error => {
       this.toast.error('Danh sách rỗng', 'Thông báo', {positionClass: 'toast-top-center'});
@@ -89,7 +88,6 @@ export class TimetableListComponent implements OnInit {
       };
       selectedValues.push(value);
     }
-    console.log(selectedValues);
     this.timetableService.update(selectedValues).subscribe(next => {
       // @ts-ignore
       this.searchTimetable(this.idLoad);
@@ -120,8 +118,6 @@ export class TimetableListComponent implements OnInit {
         })
         this.timetableArray.push(groupH);
       })
-      console.log(this.timetableArray);
-      this.toast.success('Tìm kiếm thành công', 'Thông báo', {positionClass: 'toast-top-center'});
     }, error => {
       this.toast.error('Danh sách thời khoá biểu rỗng', 'Thông báo', {positionClass: 'toast-top-center'});
     })
@@ -154,7 +150,6 @@ export class TimetableListComponent implements OnInit {
       this.clazzList = next
     }, error => {
       console.log(error);
-      this.toast.error('Danh sách rỗng', 'Thông báo', {positionClass: 'toast-top-center'})
     })
   }
 
@@ -168,7 +163,7 @@ export class TimetableListComponent implements OnInit {
     doc.addFont("Arial.tff", "Arial", "normal");
     doc.setFont("Arial");
 
-    doc.text('Thời khoá biểu', 10, 10)
+    doc.text('Thời khoá biểu', 80, 10)
     const tableHeaders = [['Tiết', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6']];
     const tableRow: any[][] = [];
 
@@ -237,11 +232,6 @@ export class TimetableListComponent implements OnInit {
     // @ts-ignore
     tableRow.push(row5);
     console.log(tableRow);
-
-    // doc.text(JSON.stringify(tableRow), 5, 5)
-    // console.log(tableRow)
-    // doc.text(JSON.stringify(tableRow), 5, 5)
-
 
     // @ts-ignore
     doc.internal.charset = "UTF-8";

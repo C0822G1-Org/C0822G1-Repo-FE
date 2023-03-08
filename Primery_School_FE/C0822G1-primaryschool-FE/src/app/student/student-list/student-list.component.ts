@@ -64,11 +64,11 @@ export class StudentListComponent implements OnInit {
     // console.log(this.className,year,clazzId);
     this.studentService.getClazzTeacher(year, clazzId).subscribe(data => {
       this.classTeacher = data;
-      console.log(data);
     });
     this.studentService.getListStudent(year, clazzId, page).subscribe(data => {
       this.studentPage = data;
       this.studentList = data.content;
+
     });
   }
 

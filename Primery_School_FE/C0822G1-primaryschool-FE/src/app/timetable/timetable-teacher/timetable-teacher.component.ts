@@ -53,9 +53,6 @@ export class TimetableTeacherComponent implements OnInit {
           index += 5;
         }
       }, error => {
-        if(error.status == 403){
-          this.toast.warning('Bạn không đủ quyền.', 'Cảnh báo')
-        }
         this.toast.error('Không tìm thấy danh sách', 'Thông báo', {positionClass: 'toast-top-left'})
 
       });

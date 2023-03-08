@@ -35,10 +35,10 @@
         <label  class="h6">Giới tính:</label>
         <div class="d-flex">
           <label class="d-block me-4">
-            <input type="radio"  value="true" name="gender" formControlName="gender"> Nam
+            <input type="radio" [value]="true" formControlName="gender"> Nam
           </label>
           <label class="d-block">
-            <input type="radio" value="false" name="gender" formControlName="gender"> Nữ
+            <input type="radio" [value]="false" formControlName="gender"> Nữ
           </label>
         </div>
       </div>
@@ -66,7 +66,7 @@
           Không được để trống
         </p>
         <p style="color: red"
-           *ngIf="formUpdateStudent.controls.phoneNumberFather.hasError('pattern')">* Chưa đúng định dạng
+           *ngIf="formUpdateStudent.controls.phoneNumberFather.hasError('pattern')">* Chưa đúng định dạng.Ví dụ 0358787098
         </p>
       </div>
 
@@ -106,7 +106,7 @@
           Không được để trống
         </p>
         <p style="color: red"
-           *ngIf="formUpdateStudent.controls.phoneNumberMother.hasError('pattern')">* Chưa đúng định dạng
+           *ngIf="formUpdateStudent.controls.phoneNumberMother.hasError('pattern')">* Chưa đúng định dạng. Ví dụ 0358787098
         </p>
       </div>
 

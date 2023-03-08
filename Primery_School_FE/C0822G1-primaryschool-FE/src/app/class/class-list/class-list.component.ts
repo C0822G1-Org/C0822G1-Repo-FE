@@ -7,6 +7,8 @@ import {BlockService} from '../../service/block.service';
 import {TeacherService} from '../../service/teacher.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {StudentService} from '../../service/student.service';
+import {ClazzStudentDto} from "../../dto/clazz-student-dto";
+import {TokenStorageService} from "../../service/authentication/token-storage.service";
 
 @Component({
   selector: 'app-class-list',
@@ -14,6 +16,7 @@ import {StudentService} from '../../service/student.service';
   styleUrls: ['./class-list.component.css']
 })
 export class ClassListComponent implements OnInit {
+  clazzStudentDtoList: ClazzStudentDto [] = [];
   clazzList: Clazz[] = [];
   blockList: Block[] = [];
   teacherList: Teacher[] = [];
@@ -24,24 +27,51 @@ export class ClassListComponent implements OnInit {
   clazzIdUpClazz: number = 0;
   nameClazzUpClazz?: string = '';
   formGroup: FormGroup;
+  pages: number[] = [];
+  role: string = '';
+
+// Hàm để tạo danh sách các trang
+  private createPageList() {
+    this.pages = [];
+    const start = Math.max(this.p - 2, 0);
+    const end = Math.min(start + 4, this.totalPage - 1);
+
+    for (let i = start; i <= end; i++) {
+      this.pages.push(i);
+    }
+  }
+
+  // Hàm để lấy dữ liệu khi chuyển sang trang mới
+  private goToPageInternal(page: number) {
+    this.p = page;
+    this.getAll(this.p);
+    this.createPageList();
+  }
 
   constructor(private clazzService: ClazzService,
               private blockService: BlockService,
               private teacherService: TeacherService,
-              private studentService: StudentService) {
+              private studentService: StudentService,
+              private tokenStorageService: TokenStorageService) {
     this.formGroup = new FormGroup({
       search: new FormControl('')
     });
+
+    if (tokenStorageService.getRole()) {
+      this.role = tokenStorageService.getRole()[0];
+      console.log(this.role);
+    }
   }
 
   ngOnInit(): void {
     this.getAll(this.p);
+    this.createPageList();
   }
 
   getAll(page: number) {
-    this.clazzService.getAllClazz(page, this.search.trim()).subscribe(data => {
+    this.clazzService.getAllClazzStudentDto(page, this.search.trim()).subscribe(data => {
       // @ts-ignore
-      this.clazzList = data['content'];
+      this.clazzStudentDtoList = data['content'];
       // @ts-ignore
       this.totalPage = data['totalPages'];
       // @ts-ignore
@@ -56,6 +86,7 @@ export class ClassListComponent implements OnInit {
     this.blockService.getAllBlock().subscribe(data => {
       this.blockList = data;
     });
+    this.createPageList();
   }
 
   getDataUpClass(clazz: Clazz) {
@@ -65,32 +96,26 @@ export class ClassListComponent implements OnInit {
     }
   }
 
-
   previousPage() {
     if (this.p > 0) {
-      this.p = this.p - 1;
-      this.getAll(this.p);
+      this.goToPageInternal(this.p - 1);
     }
   }
 
   nextPage() {
     if (this.p < this.totalPage - 1) {
-      this.p = this.p + 1;
-      this.getAll(this.p);
+      this.goToPageInternal(this.p + 1);
     }
   }
 
 
-  return() {
-    this.search = '';
-  }
 
   searchNameCLass() {
     // this.p = 0;
     // this.ngOnInit();
-    this.clazzService.getAllClazz(0, this.formGroup.value.search.trim()).subscribe(data => {
+    this.clazzService.getAllClazzStudentDto(0, this.formGroup.value.search.trim()).subscribe(data => {
       // @ts-ignore
-      this.clazzList = data['content'];
+      this.clazzStudentDtoList = data['content'];
       // @ts-ignore
       this.totalPage = data['totalPages'];
       // @ts-ignore
@@ -105,6 +130,7 @@ export class ClassListComponent implements OnInit {
     this.blockService.getAllBlock().subscribe(data => {
       this.blockList = data;
     });
+    this.createPageList();
     console.log('abc' + this.formGroup.value.search);
   }
 
@@ -114,5 +140,11 @@ export class ClassListComponent implements OnInit {
     });
     console.log('okok');
     this.ngOnInit()
+  }
+
+  goToPage(page: number) {
+    this.p = page;
+    this.goToPageInternal(page);
+    // Do something to load data for the new page
   }
 }
